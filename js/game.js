@@ -268,6 +268,9 @@ function completeCatch(fish) {
     // Stop reel sound
     stopReelSound();
 
+    // Decrement active consumables
+    decrementConsumables();
+
     document.getElementById('progress-container').style.display = 'none';
     document.getElementById('fish-display').style.display = 'none';
     document.getElementById('cast-button').disabled = false;
@@ -275,39 +278,68 @@ function completeCatch(fish) {
 
     document.querySelectorAll('.nav-button').forEach(btn => btn.disabled = false);
 
-    if (rod.strength < fish.actualStrength) {
+    // Check Lucky Coin (prevents line breaks)
+    const hasLuckyCoin = gameState.activeConsumables['lucky_coin'];
+
+    if (rod.strength < fish.actualStrength && !hasLuckyCoin) {
         gameState.stats.lineBreaks++;
-        playSound('snap'); // Line snap sound
+        playSound('snap');
         addLog(`The line snapped! The ${fish.name} was too strong (${fish.actualStrength} vs ${rod.strength}).`);
         gameState.currentFish = null;
         gameState.progress = 0;
+
+        // Auto-recast if recaster is active
+        if (gameState.upgrades.recaster) {
+            setTimeout(() => startCast(), 500);
+        }
         return;
     }
 
-    const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight));
+    // Get equipment bonuses
+    const bonuses = getEquipmentBonuses();
+
+    // Apply weight and size bonuses
+    const modifiedWeight = fish.weight * (1 + bonuses.weightBonus / 100);
+    const modifiedSize = fish.size * (1 + bonuses.sizeBonus / 100);
+    fish.weight = parseFloat(modifiedWeight.toFixed(2));
+    fish.size = parseFloat(modifiedSize.toFixed(1));
+
+    const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight) * (1 + bonuses.sellValue / 100));
 
     if (value === 0) {
         gameState.stats.fishThrownBack++;
-        playSound('splash'); // Thrown back splash
+        playSound('splash');
         addLog(`The ${fish.name} was too small to keep. You threw it back.`);
         gameState.currentFish = null;
         gameState.progress = 0;
+
+        // Auto-recast if recaster is active
+        if (gameState.upgrades.recaster) {
+            setTimeout(() => startCast(), 500);
+        }
         return;
     }
 
     gameState.stats.fishCaught++;
-    gameState.xp += Math.floor(value / 2);
+
+    // Apply XP bonus from equipment and consumables
+    let xpGain = Math.floor(value / 2);
+    if (bonuses.xpBonus) {
+        xpGain = Math.floor(xpGain * (1 + bonuses.xpBonus / 100));
+    }
+    if (gameState.activeConsumables['xp_boost']) {
+        xpGain *= 2;
+    }
+
+    gameState.xp += xpGain;
 
     const caughtFish = { ...fish, value, caughtAt: Date.now() };
     gameState.inventory.push(caughtFish);
     gameState.lastCatch = caughtFish;
 
-    // Play catch splash sound
     playSound('splash');
 
-    // Check quest progress
     checkQuestProgress(fish);
-
     updateRecords(fish, value);
 
     addLog(`Caught a ${fish.name}! (${formatFishMeasurements(fish)})`);
@@ -315,6 +347,11 @@ function completeCatch(fish) {
     gameState.progress = 0;
 
     updateDisplay();
+
+    // Auto-recast if recaster is active
+    if (gameState.upgrades.recaster) {
+        setTimeout(() => startCast(), 500);
+    }
 }
 
 // Records tracking
@@ -399,6 +436,7 @@ updateDisplay();
 // Small delay to ensure everything is rendered
 setTimeout(() => {
     updateQuestDisplay();
+
     // Generate quest if none exists and not on cooldown
     if (!gameState.quest && !gameState.questCooldown) {
         console.log('No quest found, generating initial quest...');

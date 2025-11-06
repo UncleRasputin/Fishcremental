@@ -26,12 +26,18 @@ function saveGame(silent = false) {
                 questTokens: gameState.questTokens,
                 quest: gameState.quest,
                 questCooldown: gameState.questCooldown,
+                equipped: gameState.equipped,
+                upgrades: gameState.upgrades,
+                activeConsumables: gameState.activeConsumables,
+                consumableInventory: gameState.consumableInventory,
                 stats: gameState.stats,
                 records: gameState.records
             },
             lakes: LAKES,
             baits: BAITS,
             rods: RODS,
+            equipment: EQUIPMENT,
+            upgrades: UPGRADES,
             timestamp: Date.now()
         };
 
@@ -68,11 +74,12 @@ function loadGame() {
         gameState.questTokens = data.gameState.questTokens || 0;
         gameState.quest = data.gameState.quest || null;
         gameState.questCooldown = data.gameState.questCooldown || false;
+        gameState.equipped = data.gameState.equipped || { hat: 'none', vest: 'none', tackle: 'none', boots: 'none' };
+        gameState.upgrades = data.gameState.upgrades || { recaster: false };
+        gameState.activeConsumables = data.gameState.activeConsumables || {};
+        gameState.consumableInventory = data.gameState.consumableInventory || {};
         gameState.stats = data.gameState.stats;
         gameState.records = data.gameState.records;
-
-        if (gameState.stats.questsCompleted === undefined)
-            gameState.stats.questsCompleted = 0;
 
         Object.keys(data.lakes).forEach(id => {
             LAKES[id].unlocked = data.lakes[id].unlocked;
@@ -83,6 +90,17 @@ function loadGame() {
         Object.keys(data.rods).forEach(id => {
             RODS[id].unlocked = data.rods[id].unlocked;
         });
+
+        // Restore equipment unlocks
+        if (data.equipment) {
+            Object.keys(data.equipment).forEach(slot => {
+                Object.keys(data.equipment[slot]).forEach(id => {
+                    if (EQUIPMENT[slot] && EQUIPMENT[slot][id]) {
+                        EQUIPMENT[slot][id].unlocked = data.equipment[slot][id].unlocked;
+                    }
+                });
+            });
+        }
 
         updateDisplay();
         return true;

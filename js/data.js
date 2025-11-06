@@ -64,6 +64,40 @@ const RARITY_ORDER = {
     legendary: 5
 };
 
+// Equipment and items
+const EQUIPMENT = {
+    hat: {
+        none: { name: "No Hat", bonus: {}, cost: 0, unlocked: true },
+        lucky: { name: "Lucky Hat", bonus: { rareChance: 5 }, cost: 3, unlocked: false, description: "+5% rare fish chance" },
+        scholar: { name: "Scholar's Cap", bonus: { xpBonus: 10 }, cost: 5, unlocked: false, description: "+10% XP gained" }
+    },
+    vest: {
+        none: { name: "No Vest", bonus: {}, cost: 0, unlocked: true },
+        fishing: { name: "Fishing Vest", bonus: { sellValue: 10 }, cost: 4, unlocked: false, description: "+10% sell value" },
+        weighted: { name: "Weighted Vest", bonus: { weightBonus: 15 }, cost: 6, unlocked: false, description: "+15% fish weight" }
+    },
+    tackle: {
+        none: { name: "No Tackle Box", bonus: {}, cost: 0, unlocked: true },
+        basic: { name: "Basic Tackle Box", bonus: { baitPower: 0.5 }, cost: 5, unlocked: false, description: "+0.5x bait effectiveness" },
+        pro: { name: "Pro Tackle Box", bonus: { waitReduction: 10 }, cost: 8, unlocked: false, description: "-10% wait time" }
+    },
+    boots: {
+        none: { name: "No Boots", bonus: {}, cost: 0, unlocked: true },
+        waders: { name: "Hip Waders", bonus: { sizeBonus: 10 }, cost: 4, unlocked: false, description: "+10% fish size" },
+        speed: { name: "Speed Boots", bonus: { castSpeed: 0.2 }, cost: 6, unlocked: false, description: "+0.2x cast speed" }
+    }
+};
+
+const UPGRADES = {
+    recaster: { name: "Auto-Recaster", cost: 10, unlocked: false, description: "Automatically cast again after catching/losing a fish" }
+};
+
+const CONSUMABLES = {
+    lucky_coin: { name: "Lucky Coin", cost: 2, uses: 5, description: "No line breaks for 5 casts" },
+    xp_boost: { name: "XP Boost", cost: 3, uses: 10, description: "2x XP for 10 casts" },
+    super_bait: { name: "Super Bait", cost: 5, uses: 1, description: "Guarantees Epic+ fish on next catch" }
+};
+
 // Game state
 let gameState = {
     money: 0,
@@ -86,10 +120,21 @@ let gameState = {
     log: [],
     inventory: [],
     progressInterval: null,
-    useImperial: true, // Default to Imperial measurements
+    useImperial: true,
     questTokens: 0,
     quest: null,
     questCooldown: false,
+    equipped: {
+        hat: 'none',
+        vest: 'none',
+        tackle: 'none',
+        boots: 'none'
+    },
+    upgrades: {
+        recaster: false
+    },
+    activeConsumables: {},
+    consumableInventory: {},
     stats: {
         totalCasts: 0,
         fishCaught: 0,

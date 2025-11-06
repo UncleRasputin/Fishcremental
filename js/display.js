@@ -151,6 +151,7 @@ function updateShopDisplay() {
             </div>
         `;
     }).join('');
+    updateTokenShop();
 }
 
 function updateTravelDisplay() {

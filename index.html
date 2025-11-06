@@ -107,11 +107,35 @@
         <!-- INVENTORY SCREEN -->
         <div id="screen-inventory" class="screen">
             <div class="inventory-panel">
-                <div class="panel-header">
-                    <h2>📦 Inventory (<span id="inventory-count">0</span>)</h2>
-                    <button class="small-button" onclick="sellAll()" id="sell-all-button" style="display: none;">Sell All</button>
+                <div class="inventory-tabs">
+                    <button class="inventory-tab active" onclick="changeInventoryTab('fish')">🐟 Fish</button>
+                    <button class="inventory-tab" onclick="changeInventoryTab('consumables')">🎒 Consumables</button>
+                    <button class="inventory-tab" onclick="changeInventoryTab('equipment')">⚙️ Equipment</button>
+                    <button class="inventory-tab" onclick="changeInventoryTab('upgrades')">🔧 Upgrades</button>
                 </div>
-                <div class="inventory-grid" id="inventory-grid"></div>
+
+                <div id="inventory-tab-fish" class="inventory-tab-content active">
+                    <div class="panel-header">
+                        <h2>🐟 Fish Inventory (<span id="inventory-count">0</span>)</h2>
+                        <button class="small-button" onclick="sellAll()" id="sell-all-button" style="display: none;">Sell All</button>
+                    </div>
+                    <div class="inventory-grid" id="inventory-grid"></div>
+                </div>
+
+                <div id="inventory-tab-consumables" class="inventory-tab-content">
+                    <h2>🎒 Consumables</h2>
+                    <div id="consumables-inventory-container" class="inventory-grid"></div>
+                </div>
+
+                <div id="inventory-tab-equipment" class="inventory-tab-content">
+                    <h2>⚙️ Equipment</h2>
+                    <div id="equipment-slots-container"></div>
+                </div>
+
+                <div id="inventory-tab-upgrades" class="inventory-tab-content">
+                    <h2>🔧 Permanent Upgrades</h2>
+                    <div id="upgrades-owned-container"></div>
+                </div>
             </div>
         </div>
 
@@ -121,6 +145,7 @@
                 <div class="shop-tabs">
                     <button class="shop-tab active" onclick="changeShopTab('rods')">🎣 Rods</button>
                     <button class="shop-tab" onclick="changeShopTab('bait')">🪱 Bait</button>
+                    <button class="shop-tab" onclick="changeShopTab('tokens')">🎫 Token Shop</button>
                 </div>
 
                 <div id="shop-tab-rods" class="shop-tab-content active">
@@ -131,6 +156,21 @@
                 <div id="shop-tab-bait" class="shop-tab-content">
                     <h3>Bait & Lures</h3>
                     <div id="bait-container" class="shop-items"></div>
+                </div>
+
+                <div id="shop-tab-tokens" class="shop-tab-content">
+                    <div class="token-shop-section">
+                        <h3>⚙️ Equipment</h3>
+                        <div id="equipment-shop-container" class="shop-items"></div>
+                    </div>
+                    <div class="token-shop-section">
+                        <h3>🔧 Permanent Upgrades</h3>
+                        <div id="upgrades-shop-container" class="shop-items"></div>
+                    </div>
+                    <div class="token-shop-section">
+                        <h3>🎒 Consumables</h3>
+                        <div id="consumables-shop-container" class="shop-items"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,6 +258,7 @@
     <script src="js/data.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/units.js"></script>
+    <script src="js/equipment.js"></script>
     <script src="js/quest.js"></script>
     <script src="js/display.js"></script>
     <script src="js/save.js"></script>

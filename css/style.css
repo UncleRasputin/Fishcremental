@@ -480,6 +480,114 @@ body {
         border-bottom-color: #fbbf24;
     }
 
+.token-shop-section {
+    margin-bottom: 2rem;
+}
+
+    .token-shop-section:last-child {
+        margin-bottom: 0;
+    }
+
+/* Inventory Tabs */
+.inventory-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #2563eb;
+}
+
+.inventory-tab {
+    background: transparent;
+    border: none;
+    color: #93c5fd;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+    .inventory-tab:hover {
+        color: white;
+    }
+
+    .inventory-tab.active {
+        color: white;
+        border-bottom-color: #fbbf24;
+    }
+
+.inventory-tab-content {
+    display: none;
+}
+
+    .inventory-tab-content.active {
+        display: block;
+    }
+
+/* Equipment Slots */
+.equipment-slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.equipment-slot {
+    background: #1e3a8a;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.equipment-slot-name {
+    font-weight: bold;
+    color: #fbbf24;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.equipment-slot-item {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.equipment-slot-bonus {
+    color: #4ade80;
+    font-size: 0.875rem;
+}
+
+.consumable-item {
+    background: #1e3a8a;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.consumable-active {
+    border: 2px solid #fbbf24;
+}
+
+.upgrade-item {
+    background: #1e3a8a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+}
+
+.upgrade-item-name {
+    font-weight: bold;
+    color: #fbbf24;
+    margin-bottom: 0.25rem;
+}
+
+.upgrade-item-description {
+    color: #93c5fd;
+    font-size: 0.875rem;
+}
+
 .shop-tab-content {
     display: none;
 }
