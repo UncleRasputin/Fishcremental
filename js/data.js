@@ -120,6 +120,7 @@ let gameState = {
     log: [],
     inventory: [],
     progressInterval: null,
+    recasting: false,
     useImperial: true,
     questTokens: 0,
     quest: null,

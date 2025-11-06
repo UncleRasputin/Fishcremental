@@ -262,6 +262,21 @@ function startReel(fish) {
     }, 50);
 }
 
+function TryRecast() {
+    // Auto-recast if recaster is active
+    if (gameState.upgrades.recaster)
+    {
+        if (!gameState.recasting) {
+            gamestate.recasting = true;
+            setTimeout(() => startCast(), 500);
+        }
+        else {
+            gamestate.recasting = false;
+        }
+            
+    }
+}
+
 function completeCatch(fish) {
     const rod = RODS[gameState.currentRod];
 
@@ -288,10 +303,7 @@ function completeCatch(fish) {
         gameState.currentFish = null;
         gameState.progress = 0;
 
-        // Auto-recast if recaster is active
-        if (gameState.upgrades.recaster) {
-            setTimeout(() => startCast(), 500);
-        }
+        TryRecast();
         return;
     }
 
@@ -313,10 +325,7 @@ function completeCatch(fish) {
         gameState.currentFish = null;
         gameState.progress = 0;
 
-        // Auto-recast if recaster is active
-        if (gameState.upgrades.recaster) {
-            setTimeout(() => startCast(), 500);
-        }
+        TryRecast();
         return;
     }
 
@@ -348,10 +357,7 @@ function completeCatch(fish) {
 
     updateDisplay();
 
-    // Auto-recast if recaster is active
-    if (gameState.upgrades.recaster) {
-        setTimeout(() => startCast(), 500);
-    }
+    TryRecast();
 }
 
 // Records tracking
