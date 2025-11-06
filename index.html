@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishcremental - Idle Fishing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header with stats -->
+    <div class="header">
+        <div class="header-left">
+            <h1>🐟 Fishcremental</h1>
+        </div>
+        <div class="header-stats">
+            <div class="stat">
+                <span class="stat-label">Money</span>
+                <span class="stat-value" id="money">$0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Level</span>
+                <span class="stat-value" id="level">1</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">XP</span>
+                <span class="stat-value" id="xp-text">0/100</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Season</span>
+                <span class="stat-value" id="season">Spring</span>
+            </div>
+            <div class="stat season-progress-container">
+                <span class="stat-label">Season Progress</span>
+                <div class="season-progress-bar">
+                    <div class="season-progress-fill" id="season-progress"></div>
+                </div>
+            </div>
+            <div class="stat">
+                <button id="mute-button" class="mute-button" onclick="toggleMute()" title="Mute">🔊</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <button class="nav-button active" data-screen="fish" onclick="changeScreen('fish')">🎣 Fish</button>
+        <button class="nav-button" data-screen="inventory" onclick="changeScreen('inventory')">📦 Inventory</button>
+        <button class="nav-button" data-screen="shop" onclick="changeScreen('shop')">🏪 Shop</button>
+        <button class="nav-button" data-screen="travel" onclick="changeScreen('travel')">🗺️ Travel</button>
+        <button class="nav-button" data-screen="stats" onclick="changeScreen('stats')">📊 Stats</button>
+    </nav>
+
+    <div class="container">
+        <!-- FISH SCREEN -->
+        <div id="screen-fish" class="screen active">
+            <div class="fishing-panel">
+                <div class="location-display">
+                    <h2 id="location-name">Willow Pond - Lily Pads</h2>
+                </div>
+
+                <div class="equipment-display">
+                    <div class="equipment-item">
+                        <span class="equipment-label">Rod:</span>
+                        <span id="rod-name">Basic Rod</span>
+                        <span class="equipment-stat" id="rod-stat">(Str: 10)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <span class="equipment-label">Bait:</span>
+                        <span id="bait-name">Worm</span>
+                        <span class="equipment-stat" id="bait-stat">(Power: 1x)</span>
+                    </div>
+                </div>
+
+                <div id="last-catch-display" class="last-catch-panel" style="display: none;"></div>
+
+                <button class="cast-button" id="cast-button" onclick="startCast()">Cast Line</button>
+
+                <div id="progress-container" style="display: none;">
+                    <div id="progress-label">Casting</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div id="fish-display" style="display: none;" class="fish-info">
+                    <div id="fish-name" class="rarity-common"></div>
+                    <div id="fish-stats"></div>
+                    <div id="fish-strength"></div>
+                </div>
+
+                <div class="log-panel">
+                    <div class="log-header">Activity Log</div>
+                    <div id="log-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVENTORY SCREEN -->
+        <div id="screen-inventory" class="screen">
+            <div class="inventory-panel">
+                <div class="panel-header">
+                    <h2>📦 Inventory (<span id="inventory-count">0</span>)</h2>
+                    <button class="small-button" onclick="sellAll()" id="sell-all-button" style="display: none;">Sell All</button>
+                </div>
+                <div class="inventory-grid" id="inventory-grid"></div>
+            </div>
+        </div>
+
+        <!-- SHOP SCREEN -->
+        <div id="screen-shop" class="screen">
+            <div class="shop-panel">
+                <div class="shop-tabs">
+                    <button class="shop-tab active" onclick="changeShopTab('rods')">🎣 Rods</button>
+                    <button class="shop-tab" onclick="changeShopTab('bait')">🪱 Bait</button>
+                </div>
+                
+                <div id="shop-tab-rods" class="shop-tab-content active">
+                    <h3>Fishing Rods</h3>
+                    <div id="rods-container" class="shop-items"></div>
+                </div>
+                
+                <div id="shop-tab-bait" class="shop-tab-content">
+                    <h3>Bait & Lures</h3>
+                    <div id="bait-container" class="shop-items"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRAVEL SCREEN -->
+        <div id="screen-travel" class="screen">
+            <div class="travel-panel">
+                <h2>🗺️ Travel</h2>
+                <div id="travel-container"></div>
+            </div>
+        </div>
+
+        <!-- STATS SCREEN -->
+        <div id="screen-stats" class="screen">
+            <div class="stats-panel">
+                <div class="panel-header">
+                    <h2>📊 Statistics & Records</h2>
+                    <div>
+                        <button class="small-button" onclick="hardReset()" style="background: #dc2626; margin-right: 0.5rem;">🗑️ Hard Reset</button>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-title">Fishing Stats</div>
+                        <div class="stat-row">
+                            <span>Total Casts:</span>
+                            <span id="stat-casts">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Fish Caught:</span>
+                            <span id="stat-caught">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Fish Thrown Back:</span>
+                            <span id="stat-thrown-back">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Line Breaks:</span>
+                            <span id="stat-breaks">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Total Money Earned:</span>
+                            <span id="stat-money-earned">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-title">Records</div>
+                        <div class="stat-row">
+                            <span>Heaviest Fish:</span>
+                            <span id="record-heaviest">None</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Largest Fish:</span>
+                            <span id="record-largest">None</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Most Valuable:</span>
+                            <span id="record-valuable">None</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Rarest Catch:</span>
+                            <span id="record-rarest">None</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="records-by-location">
+                    <h3>Records by Location</h3>
+                    <div id="location-records"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="audio.js"></script>
+    <script src="display.js"></script>
+    <script src="save.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
