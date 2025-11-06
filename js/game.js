@@ -267,11 +267,11 @@ function TryRecast() {
     if (gameState.upgrades.recaster)
     {
         if (!gameState.recasting) {
-            gamestate.recasting = true;
+            gameState.recasting = true;
             setTimeout(() => startCast(), 500);
         }
         else {
-            gamestate.recasting = false;
+            gameState.recasting = false;
         }
             
     }
