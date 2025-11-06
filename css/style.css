@@ -71,6 +71,26 @@ body {
     transition: width 0.3s ease;
 }
 
+.icon-button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    margin: 0 0.25rem;
+    transition: transform 0.2s;
+}
+
+    .icon-button:hover {
+        transform: scale(1.2);
+    }
+
+.header-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 /* Navigation */
 .nav-bar {
     background: #1e3a8a;
@@ -91,21 +111,21 @@ body {
     border-bottom: 3px solid transparent;
 }
 
-.nav-button:hover {
-    background: rgba(37, 99, 235, 0.3);
-    color: white;
-}
+    .nav-button:hover {
+        background: rgba(37, 99, 235, 0.3);
+        color: white;
+    }
 
-.nav-button.active {
-    background: rgba(37, 99, 235, 0.5);
-    color: white;
-    border-bottom-color: #fbbf24;
-}
+    .nav-button.active {
+        background: rgba(37, 99, 235, 0.5);
+        color: white;
+        border-bottom-color: #fbbf24;
+    }
 
-.nav-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
+    .nav-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 
 /* Container */
 .container {
@@ -119,9 +139,9 @@ body {
     display: none;
 }
 
-.screen.active {
-    display: block;
-}
+    .screen.active {
+        display: block;
+    }
 
 /* Fish Screen */
 .fishing-panel {
@@ -141,10 +161,10 @@ body {
     border-bottom: 2px solid #2563eb;
 }
 
-.location-display h2 {
-    font-size: 1.5rem;
-    color: #fbbf24;
-}
+    .location-display h2 {
+        font-size: 1.5rem;
+        color: #fbbf24;
+    }
 
 .equipment-display {
     background: #1e3a8a;
@@ -169,6 +189,87 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Quest Panel */
+.quest-panel {
+    background: #1e3a8a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #a855f7;
+}
+
+.quest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.quest-title {
+    font-weight: bold;
+    color: #fbbf24;
+    font-size: 1rem;
+}
+
+.quest-target {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+.quest-progress-container {
+    margin-bottom: 0.75rem;
+}
+
+.quest-progress-bar {
+    width: 100%;
+    height: 1.25rem;
+    background: #1e3a8a;
+    border: 2px solid #2563eb;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.25rem;
+}
+
+.quest-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #a855f7, #d946ef);
+    transition: width 0.3s ease;
+}
+
+.quest-progress-text {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #93c5fd;
+}
+
+.quest-rewards {
+    padding-top: 0.75rem;
+    border-top: 1px solid #2563eb;
+}
+
+.abandon-button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+    .abandon-button:hover {
+        background: #b91c1c;
+    }
+
+.quest-cooldown, .quest-empty {
+    text-align: center;
+    padding: 0.5rem;
+}
+
 .equipment-item {
     display: flex;
     align-items: center;
@@ -176,9 +277,9 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.equipment-item:last-child {
-    margin-bottom: 0;
-}
+    .equipment-item:last-child {
+        margin-bottom: 0;
+    }
 
 .equipment-label {
     color: #93c5fd;
@@ -205,14 +306,14 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.cast-button:hover:not(:disabled) {
-    background: #15803d;
-}
+    .cast-button:hover:not(:disabled) {
+        background: #15803d;
+    }
 
-.cast-button:disabled {
-    background: #4b5563;
-    cursor: not-allowed;
-}
+    .cast-button:disabled {
+        background: #4b5563;
+        cursor: not-allowed;
+    }
 
 #progress-container {
     margin-bottom: 1.5rem;
@@ -246,13 +347,13 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.fish-info > div {
-    margin-bottom: 0.5rem;
-}
+    .fish-info > div {
+        margin-bottom: 0.5rem;
+    }
 
-.fish-info > div:last-child {
-    margin-bottom: 0;
-}
+        .fish-info > div:last-child {
+            margin-bottom: 0;
+        }
 
 #fish-name {
     font-weight: bold;
@@ -299,9 +400,9 @@ body {
     border-bottom: 2px solid #2563eb;
 }
 
-.panel-header h2 {
-    font-size: 1.5rem;
-}
+    .panel-header h2 {
+        font-size: 1.5rem;
+    }
 
 .inventory-grid {
     display: grid;
@@ -315,17 +416,17 @@ body {
     border-radius: 8px;
 }
 
-.inventory-item > div:first-child {
-    font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
+    .inventory-item > div:first-child {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
 
-.inventory-item > div:nth-child(2) {
-    font-size: 0.875rem;
-    color: #93c5fd;
-    margin-bottom: 0.75rem;
-}
+    .inventory-item > div:nth-child(2) {
+        font-size: 0.875rem;
+        color: #93c5fd;
+        margin-bottom: 0.75rem;
+    }
 
 .sell-button {
     width: 100%;
@@ -340,9 +441,9 @@ body {
     transition: background 0.2s;
 }
 
-.sell-button:hover {
-    background: #166534;
-}
+    .sell-button:hover {
+        background: #166534;
+    }
 
 /* Shop Screen */
 .shop-panel {
@@ -370,28 +471,28 @@ body {
     transition: all 0.2s;
 }
 
-.shop-tab:hover {
-    color: white;
-}
+    .shop-tab:hover {
+        color: white;
+    }
 
-.shop-tab.active {
-    color: white;
-    border-bottom-color: #fbbf24;
-}
+    .shop-tab.active {
+        color: white;
+        border-bottom-color: #fbbf24;
+    }
 
 .shop-tab-content {
     display: none;
 }
 
-.shop-tab-content.active {
-    display: block;
-}
+    .shop-tab-content.active {
+        display: block;
+    }
 
-.shop-tab-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: #93c5fd;
-}
+    .shop-tab-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: #93c5fd;
+    }
 
 .shop-items {
     display: grid;
@@ -434,23 +535,23 @@ body {
     white-space: nowrap;
 }
 
-.shop-item-button:hover:not(:disabled) {
-    background: #15803d;
-}
+    .shop-item-button:hover:not(:disabled) {
+        background: #15803d;
+    }
 
-.shop-item-button:disabled {
-    background: #4b5563;
-    cursor: not-allowed;
-}
+    .shop-item-button:disabled {
+        background: #4b5563;
+        cursor: not-allowed;
+    }
 
-.shop-item-button.owned {
-    background: #2563eb;
-}
+    .shop-item-button.owned {
+        background: #2563eb;
+    }
 
-.shop-item-button.equipped {
-    background: #fbbf24;
-    color: #1e3a8a;
-}
+    .shop-item-button.equipped {
+        background: #fbbf24;
+        color: #1e3a8a;
+    }
 
 /* Travel Screen */
 .travel-panel {
@@ -459,12 +560,12 @@ body {
     padding: 2rem;
 }
 
-.travel-panel h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #2563eb;
-}
+    .travel-panel h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #2563eb;
+    }
 
 .travel-location {
     background: #1e3a8a;
@@ -502,14 +603,14 @@ body {
     transition: background 0.2s;
 }
 
-.travel-spot-button:hover {
-    background: #1e40af;
-}
+    .travel-spot-button:hover {
+        background: #1e40af;
+    }
 
-.travel-spot-button.current {
-    background: #fbbf24;
-    color: #1e3a8a;
-}
+    .travel-spot-button.current {
+        background: #fbbf24;
+        color: #1e3a8a;
+    }
 
 .unlock-button {
     background: #16a34a;
@@ -522,21 +623,35 @@ body {
     transition: background 0.2s;
 }
 
-.unlock-button:hover:not(:disabled) {
-    background: #15803d;
-}
+    .unlock-button:hover:not(:disabled) {
+        background: #15803d;
+    }
 
-.unlock-button:disabled {
-    background: #4b5563;
-    cursor: not-allowed;
-}
+    .unlock-button:disabled {
+        background: #4b5563;
+        cursor: not-allowed;
+    }
 
 /* Rarity colors */
-.rarity-common { color: #9ca3af; }
-.rarity-uncommon { color: #4ade80; }
-.rarity-rare { color: #60a5fa; }
-.rarity-epic { color: #c084fc; }
-.rarity-legendary { color: #fbbf24; }
+.rarity-common {
+    color: #9ca3af;
+}
+
+.rarity-uncommon {
+    color: #4ade80;
+}
+
+.rarity-rare {
+    color: #60a5fa;
+}
+
+.rarity-epic {
+    color: #c084fc;
+}
+
+.rarity-legendary {
+    color: #fbbf24;
+}
 
 /* Utilities */
 .small-button {
@@ -551,9 +666,9 @@ body {
     transition: background 0.2s;
 }
 
-.small-button:hover {
-    background: #1e40af;
-}
+    .small-button:hover {
+        background: #1e40af;
+    }
 
 /* Stats Screen */
 .stats-panel {
@@ -591,17 +706,17 @@ body {
     border-bottom: 1px solid #2563eb;
 }
 
-.stat-row:last-child {
-    border-bottom: none;
-}
+    .stat-row:last-child {
+        border-bottom: none;
+    }
 
-.stat-row span:first-child {
-    color: #93c5fd;
-}
+    .stat-row span:first-child {
+        color: #93c5fd;
+    }
 
-.stat-row span:last-child {
-    font-weight: 600;
-}
+    .stat-row span:last-child {
+        font-weight: 600;
+    }
 
 .records-by-location {
     background: #1e3a8a;
@@ -609,13 +724,13 @@ body {
     border-radius: 8px;
 }
 
-.records-by-location h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: #fbbf24;
-    border-bottom: 2px solid #2563eb;
-    padding-bottom: 0.5rem;
-}
+    .records-by-location h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: #fbbf24;
+        border-bottom: 2px solid #2563eb;
+        padding-bottom: 0.5rem;
+    }
 
 .location-record {
     margin-bottom: 1.5rem;
@@ -623,11 +738,11 @@ body {
     border-bottom: 1px solid #2563eb;
 }
 
-.location-record:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+    .location-record:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 
 .location-record-name {
     font-weight: bold;
@@ -643,6 +758,6 @@ body {
     font-size: 0.875rem;
 }
 
-.location-record-stats div {
-    color: #93c5fd;
-}
+    .location-record-stats div {
+        color: #93c5fd;
+    }

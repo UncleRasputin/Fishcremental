@@ -86,12 +86,17 @@ let gameState = {
     log: [],
     inventory: [],
     progressInterval: null,
+    useImperial: true, // Default to Imperial measurements
+    questTokens: 0,
+    quest: null,
+    questCooldown: false,
     stats: {
         totalCasts: 0,
         fishCaught: 0,
         fishThrownBack: 0,
         lineBreaks: 0,
-        totalMoneyEarned: 0
+        totalMoneyEarned: 0,
+        questsCompleted: 0
     },
     records: {
         heaviestFish: null,

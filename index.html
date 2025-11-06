@@ -26,6 +26,10 @@
                 <span class="stat-value" id="xp-text">0/100</span>
             </div>
             <div class="stat">
+                <span class="stat-label">Quest Tokens</span>
+                <span class="stat-value" id="header-tokens">0</span>
+            </div>
+            <div class="stat">
                 <span class="stat-label">Season</span>
                 <span class="stat-value" id="season">Spring</span>
             </div>
@@ -35,8 +39,11 @@
                     <div class="season-progress-fill" id="season-progress"></div>
                 </div>
             </div>
-            <div class="stat">
-                <button id="mute-button" class="mute-button" onclick="toggleMute()" title="Mute">🔊</button>
+            <div class="stat header-buttons">
+                <button id="units-button" class="icon-button" onclick="toggleUnits()" title="Switch Units">🇺🇸</button>
+            </div>
+            <div class="stat header-buttons">
+                <button id="mute-button" class="icon-button" onclick="toggleMute()" title="Mute">🔊</button>
             </div>
         </div>
     </div>
@@ -72,6 +79,8 @@
                 </div>
 
                 <div id="last-catch-display" class="last-catch-panel" style="display: none;"></div>
+
+                <div id="quest-panel" class="quest-panel"></div>
 
                 <button class="cast-button" id="cast-button" onclick="startCast()">Cast Line</button>
 
@@ -113,12 +122,12 @@
                     <button class="shop-tab active" onclick="changeShopTab('rods')">🎣 Rods</button>
                     <button class="shop-tab" onclick="changeShopTab('bait')">🪱 Bait</button>
                 </div>
-                
+
                 <div id="shop-tab-rods" class="shop-tab-content active">
                     <h3>Fishing Rods</h3>
                     <div id="rods-container" class="shop-items"></div>
                 </div>
-                
+
                 <div id="shop-tab-bait" class="shop-tab-content">
                     <h3>Bait & Lures</h3>
                     <div id="bait-container" class="shop-items"></div>
@@ -140,10 +149,10 @@
                 <div class="panel-header">
                     <h2>📊 Statistics & Records</h2>
                     <div>
-                        <button class="small-button" onclick="hardReset()" style="background: #dc2626; margin-right: 0.5rem;">🗑️ Hard Reset</button>
+                        <button class="small-button" onclick="hardReset()" style="background: #dc2626;">🗑️ Hard Reset</button>
                     </div>
                 </div>
-                
+
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-card-title">Fishing Stats</div>
@@ -166,6 +175,14 @@
                         <div class="stat-row">
                             <span>Total Money Earned:</span>
                             <span id="stat-money-earned">$0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Quests Completed:</span>
+                            <span id="stat-quests">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Quest Tokens:</span>
+                            <span id="stat-tokens">0</span>
                         </div>
                     </div>
 
@@ -200,6 +217,8 @@
 
     <script src="js/data.js"></script>
     <script src="js/audio.js"></script>
+    <script src="js/units.js"></script>
+    <script src="js/quest.js"></script>
     <script src="js/display.js"></script>
     <script src="js/save.js"></script>
     <script src="js/game.js"></script>

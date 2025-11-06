@@ -22,6 +22,10 @@ function saveGame(silent = false) {
                 currentRod: gameState.currentRod,
                 inventory: gameState.inventory,
                 lastCatch: gameState.lastCatch,
+                useImperial: gameState.useImperial,
+                questTokens: gameState.questTokens,
+                quest: gameState.quest,
+                questCooldown: gameState.questCooldown,
                 stats: gameState.stats,
                 records: gameState.records
             },
@@ -30,7 +34,7 @@ function saveGame(silent = false) {
             rods: RODS,
             timestamp: Date.now()
         };
-        
+
         localStorage.setItem('fishcremental_save', JSON.stringify(saveData));
         if (!silent) {
             addLog('Game saved successfully!');
@@ -46,9 +50,9 @@ function loadGame() {
         if (!saveData) {
             return false;
         }
-        
+
         const data = JSON.parse(saveData);
-        
+
         gameState.money = data.gameState.money;
         gameState.xp = data.gameState.xp;
         gameState.level = data.gameState.level;
@@ -60,9 +64,13 @@ function loadGame() {
         gameState.currentRod = data.gameState.currentRod;
         gameState.inventory = data.gameState.inventory;
         gameState.lastCatch = data.gameState.lastCatch || null;
+        gameState.useImperial = data.gameState.useImperial !== undefined ? data.gameState.useImperial : true;
+        gameState.questTokens = data.gameState.questTokens || 0;
+        gameState.quest = data.gameState.quest || null;
+        gameState.questCooldown = data.gameState.questCooldown || false;
         gameState.stats = data.gameState.stats;
         gameState.records = data.gameState.records;
-        
+
         Object.keys(data.lakes).forEach(id => {
             LAKES[id].unlocked = data.lakes[id].unlocked;
         });
@@ -72,7 +80,7 @@ function loadGame() {
         Object.keys(data.rods).forEach(id => {
             RODS[id].unlocked = data.rods[id].unlocked;
         });
-        
+
         updateDisplay();
         return true;
     } catch (error) {
@@ -85,11 +93,11 @@ function hardReset() {
     if (!confirm('Are you sure you want to HARD RESET? This will delete ALL progress and cannot be undone!')) {
         return;
     }
-    
+
     if (!confirm('Really? This will permanently delete everything!')) {
         return;
     }
-    
+
     localStorage.removeItem('fishcremental_save');
     location.reload();
 }
