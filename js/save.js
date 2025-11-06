@@ -71,6 +71,9 @@ function loadGame() {
         gameState.stats = data.gameState.stats;
         gameState.records = data.gameState.records;
 
+        if (gameState.stats.questsCompleted === undefined)
+            gameState.stats.questsCompleted = 0;
+
         Object.keys(data.lakes).forEach(id => {
             LAKES[id].unlocked = data.lakes[id].unlocked;
         });
