@@ -452,4 +452,7 @@ setTimeout(() => {
     } else if (gameState.questCooldown) {
         console.log('Quest on cooldown');
     }
+
+    // Check if first-time player and show intro
+    checkFirstTimePlayer();
 }, 100);

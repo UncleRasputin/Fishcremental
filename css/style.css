@@ -33,6 +33,8 @@ body {
     gap: 2rem;
 }
 
+
+
 .stat {
     display: flex;
     flex-direction: column;
@@ -108,10 +110,10 @@ body {
         transform: scale(1.2);
     }
 
+
 .header-buttons {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 /* Navigation */
@@ -1053,3 +1055,284 @@ body {
     .location-record-stats div {
         color: #93c5fd;
     }
+
+/* Info Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.modal-container {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #93c5fd;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #ffffff;
+}
+
+.modal-tabs {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem 0;
+    border-bottom: 2px solid #3b82f6;
+    background: rgba(30, 58, 138, 0.5);
+    overflow-x: auto;
+}
+
+.modal-tab {
+    background: transparent;
+    border: none;
+    color: #93c5fd;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.modal-tab:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #ffffff;
+}
+
+.modal-tab.active {
+    background: #1e3a8a;
+    color: #ffffff;
+    border-bottom: 2px solid #60a5fa;
+}
+
+.modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.info-section {
+    color: #e0e7ff;
+}
+
+.info-section h3 {
+    color: #60a5fa;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.info-section h4 {
+    color: #93c5fd;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-section p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.info-section ul {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.info-section li {
+    margin-bottom: 0.5rem;
+}
+
+.info-section strong {
+    color: #93c5fd;
+}
+
+/* Changelog Styles */
+.changelog-entry {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #3b82f6;
+}
+
+.changelog-entry:last-child {
+    border-bottom: none;
+}
+
+.changelog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.changelog-header h3 {
+    margin: 0;
+    color: #60a5fa;
+}
+
+.changelog-date {
+    color: #93c5fd;
+    font-size: 0.875rem;
+}
+
+.changelog-list {
+    list-style: none;
+    padding: 0;
+}
+
+.changelog-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.changelog-list li:before {
+    content: "•";
+    color: #60a5fa;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Roadmap Styles */
+.roadmap-item {
+    background: rgba(30, 58, 138, 0.3);
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.roadmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-header h4 {
+    margin: 0;
+    color: #93c5fd;
+}
+
+.roadmap-status {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-planned {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border: 1px solid #22c55e;
+}
+
+.status-in-progress {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fcd34d;
+    border: 1px solid #fbbf24;
+}
+
+.status-considering {
+    background: rgba(147, 197, 253, 0.2);
+    color: #93c5fd;
+    border: 1px solid #60a5fa;
+}
+
+/* About Styles */
+.about-section {
+    margin-bottom: 2rem;
+}
+
+.about-section h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #60a5fa;
+}
+
+.about-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-section li {
+    margin-bottom: 0.5rem;
+}
+
+.about-section a {
+    color: #60a5fa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.about-section a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.attribution-item {
+    background: rgba(30, 58, 138, 0.3);
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+
+
+/* Scrollbar styling for modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(30, 58, 138, 0.3);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #60a5fa;
+}
