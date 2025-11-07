@@ -694,6 +694,68 @@ body {
     font-size: 1.25rem;
 }
 
+.travel-fish-summary {
+    color: #4ade80;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.travel-fish-list {
+    background: #1e3a8a;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 2px solid #2563eb;
+}
+
+.travel-fish-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 4px;
+}
+
+    .travel-fish-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .travel-fish-item.catchable {
+        background: rgba(74, 222, 128, 0.1);
+    }
+
+    .travel-fish-item.too-strong {
+        background: rgba(107, 114, 128, 0.1);
+    }
+
+.travel-fish-icon {
+    font-weight: bold;
+    font-size: 1.125rem;
+    min-width: 20px;
+}
+
+.travel-fish-item.catchable .travel-fish-icon {
+    color: #4ade80;
+}
+
+.travel-fish-item.too-strong .travel-fish-icon {
+    color: #ef4444;
+}
+
+.travel-fish-rarity {
+    color: #93c5fd;
+    font-size: 0.875rem;
+    margin-left: auto;
+}
+
+.travel-fish-locked {
+    text-align: center;
+    padding: 1rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
 .travel-spots {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

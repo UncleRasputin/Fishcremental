@@ -151,18 +151,50 @@ function updateShopDisplay() {
             </div>
         `;
     }).join('');
-    updateTokenShop();
 }
 
 function updateTravelDisplay() {
     const container = document.getElementById('travel-container');
+    const currentRod = RODS[gameState.currentRod];
+
     container.innerHTML = Object.entries(LAKES).map(([id, lake]) => {
         if (lake.unlocked) {
+            // Get all fish in this region
+            const regionFish = Object.entries(FISH_DB).filter(([_, fish]) =>
+                fish.regions.includes(id)
+            );
+
+            // Separate catchable and too strong
+            const catchable = regionFish.filter(([_, fish]) => fish.strength <= currentRod.strength);
+            const tooStrong = regionFish.filter(([_, fish]) => fish.strength > currentRod.strength);
+
+            // Build fish list HTML
+            const fishListHTML = `
+                <div class="travel-fish-list">
+                    ${catchable.map(([fishId, fish]) => `
+                        <div class="travel-fish-item catchable">
+                            <span class="travel-fish-icon">✓</span>
+                            <span class="rarity-${fish.rarity}">${fish.name}</span>
+                            <span class="travel-fish-rarity">(${fish.rarity})</span>
+                        </div>
+                    `).join('')}
+                    ${tooStrong.map(([fishId, fish]) => `
+                        <div class="travel-fish-item too-strong">
+                            <span class="travel-fish-icon">✗</span>
+                            <span style="color: #6b7280;">${fish.name}</span>
+                            <span class="travel-fish-rarity" style="color: #6b7280;">(${fish.rarity}) - Rod too weak</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
             return `
                 <div class="travel-location">
                     <div class="travel-location-header">
                         <div class="travel-location-name">${lake.name}</div>
+                        <div class="travel-fish-summary">${catchable.length}/${regionFish.length} catchable</div>
                     </div>
+                    ${fishListHTML}
                     <div class="travel-spots">
                         ${lake.spots.map((spot, idx) => {
                 const isCurrent = gameState.currentLake === id && gameState.currentSpot === idx;
@@ -184,9 +216,10 @@ function updateTravelDisplay() {
                     <div class="travel-location-header">
                         <div class="travel-location-name">🔒 ${lake.name}</div>
                         <button class="unlock-button" onclick="unlockLake('${id}')" ${!canAfford ? 'disabled' : ''}>
-                            Unlock $${lake.unlockCost}
+                            Unlock ${lake.unlockCost}
                         </button>
                     </div>
+                    <div class="travel-fish-locked">Unlock to see available fish</div>
                 </div>
             `;
         }
