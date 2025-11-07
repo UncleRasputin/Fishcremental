@@ -3,10 +3,32 @@
 const SEASONS = ['Spring', 'Summer', 'Fall', 'Winter'];
 
 const LAKES = {
-    pond: { name: "Willow Pond", spots: ['Lily Pads', 'Old Dock', 'Deep End'], unlocked: true },
-    river: { name: "Crystal River", spots: ['Rapids', 'Bridge', 'Bend'], unlocked: false, unlockCost: 50 },
-    lake: { name: "Azure Lake", spots: ['Shore', 'Boat Launch', 'Island'], unlocked: false, unlockCost: 200 },
-    ocean: { name: "Endless Ocean", spots: ['Pier', 'Reef', 'Deep Sea'], unlocked: false, unlockCost: 1000 }
+    // Texas
+    fork: { name: "Lake Fork, TX", spots: ['Main Lake', 'Big Fish Creek', 'Little Fish Creek'], unlocked: true },
+    texoma: { name: "Lake Texoma, TX/OK", spots: ['Dam Area', 'Sandy Point', 'Little Mineral Creek'], unlocked: false, unlockCost: 50 },
+    amistad: { name: "Lake Amistad, TX", spots: ['Diablo East', 'Rough Canyon', 'San Pedro'], unlocked: false, unlockCost: 100 },
+
+    // Florida
+    okeechobee: {
+        name: "Lake Okeechobee, FL", spots: ['Monkey Box', 'King\'s Bar', 'Tin House Cove'], unlocked: false, unlockCost: 150 },
+
+    // Great Lakes
+    michigan: { name: "Lake Michigan", spots: ['Milwaukee Harbor', 'Ludington', 'Grand Haven'], unlocked: false, unlockCost: 200 },
+            erie: { name: "Lake Erie", spots: ['Western Basin', 'Central Basin', 'Eastern Basin'], unlocked: false, unlockCost: 250 },
+            superior: { name: "Lake Superior", spots: ['Apostle Islands', 'Grand Marais', 'Whitefish Bay'], unlocked: false, unlockCost: 300 },
+
+            // Southern Lakes
+            santee: { name: "Santee Cooper Lakes, SC", spots: ['Lake Marion', 'Lake Moultrie', 'Diversion Canal'], unlocked: false, unlockCost: 175 },
+
+            // Midwest
+            ozarks: { name: "Lake of the Ozarks, MO", spots: ['Grand Glaize Arm', 'Gravois Arm', 'Niangua Arm'], unlocked: false, unlockCost: 125 },
+
+            // Northeast
+            champlain: { name: "Lake Champlain, VT/NY", spots: ['Malletts Bay', 'South Lake', 'Inland Sea'], unlocked: false, unlockCost: 225 },
+
+            // West
+            mead: { name: "Lake Mead, NV/AZ", spots: ['Boulder Basin', 'Virgin Basin', 'Overton Arm'], unlocked: false, unlockCost: 275 },
+            powell: { name: "Lake Powell, UT/AZ", spots: ['Wahweap Bay', 'Padre Bay', 'Rainbow Bridge'], unlocked: false, unlockCost: 325 }
 };
 
 const BAITS = {
@@ -26,26 +48,66 @@ const RODS = {
 };
 
 const FISH_DB = {
-    guppy: { name: "Guppy", rarity: "common", baseValue: 1, baseWeight: 0.1, strength: 1, regions: ['pond'] },
-    bluegill: { name: "Bluegill", rarity: "common", baseValue: 3, baseWeight: 0.5, strength: 3, regions: ['pond'] },
-    sunfish: { name: "Sunfish", rarity: "uncommon", baseValue: 8, baseWeight: 0.8, strength: 5, regions: ['pond'] },
-    bass: { name: "Bass", rarity: "uncommon", baseValue: 15, baseWeight: 2, strength: 10, regions: ['pond', 'river', 'lake'] },
-    catfish: { name: "Catfish", rarity: "rare", baseValue: 40, baseWeight: 5, strength: 20, regions: ['pond', 'river'] },
-    koi: { name: "Golden Koi", rarity: "epic", baseValue: 150, baseWeight: 3, strength: 15, regions: ['pond'] },
-    trout: { name: "Trout", rarity: "common", baseValue: 12, baseWeight: 1.5, strength: 8, regions: ['river'] },
-    salmon: { name: "Salmon", rarity: "uncommon", baseValue: 35, baseWeight: 8, strength: 25, regions: ['river'] },
-    pike: { name: "Pike", rarity: "rare", baseValue: 80, baseWeight: 10, strength: 40, regions: ['river', 'lake'] },
-    sturgeon: { name: "Sturgeon", rarity: "epic", baseValue: 300, baseWeight: 50, strength: 80, regions: ['river'] },
-    walleye: { name: "Walleye", rarity: "uncommon", baseValue: 25, baseWeight: 4, strength: 15, regions: ['lake'] },
-    muskie: { name: "Muskie", rarity: "rare", baseValue: 120, baseWeight: 20, strength: 60, regions: ['lake'] },
-    lake_trout: { name: "Lake Trout", rarity: "rare", baseValue: 90, baseWeight: 15, strength: 50, regions: ['lake'] },
-    giant_bass: { name: "Giant Bass", rarity: "epic", baseValue: 400, baseWeight: 12, strength: 70, regions: ['lake'] },
-    mackerel: { name: "Mackerel", rarity: "common", baseValue: 20, baseWeight: 3, strength: 12, regions: ['ocean'] },
-    tuna: { name: "Tuna", rarity: "uncommon", baseValue: 100, baseWeight: 40, strength: 80, regions: ['ocean'] },
-    swordfish: { name: "Swordfish", rarity: "rare", baseValue: 350, baseWeight: 80, strength: 150, regions: ['ocean'] },
-    marlin: { name: "Marlin", rarity: "epic", baseValue: 800, baseWeight: 150, strength: 200, regions: ['ocean'] },
-    whale: { name: "Baby Whale", rarity: "legendary", baseValue: 5000, baseWeight: 500, strength: 400, regions: ['ocean'] },
-    dragon_fish: { name: "Dragon Fish", rarity: "legendary", baseValue: 10000, baseWeight: 100, strength: 500, regions: ['pond', 'river', 'lake', 'ocean'] }
+    // Panfish - Common everywhere
+    bluegill: { name: "Bluegill", rarity: "common", baseValue: 3, baseWeight: 0.5, strength: 3, regions: ['fork', 'texoma', 'amistad', 'okeechobee', 'ozarks', 'santee', 'champlain'] },
+    green_sunfish: { name: "Green Sunfish", rarity: "common", baseValue: 2, baseWeight: 0.3, strength: 2, regions: ['fork', 'texoma', 'ozarks', 'santee'] },
+    redear: { name: "Redear Sunfish", rarity: "common", baseValue: 4, baseWeight: 0.8, strength: 4, regions: ['fork', 'okeechobee', 'santee', 'ozarks'] },
+    crappie_white: { name: "White Crappie", rarity: "uncommon", baseValue: 8, baseWeight: 1.2, strength: 6, regions: ['fork', 'texoma', 'okeechobee', 'ozarks', 'santee'] },
+    crappie_black: { name: "Black Crappie", rarity: "uncommon", baseValue: 9, baseWeight: 1.5, strength: 7, regions: ['fork', 'champlain', 'michigan', 'erie', 'ozarks'] },
+
+    // Bass - The stars
+    largemouth: { name: "Largemouth Bass", rarity: "uncommon", baseValue: 20, baseWeight: 4, strength: 15, regions: ['fork', 'texoma', 'amistad', 'okeechobee', 'ozarks', 'santee', 'champlain', 'mead', 'powell'] },
+    smallmouth: { name: "Smallmouth Bass", rarity: "uncommon", baseValue: 18, baseWeight: 3, strength: 18, regions: ['michigan', 'erie', 'superior', 'champlain', 'mead'] },
+    spotted_bass: { name: "Spotted Bass", rarity: "uncommon", baseValue: 15, baseWeight: 2.5, strength: 12, regions: ['fork', 'amistad', 'ozarks'] },
+    striped_bass: { name: "Striped Bass", rarity: "rare", baseValue: 45, baseWeight: 15, strength: 40, regions: ['texoma', 'santee', 'powell', 'mead'] },
+    white_bass: { name: "White Bass", rarity: "common", baseValue: 7, baseWeight: 1.5, strength: 8, regions: ['texoma', 'fork', 'ozarks', 'erie'] },
+
+    // Trophy Bass
+    trophy_largemouth: { name: "Trophy Largemouth Bass", rarity: "epic", baseValue: 200, baseWeight: 10, strength: 50, regions: ['fork', 'okeechobee'] },
+    trophy_smallmouth: { name: "Trophy Smallmouth Bass", rarity: "epic", baseValue: 180, baseWeight: 7, strength: 55, regions: ['champlain', 'erie'] },
+
+    // Catfish
+    channel_cat: { name: "Channel Catfish", rarity: "uncommon", baseValue: 15, baseWeight: 8, strength: 20, regions: ['fork', 'texoma', 'santee', 'ozarks', 'erie'] },
+    blue_cat: { name: "Blue Catfish", rarity: "rare", baseValue: 50, baseWeight: 30, strength: 60, regions: ['texoma', 'santee', 'amistad'] },
+    flathead_cat: { name: "Flathead Catfish", rarity: "rare", baseValue: 55, baseWeight: 35, strength: 65, regions: ['texoma', 'santee', 'ozarks'] },
+
+    // Trophy Catfish
+    monster_blue: { name: "Monster Blue Catfish", rarity: "epic", baseValue: 250, baseWeight: 80, strength: 120, regions: ['santee', 'texoma'] },
+
+    // Walleye & Pike
+    walleye: { name: "Walleye", rarity: "uncommon", baseValue: 30, baseWeight: 5, strength: 25, regions: ['michigan', 'erie', 'champlain', 'superior'] },
+    sauger: { name: "Sauger", rarity: "common", baseValue: 12, baseWeight: 2, strength: 10, regions: ['erie', 'ozarks'] },
+    northern_pike: { name: "Northern Pike", rarity: "rare", baseValue: 60, baseWeight: 15, strength: 50, regions: ['superior', 'champlain', 'michigan'] },
+    muskie: { name: "Muskellunge", rarity: "epic", baseValue: 300, baseWeight: 30, strength: 100, regions: ['superior', 'champlain'] },
+
+    // Trout & Salmon (Cold Water)
+    lake_trout: { name: "Lake Trout", rarity: "uncommon", baseValue: 35, baseWeight: 8, strength: 30, regions: ['superior', 'michigan', 'champlain'] },
+    brown_trout: { name: "Brown Trout", rarity: "uncommon", baseValue: 28, baseWeight: 4, strength: 22, regions: ['superior', 'michigan', 'powell', 'mead'] },
+    rainbow_trout: { name: "Rainbow Trout", rarity: "uncommon", baseValue: 25, baseWeight: 3.5, strength: 20, regions: ['superior', 'michigan', 'powell', 'mead'] },
+    chinook_salmon: { name: "Chinook Salmon", rarity: "rare", baseValue: 80, baseWeight: 20, strength: 70, regions: ['michigan', 'superior', 'erie'] },
+    coho_salmon: { name: "Coho Salmon", rarity: "rare", baseValue: 65, baseWeight: 12, strength: 55, regions: ['michigan', 'superior'] },
+
+    // Trophy Trout
+    trophy_laker: { name: "Trophy Lake Trout", rarity: "epic", baseValue: 220, baseWeight: 35, strength: 95, regions: ['superior'] },
+
+    // Perch
+    yellow_perch: { name: "Yellow Perch", rarity: "common", baseValue: 6, baseWeight: 0.8, strength: 5, regions: ['michigan', 'erie', 'champlain', 'superior'] },
+
+    // Specialized Southwest Species
+    striped_bass_trophy: { name: "Trophy Striped Bass", rarity: "epic", baseValue: 280, baseWeight: 45, strength: 110, regions: ['powell', 'mead'] },
+    smallmouth_buff: { name: "Smallmouth Buffalo", rarity: "rare", baseValue: 40, baseWeight: 25, strength: 45, regions: ['texoma', 'santee'] },
+
+    // Gar (Texas/Southern specialty)
+    longnose_gar: { name: "Longnose Gar", rarity: "uncommon", baseValue: 18, baseWeight: 10, strength: 35, regions: ['texoma', 'fork', 'santee'] },
+    alligator_gar: { name: "Alligator Gar", rarity: "legendary", baseValue: 500, baseWeight: 120, strength: 200, regions: ['texoma'] },
+
+    // Carp (Common invasive/rough fish)
+    common_carp: { name: "Common Carp", rarity: "common", baseValue: 10, baseWeight: 12, strength: 30, regions: ['michigan', 'erie', 'texoma', 'powell', 'mead'] },
+
+    // Legendary fish
+    record_muskie: { name: "Record Muskellunge", rarity: "legendary", baseValue: 1000, baseWeight: 55, strength: 250, regions: ['champlain'] },
+    giant_laker: { name: "Giant Lake Trout", rarity: "legendary", baseValue: 800, baseWeight: 60, strength: 220, regions: ['superior'] },
+    monster_striper: { name: "Monster Striper", rarity: "legendary", baseValue: 900, baseWeight: 70, strength: 240, regions: ['powell'] }
 };
 
 const RARITY_WEIGHTS = {
@@ -106,7 +168,7 @@ let gameState = {
     season: 0,
     seasonProgress: 0,
     seasonThreshold: 10000,
-    currentLake: 'pond',
+    currentLake: 'fork',
     currentSpot: 0,
     currentBait: 'worm',
     currentRod: 'basic',
