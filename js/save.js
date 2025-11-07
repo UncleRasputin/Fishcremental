@@ -20,6 +20,7 @@ function saveGame(silent = false) {
                 currentSpot: gameState.currentSpot,
                 currentBait: gameState.currentBait,
                 currentRod: gameState.currentRod,
+                travelIndex: gameState.travelIndex,
                 inventory: gameState.inventory,
                 lastCatch: gameState.lastCatch,
                 useImperial: gameState.useImperial,
@@ -68,6 +69,7 @@ function loadGame() {
         gameState.currentSpot = data.gameState.currentSpot;
         gameState.currentBait = data.gameState.currentBait;
         gameState.currentRod = data.gameState.currentRod;
+        gameState.travelIndex = data.gameState.travelIndex || 0;
         gameState.inventory = data.gameState.inventory;
         gameState.lastCatch = data.gameState.lastCatch || null;
         gameState.useImperial = data.gameState.useImperial !== undefined ? data.gameState.useImperial : true;

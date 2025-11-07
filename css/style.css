@@ -675,6 +675,105 @@ body {
         border-bottom: 2px solid #2563eb;
     }
 
+.travel-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.travel-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.travel-nav-button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+    .travel-nav-button:hover:not(:disabled) {
+        background: #1e40af;
+    }
+
+    .travel-nav-button:disabled {
+        background: #4b5563;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+.travel-current-lake {
+    font-size: 2rem;
+    text-align: center;
+    color: #fbbf24;
+    flex: 1;
+}
+
+.travel-main-card {
+    background: #1e3a8a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 2px solid #2563eb;
+}
+
+    .travel-main-card.locked {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+.travel-locked-content {
+    text-align: center;
+}
+
+.travel-lock-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.travel-locked-text {
+    font-size: 1.25rem;
+    color: #93c5fd;
+    margin-bottom: 1.5rem;
+}
+
+.travel-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #2563eb;
+}
+
+    .travel-card-header h3 {
+        font-size: 1.25rem;
+        color: #fbbf24;
+    }
+
+.travel-spots-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #2563eb;
+}
+
+    .travel-spots-section h4 {
+        font-size: 1rem;
+        color: #93c5fd;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
 .travel-location {
     background: #1e3a8a;
     padding: 1.5rem;

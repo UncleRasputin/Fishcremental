@@ -151,25 +151,38 @@ function updateShopDisplay() {
             </div>
         `;
     }).join('');
+
+    updateTokenShop();
 }
 
 function updateTravelDisplay() {
     const container = document.getElementById('travel-container');
     const currentRod = RODS[gameState.currentRod];
 
-    container.innerHTML = Object.entries(LAKES).map(([id, lake]) => {
-        if (lake.unlocked) {
-            // Get all fish in this region
-            const regionFish = Object.entries(FISH_DB).filter(([_, fish]) =>
-                fish.regions.includes(id)
-            );
+    const lakeKeys = Object.keys(LAKES);
+    const currentLakeKey = lakeKeys[gameState.travelIndex];
+    const lake = LAKES[currentLakeKey];
 
-            // Separate catchable and too strong
-            const catchable = regionFish.filter(([_, fish]) => fish.strength <= currentRod.strength);
-            const tooStrong = regionFish.filter(([_, fish]) => fish.strength > currentRod.strength);
+    const prevDisabled = gameState.travelIndex === 0;
+    const nextDisabled = gameState.travelIndex === lakeKeys.length - 1;
 
-            // Build fish list HTML
-            const fishListHTML = `
+    let mainContent = '';
+
+    if (lake.unlocked) {
+        const regionFish = Object.entries(FISH_DB).filter(([_, fish]) =>
+            fish.regions.includes(currentLakeKey)
+        );
+
+        const catchable = regionFish.filter(([_, fish]) => fish.strength <= currentRod.strength);
+        const tooStrong = regionFish.filter(([_, fish]) => fish.strength > currentRod.strength);
+
+        mainContent = `
+            <div class="travel-main-card">
+                <div class="travel-card-header">
+                    <h3>Available Fish</h3>
+                    <span class="travel-fish-summary">${catchable.length}/${regionFish.length} catchable</span>
+                </div>
+                
                 <div class="travel-fish-list">
                     ${catchable.map(([fishId, fish]) => `
                         <div class="travel-fish-item catchable">
@@ -185,45 +198,64 @@ function updateTravelDisplay() {
                             <span class="travel-fish-rarity" style="color: #6b7280;">(${fish.rarity}) - Rod too weak</span>
                         </div>
                     `).join('')}
+                    ${regionFish.length === 0 ? '<div style="text-align: center; color: #93c5fd; padding: 1rem;">No fish data available</div>' : ''}
                 </div>
-            `;
-
-            return `
-                <div class="travel-location">
-                    <div class="travel-location-header">
-                        <div class="travel-location-name">${lake.name}</div>
-                        <div class="travel-fish-summary">${catchable.length}/${regionFish.length} catchable</div>
-                    </div>
-                    ${fishListHTML}
+                
+                <div class="travel-spots-section">
+                    <h4>Fishing Spots</h4>
                     <div class="travel-spots">
                         ${lake.spots.map((spot, idx) => {
-                const isCurrent = gameState.currentLake === id && gameState.currentSpot === idx;
-                return `
+            const isCurrent = gameState.currentLake === currentLakeKey && gameState.currentSpot === idx;
+            return `
                                 <button class="travel-spot-button ${isCurrent ? 'current' : ''}" 
-                                        onclick="travelTo('${id}', ${idx})"
+                                        onclick="travelTo('${currentLakeKey}', ${idx})"
                                         ${isCurrent ? 'disabled' : ''}>
                                     ${spot}
                                 </button>
                             `;
-            }).join('')}
+        }).join('')}
                     </div>
                 </div>
-            `;
-        } else {
-            const canAfford = gameState.money >= lake.unlockCost;
-            return `
-                <div class="travel-location">
-                    <div class="travel-location-header">
-                        <div class="travel-location-name">🔒 ${lake.name}</div>
-                        <button class="unlock-button" onclick="unlockLake('${id}')" ${!canAfford ? 'disabled' : ''}>
-                            Unlock ${lake.unlockCost}
-                        </button>
-                    </div>
-                    <div class="travel-fish-locked">Unlock to see available fish</div>
+            </div>
+        `;
+    } else {
+        mainContent = `
+            <div class="travel-main-card locked">
+                <div class="travel-locked-content">
+                    <div class="travel-lock-icon">🔒</div>
+                    <div class="travel-locked-text">This location is locked</div>
+                    <button class="unlock-button" onclick="unlockLake('${currentLakeKey}')" ${gameState.money < lake.unlockCost ? 'disabled' : ''}>
+                        Unlock for $${lake.unlockCost}
+                    </button>
                 </div>
-            `;
-        }
-    }).join('');
+            </div>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="travel-carousel">
+            <div class="travel-nav-header">
+                <button class="travel-nav-button" onclick="changeTravelLocation(-1)" ${prevDisabled ? 'disabled' : ''}>
+                    ◀ Previous
+                </button>
+                <h2 class="travel-current-lake">${lake.name}</h2>
+                <button class="travel-nav-button" onclick="changeTravelLocation(1)" ${nextDisabled ? 'disabled' : ''}>
+                    Next ▶
+                </button>
+            </div>
+            ${mainContent}
+        </div>
+    `;
+}
+
+function changeTravelLocation(direction) {
+    const lakeKeys = Object.keys(LAKES);
+    gameState.travelIndex += direction;
+
+    if (gameState.travelIndex < 0) gameState.travelIndex = 0;
+    if (gameState.travelIndex >= lakeKeys.length) gameState.travelIndex = lakeKeys.length - 1;
+
+    updateTravelDisplay();
 }
 
 function updateStatsDisplay() {
