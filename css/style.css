@@ -15,7 +15,7 @@ body {
 .header {
     background: #1e40af;
     border-bottom: 2px solid #2563eb;
-    padding: 0.75rem 2rem;
+    padding: 0.25rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +36,9 @@ body {
 .stat {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    align-content: center;
+    margin-top: auto;
 }
 
 .stat-label {
@@ -56,6 +58,7 @@ body {
 }
 
 .season-progress-bar {
+    min-width: 100px;
     width: 100%;
     height: 8px;
     background: #1e3a8a;
@@ -70,14 +73,34 @@ body {
     width: 0%;
     transition: width 0.3s ease;
 }
+.exp-progress-container {
+    min-width: 150px;
+}
+
+.exp-progress-bar {
+    min-width: 100px;
+    width: 100%;
+    height: 8px;
+    background: #1e3a8a;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.exp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00a000, #00ff00, #a0a000, #fbbf24);
+    width: 0%;
+    transition: width 0.3s ease;
+}
 
 .icon-button {
     background: transparent;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.25rem;
-    margin: 0 0.25rem;
+    padding: 0.15rem;
+    margin: 0 0.15rem;
     transition: transform 0.2s;
 }
 

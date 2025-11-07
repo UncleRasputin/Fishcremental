@@ -14,11 +14,14 @@ function updateLogDisplay() {
 }
 
 function updateDisplay() {
-    document.getElementById('money').textContent = '$' + gameState.money;
-    document.getElementById('level').textContent = gameState.level;
-    document.getElementById('xp-text').textContent = `${gameState.xp}/${gameState.level * 100}`;
+    document.getElementById('money').textContent = '$' + gameState.money + " 💰";
+    document.getElementById('level').textContent = 'Level '+gameState.level;
+    //document.getElementById('xp-text').textContent = `XP ${gameState.xp}/${gameState.level * 100}`;
+    const expProgressPercent = (gameState.xp / (gameState.level * 100)) * 100;
+    document.getElementById('exp-progress').style.width = expProgressPercent + '%';
+    document.getElementById('exp-progress-bar').title = "XP "+gameState.xp+" / " + (gameState.level * 100);
     document.getElementById('season').textContent = SEASONS[gameState.season];
-    document.getElementById('header-tokens').textContent = gameState.questTokens;
+    document.getElementById('header-tokens').textContent = gameState.questTokens +" 🎫";
 
     const seasonProgressPercent = (gameState.seasonProgress / gameState.seasonThreshold) * 100;
     document.getElementById('season-progress').style.width = seasonProgressPercent + '%';

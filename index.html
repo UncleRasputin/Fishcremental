@@ -14,28 +14,20 @@
         </div>
         <div class="header-stats">
             <div class="stat">
-                <span class="stat-label">Money</span>
-                <span class="stat-value" id="money">$0</span>
+                <span class="stat-value" id="money" title="Money">$0 💰</span>
             </div>
             <div class="stat">
-                <span class="stat-label">Level</span>
-                <span class="stat-value" id="level">1</span>
+                <span class="stat-value" id="header-tokens" title="Quest Tokens">0 🎫</span>
             </div>
             <div class="stat">
-                <span class="stat-label">XP</span>
-                <span class="stat-value" id="xp-text">0/100</span>
+                <span class="stat-value" id="level">Level 1</span>
+                <div class="exp-progress-bar" id="exp-progress-bar" title="XP">
+                    <div class="exp-progress-fill" id="exp-progress"></div>
+                </div>
             </div>
             <div class="stat">
-                <span class="stat-label">Quest Tokens</span>
-                <span class="stat-value" id="header-tokens">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">Season</span>
                 <span class="stat-value" id="season">Spring</span>
-            </div>
-            <div class="stat season-progress-container">
-                <span class="stat-label">Season Progress</span>
-                <div class="season-progress-bar">
+                <div class="season-progress-bar" title="Season Progress">
                     <div class="season-progress-fill" id="season-progress"></div>
                 </div>
             </div>
