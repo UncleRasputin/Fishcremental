@@ -118,11 +118,25 @@ function rollFish() {
     let pool = [];
     availableFish.forEach(([id, fish]) => {
         let weight = RARITY_WEIGHTS[fish.rarity];
+        
+        // Apply bait power to rare fish
         if (fish.rarity === 'rare') weight *= baitPower * 0.8;
         if (fish.rarity === 'epic') weight *= baitPower * 0.6;
         if (fish.rarity === 'legendary') weight *= baitPower * 0.4;
 
+        // Season bonus (Fall)
         if (gameState.season === 2) weight *= 1.2;
+        
+        // Apply fishing conditions modifier (location + season specific)
+        const conditionModifier = getFishingModifier(
+            gameState.currentLake, 
+            gameState.currentSpot, 
+            gameState.season, 
+            id
+        );
+        if (conditionModifier !== 0) {
+            weight *= (1 + conditionModifier / 100);
+        }
 
         for (let i = 0; i < weight; i++) pool.push(id);
     });

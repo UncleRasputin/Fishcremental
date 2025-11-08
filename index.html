@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fishcremental - Idle Fishing Game</title>
-    <link rel="stylesheet" href="css/style.css?v=1762518450">
-    <script src="https://www.w3counter.com/tracker.js?id=156592"></script>
-    <!-- [incrementaldb_verification: UncleRasputin] -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Header with stats -->
@@ -75,7 +73,10 @@
 
                 <div id="quest-panel" class="quest-panel"></div>
 
-                <button class="cast-button" id="cast-button" onclick="startCast()">Cast Line</button>
+                <div class="fishing-actions">
+                    <button class="cast-button" id="cast-button" onclick="startCast()">Cast Line</button>
+                    <button class="check-odds-button" onclick="openOddsModal()">🎯 Check Odds</button>
+                </div>
 
                 <div id="progress-container" style="display: none;">
                     <div id="progress-label">Casting</div>
@@ -248,6 +249,20 @@
         </div>
     </div>
 
+    <!-- Fishing Odds Modal -->
+    <div id="odds-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container odds-modal">
+            <div class="modal-header">
+                <h2>🎯 Current Fishing Conditions</h2>
+                <button class="modal-close" onclick="closeOddsModal()">✕</button>
+            </div>
+            
+            <div class="modal-content" id="odds-content">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
     <!-- Info Modal -->
     <div id="info-modal" class="modal-overlay" style="display: none;">
         <div class="modal-container">
@@ -269,15 +284,17 @@
         </div>
     </div>
 
-    <script src="js/info_data.js?v=1762518450"></script>
-    <script src="js/data.js?v=1762518450"></script>
-    <script src="js/audio.js?v=1762518450"></script>
-    <script src="js/units.js?v=1762518450"></script>
-    <script src="js/equipment.js?v=1762518450"></script>
-    <script src="js/quest.js?v=1762518450"></script>
-    <script src="js/display.js?v=1762518450"></script>
-    <script src="js/save.js?v=1762518450"></script>
-    <script src="js/game.js?v=1762518450"></script>
-    <script src="js/info.js?v=1762518450"></script>
+    <script src="js/info_data.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/fishingConditions.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/units.js"></script>
+    <script src="js/equipment.js"></script>
+    <script src="js/quest.js"></script>
+    <script src="js/display.js"></script>
+    <script src="js/save.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/odds.js"></script>
+    <script src="js/info.js"></script>
 </body>
 </html>

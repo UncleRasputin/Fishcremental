@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(to bottom, #1e3a8a, #1e40af);
+    background: linear-gradient(to bottom, #000040, #000060);
     color: white;
     min-height: 100vh;
 }
@@ -32,8 +32,6 @@ body {
     display: flex;
     gap: 2rem;
 }
-
-
 
 .stat {
     display: flex;
@@ -110,10 +108,10 @@ body {
         transform: scale(1.2);
     }
 
-
 .header-buttons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 /* Navigation */
@@ -328,7 +326,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
 }
 
     .cast-button:hover:not(:disabled) {
@@ -404,9 +402,9 @@ body {
 
 .log-entry {
     color: #bfdbfe;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    padding: 0.25rem 0;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+    padding: 0;
 }
 
 /* Inventory Screen */
@@ -1316,7 +1314,11 @@ body {
     margin-bottom: 0.75rem;
 }
 
-
+/* Header buttons adjustment */
+.header-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 
 /* Scrollbar styling for modal */
 .modal-content::-webkit-scrollbar {
@@ -1335,4 +1337,181 @@ body {
 
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: #60a5fa;
+}
+
+/* Fishing Actions (Cast + Check Odds buttons) */
+.fishing-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cast-button {
+    flex: 2;
+}
+
+.check-odds-button {
+    flex: 1;
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    border: 2px solid #60a5fa;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.check-odds-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+}
+
+.check-odds-button:active {
+    transform: translateY(0);
+}
+
+/* Odds Modal Specific Styles */
+.odds-modal {
+    max-width: 700px;
+}
+
+.odds-info-section {
+    color: #e0e7ff;
+}
+
+.odds-location-info {
+    background: rgba(30, 58, 138, 0.4);
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.odds-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.odds-info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.odds-label {
+    color: #93c5fd;
+    font-weight: 500;
+}
+
+.odds-value {
+    color: #e0e7ff;
+    font-weight: 600;
+}
+
+.odds-fish-section h3 {
+    color: #60a5fa;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.odds-fish-section h4 {
+    color: #93c5fd;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.odds-fish-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.odds-fish-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 58, 138, 0.3);
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.odds-fish-item:hover {
+    background: rgba(30, 58, 138, 0.5);
+    border-color: #60a5fa;
+}
+
+.odds-fish-item.fish-boosted {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: #22c55e;
+}
+
+.odds-fish-item.fish-boosted:hover {
+    background: rgba(34, 197, 94, 0.25);
+}
+
+.odds-fish-item.fish-penalized {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: #ef4444;
+}
+
+.odds-fish-item.fish-penalized:hover {
+    background: rgba(239, 68, 68, 0.25);
+}
+
+.odds-fish-item.too-strong-item {
+    background: rgba(107, 114, 128, 0.15);
+    border-color: #6b7280;
+}
+
+.odds-fish-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.odds-fish-rarity {
+    font-size: 0.75rem;
+    color: #93c5fd;
+    text-transform: capitalize;
+}
+
+.odds-modifier {
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.odds-modifier.positive {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border: 1px solid #22c55e;
+}
+
+.odds-modifier.negative {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid #ef4444;
+}
+
+.odds-modifier.neutral {
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+    border: 1px solid #6b7280;
+}
+
+.odds-too-strong-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #3b82f6;
 }
