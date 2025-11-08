@@ -1,7 +1,7 @@
 // Game information and content data
 
 const GAME_INFO = {
-    version: "1.0.1",
+    version: "1.0.2",
     
     intro: {
         title: "Welcome to Fishcremental!",
@@ -32,6 +32,13 @@ const GAME_INFO = {
     },
     
     changelog: [
+        {
+            version: "1.0.2",
+            date: "2024-11-08",
+            changes: [
+                "Style Facelift!  A work in progress, changing the color scheme up a bit, making things a bit more compact."
+            ]
+        },
         {
             version: "1.0.1",
             date: "2024-11-08",
