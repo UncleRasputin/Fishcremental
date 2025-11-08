@@ -1,7 +1,7 @@
 // Game information and content data
 
 const GAME_INFO = {
-    version: "1.0.0",
+    version: "1.0.1",
     
     intro: {
         title: "Welcome to Fishcremental!",
@@ -32,6 +32,15 @@ const GAME_INFO = {
     },
     
     changelog: [
+        {
+            version: "1.0.1",
+            date: "2024-11-08",
+            changes: [
+                "Fishing Conditions!",
+                "Lake locations and seasons now effect your catch chances!",
+                "A button has been added to the fish screen that allows you to see your current conditions."
+            ]
+        },
         {
             version: "1.0.0",
             date: "2024-11-07",
