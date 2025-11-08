@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(to bottom, #000040, #000060);
+    background-color: #00000F;
     color: white;
     min-height: 100vh;
 }
@@ -168,19 +168,19 @@ body {
 
 /* Fish Screen */
 .fishing-panel {
-    background: #1e40af;
+    background: #00007E;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 700px;
     margin: 0 auto;
+    border: 2px solid #1010F2;
 }
 
 .location-display {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
     border-bottom: 2px solid #2563eb;
 }
 
@@ -190,18 +190,19 @@ body {
     }
 
 .equipment-display {
-    background: #1e3a8a;
-    padding: 1rem;
+    background: #00003E;
+    padding: 0.5rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #1010F2;
 }
 
 .last-catch-panel {
-    background: #1e3a8a;
+    background: #00003E;
     padding: 1rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border: 2px solid #fbbf24;
+    margin-bottom: 1rem;
+    border: 2px solid #1010F2;
 }
 
 .last-catch-title {
@@ -214,18 +215,18 @@ body {
 
 /* Quest Panel */
 .quest-panel {
-    background: #1e3a8a;
-    padding: 1rem;
+    background: #00003E;
+    padding: 0.5rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border: 2px solid #a855f7;
+    margin-bottom: 1rem;
+    border: 2px solid #E2CE00;
 }
 
 .quest-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.2rem;
 }
 
 .quest-title {
@@ -236,8 +237,9 @@ body {
 
 .quest-target {
     font-size: 1rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.2rem;
     color: white;
+    text-align:center;
 }
 
 .quest-progress-container {
@@ -268,8 +270,14 @@ body {
 }
 
 .quest-rewards {
-    padding-top: 0.75rem;
-    border-top: 1px solid #2563eb;
+    padding-top: 0.25rem;
+}
+
+.quest-rewards-display {
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
 }
 
 .abandon-button {
@@ -317,12 +325,13 @@ body {
 
 .cast-button {
     width: 100%;
-    background: #16a34a;
+    background: #B48700;
+    border: 1px solid #161100;
     color: white;
     border: none;
-    padding: 1.25rem;
+    padding: 4px;
     border-radius: 8px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
@@ -330,12 +339,16 @@ body {
 }
 
     .cast-button:hover:not(:disabled) {
-        background: #15803d;
+        background: #E2A900;
+        transform: translateY(-2px);
     }
 
     .cast-button:disabled {
-        background: #4b5563;
+        background: #594300;
         cursor: not-allowed;
+    }
+    .cast-button:active {
+        transform: translateY(0);
     }
 
 #progress-container {
@@ -364,10 +377,11 @@ body {
 }
 
 .fish-info {
-    background: #1e3a8a;
-    padding: 1.5rem;
+    background: #00003E;
+    padding: 0.5rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #1010F2;
 }
 
     .fish-info > div {
@@ -384,11 +398,12 @@ body {
 }
 
 .log-panel {
-    background: #1e3a8a;
-    padding: 1rem;
+    background: #00003E;
+    padding: 0.5rem;
     border-radius: 8px;
     max-height: 250px;
     overflow-y: auto;
+    border: 2px solid #1010F2;
 }
 
 .log-header {
@@ -1343,7 +1358,7 @@ body {
 .fishing-actions {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .cast-button {
@@ -1352,10 +1367,10 @@ body {
 
 .check-odds-button {
     flex: 1;
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    background: #B48700;
+    border: 1px solid #161100;
     color: white;
-    border: 2px solid #60a5fa;
-    padding: 1rem;
+    padding: 4px;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 8px;
@@ -1364,11 +1379,11 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.check-odds-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
-}
+    .check-odds-button:hover:not(:disabled) {
+        background-color: #E2A900;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+    }
 
 .check-odds-button:active {
     transform: translateY(0);

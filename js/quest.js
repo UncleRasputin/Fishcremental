@@ -218,8 +218,8 @@ function updateQuestDisplay() {
                 <div class="quest-progress-text">${q.caught} / ${q.quantity}</div>
             </div>
             <div class="quest-rewards">
-                <div style="color: #93c5fd; font-size: 0.875rem; margin-bottom: 0.25rem;">Rewards:</div>
-                <div style="display: flex; gap: 1rem; font-size: 0.875rem;">
+                <div class="quest-rewards-display">
+                    <span style="color: #93c5fd; font-size: 0.875rem; margin-bottom: 0.25rem;">Rewards:</span>
                     <span>💰 $${q.reward.money}</span>
                     <span>⭐ ${q.reward.xp} XP</span>
                     <span>🎫 ${q.reward.tokens} Token${q.reward.tokens > 1 ? 's' : ''}</span>
