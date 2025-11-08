@@ -3,7 +3,6 @@
 let currentInfoTab = 'intro';
 
 function openInfoModal(tab = 'intro') {
-    currentInfoTab = tab;
     document.getElementById('info-modal').style.display = 'flex';
     switchInfoTab(tab);
 }
@@ -19,16 +18,7 @@ function switchInfoTab(tab) {
     document.querySelectorAll('.modal-tab').forEach(btn => {
         btn.classList.remove('active');
     });
-    event?.target?.classList.add('active');
-    
-    // If called programmatically, find and activate the right button
-    if (!event) {
-        document.querySelectorAll('.modal-tab').forEach(btn => {
-            if (btn.onclick.toString().includes(`'${tab}'`)) {
-                btn.classList.add('active');
-            }
-        });
-    }
+    document.getElementById('info-' + tab).classList.add('active');
     
     // Load content
     const content = document.getElementById('modal-content');

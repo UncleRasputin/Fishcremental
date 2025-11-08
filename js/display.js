@@ -205,8 +205,8 @@ function updateTravelDisplay() {
                 </div>
                 
                 <div class="travel-spots-section">
-                    <h4>Fishing Spots</h4>
                     <div class="travel-spots">
+                    <h4>Spots</h4>
                         ${lake.spots.map((spot, idx) => {
             const isCurrent = gameState.currentLake === currentLakeKey && gameState.currentSpot === idx;
             return `

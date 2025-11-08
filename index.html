@@ -111,24 +111,21 @@
 
                 <div id="inventory-tab-fish" class="inventory-tab-content active">
                     <div class="panel-header">
-                        <h2>🐟 Fish Inventory (<span id="inventory-count">0</span>)</h2>
+                        <div><span id="inventory-count">0</span> Fish</div>
                         <button class="small-button" onclick="sellAll()" id="sell-all-button" style="display: none;">Sell All</button>
                     </div>
                     <div class="inventory-grid" id="inventory-grid"></div>
                 </div>
 
                 <div id="inventory-tab-consumables" class="inventory-tab-content">
-                    <h2>🎒 Consumables</h2>
                     <div id="consumables-inventory-container" class="inventory-grid"></div>
                 </div>
 
                 <div id="inventory-tab-equipment" class="inventory-tab-content">
-                    <h2>⚙️ Equipment</h2>
                     <div id="equipment-slots-container"></div>
                 </div>
 
                 <div id="inventory-tab-upgrades" class="inventory-tab-content">
-                    <h2>🔧 Permanent Upgrades</h2>
                     <div id="upgrades-owned-container"></div>
                 </div>
             </div>
@@ -144,12 +141,10 @@
                 </div>
 
                 <div id="shop-tab-rods" class="shop-tab-content active">
-                    <h3>Fishing Rods</h3>
                     <div id="rods-container" class="shop-items"></div>
                 </div>
 
                 <div id="shop-tab-bait" class="shop-tab-content">
-                    <h3>Bait & Lures</h3>
                     <div id="bait-container" class="shop-items"></div>
                 </div>
 
@@ -173,7 +168,6 @@
         <!-- TRAVEL SCREEN -->
         <div id="screen-travel" class="screen">
             <div class="travel-panel">
-                <h2>🗺️ Travel</h2>
                 <div id="travel-container"></div>
             </div>
         </div>
@@ -181,12 +175,7 @@
         <!-- STATS SCREEN -->
         <div id="screen-stats" class="screen">
             <div class="stats-panel">
-                <div class="panel-header">
-                    <h2>📊 Statistics & Records</h2>
-                    <div>
-                        <button class="small-button" onclick="hardReset()" style="background: #dc2626;">🗑️ Hard Reset</button>
-                    </div>
-                </div>
+
 
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -246,6 +235,9 @@
                     <h3>Records by Location</h3>
                     <div id="location-records"></div>
                 </div>
+                <div class="panel-header-stats">
+                    <button class="small-button" onclick="hardReset()" style="background: #dc2626;">🗑️ Hard Reset</button>
+                </div>
             </div>
         </div>
     </div>
@@ -268,16 +260,15 @@
     <div id="info-modal" class="modal-overlay" style="display: none;">
         <div class="modal-container">
             <div class="modal-header">
-                <h2 id="modal-title">Information</h2>
+                <div class="modal-tabs">
+                    <button id='info-intro' class="modal-tab active" onclick="switchInfoTab('intro')">📖 Introduction</button>
+                    <button id='info-changelog' class="modal-tab" onclick="switchInfoTab('changelog')">📋 Changelog</button>
+                    <button id='info-roadmap' class="modal-tab" onclick="switchInfoTab('roadmap')">🗺️ Roadmap</button>
+                    <button id='info-about' class="modal-tab" onclick="switchInfoTab('about')">ℹ️ About</button>
+                </div>
                 <button class="modal-close" onclick="closeInfoModal()">✕</button>
             </div>
             
-            <div class="modal-tabs">
-                <button class="modal-tab active" onclick="switchInfoTab('intro')">📖 Introduction</button>
-                <button class="modal-tab" onclick="switchInfoTab('changelog')">📋 Changelog</button>
-                <button class="modal-tab" onclick="switchInfoTab('roadmap')">🗺️ Roadmap</button>
-                <button class="modal-tab" onclick="switchInfoTab('about')">ℹ️ About</button>
-            </div>
             
             <div class="modal-content" id="modal-content">
                 <!-- Content loaded dynamically -->
