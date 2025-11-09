@@ -1,7 +1,7 @@
 // Fishing conditions - location, season, and species-specific modifiers
 // Positive modifiers increase spawn chance, negative decrease it
 
-let FISHING_CONDITIONS = [];
+var FISHING_CONDITIONS = [];
 
 // Helper function to get modifier for current conditions
 function getFishingModifier(lake, spot, season, fishId) {

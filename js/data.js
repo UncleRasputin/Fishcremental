@@ -1,13 +1,14 @@
 const SEASONS = ['Spring', 'Summer', 'Fall', 'Winter'];
-let LAKES = {};
-let FISH_DB = {};
-let BAITS = {};
-let RODS = {};
-let RARITY_WEIGHTS = {};
-let RARITY_ORDER = {};
-let EQUIPMENT = {};
-let UPGRADES = {};
-let CONSUMABLES = {};
+var LAKES = {};
+var FISH_DB = {};
+var BAITS = {};
+var RODS = {};
+var RARITY_WEIGHTS = {};
+var RARITY_ORDER = {};
+var EQUIPMENT = {};
+var UPGRADES = {};
+var CONSUMABLES = {};
+var GAME_INFO = {};
 
 // Game state
 let gameState = {

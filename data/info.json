@@ -1,0 +1,84 @@
+﻿{
+  "version": "1.0.3",
+  "intro": {
+    "title": "Welcome to Fishcremental!",
+    "content": "\n            <p>Welcome, angler! Ready to catch some fish?</p>\n            \n            <h4>Getting Started:</h4>\n            <ul>\n                <li><strong>Cast your line</strong> - Click the \"Cast Line\" button to start fishing</li>\n                <li><strong>Catch fish</strong> - Wait for a bite, then reel it in!</li>\n                <li><strong>Sell your catch</strong> - Visit the Inventory tab to sell fish for money</li>\n                <li><strong>Upgrade gear</strong> - Buy better rods and bait in the Shop</li>\n                <li><strong>Explore locations</strong> - Travel to new lakes to find rare fish</li>\n                <li><strong>Complete quests</strong> - Earn Quest Tokens for special equipment and upgrades</li>\n            </ul>\n            \n            <h4>Tips:</h4>\n            <ul>\n                <li>Bigger fish = more money and XP</li>\n                <li>Better rods let you catch stronger fish without breaking your line</li>\n                <li>Different lakes have different fish species</li>\n                <li>Seasons change as you fish - some fish are more common in certain seasons</li>\n                <li>Complete quests to earn Quest Tokens for powerful upgrades!</li>\n            </ul>\n            \n            <p style=\"text-align: center; margin-top: 1.5rem;\"><strong>Good luck and tight lines! 🎣</strong></p>\n        "
+  },
+  "changelog": [
+    {
+      "version": "1.0.3",
+      "date": "2024-11-08",
+      "changes": [
+        "Data Overhaul!  Moved all the javascript data into json and load them on start up.",
+        "New loading splash screen while data loads."
+      ]
+    },
+    {
+      "version": "1.0.2",
+      "date": "2024-11-08",
+      "changes": [ "Style Facelift!  A work in progress, changing the color scheme up a bit, making things a bit more compact." ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2024-11-08",
+      "changes": [ "Fishing Conditions!", "Lake locations and seasons now effect your catch chances!", "A button has been added to the fish screen that allows you to see your current conditions." ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2024-11-07",
+      "changes": [ "Initial release", "12 fishing locations across the United States", "50+ fish species with varying rarities", "Quest system with dynamic objectives", "Equipment system with hats, vests, tackle boxes, and boots", "Permanent upgrades available via Quest Tokens", "Consumable items for tactical advantages", "Season progression system", "Comprehensive statistics and records tracking", "Imperial/Metric unit switching", "Audio system with sound effects", "Auto-save functionality" ]
+    }
+  ],
+  "roadmap": [
+    {
+      "status": "planned",
+      "title": "Tournaments & Events",
+      "description": "Timed fishing tournaments with special rewards and leaderboards"
+    },
+    {
+      "status": "planned",
+      "title": "Achievement System",
+      "description": "Unlock achievements for completing various challenges"
+    },
+    {
+      "status": "planned",
+      "title": "Prestige System",
+      "description": "Reset progress for permanent bonuses and new content"
+    },
+    {
+      "status": "planned",
+      "title": "More Locations",
+      "description": "Additional lakes, rivers, and ocean fishing spots"
+    },
+    {
+      "status": "considering",
+      "title": "Fishing Techniques",
+      "description": "Learn and master different fishing techniques for bonuses"
+    }
+  ],
+  "about": {
+    "credits": [ "Game Design & Development: UncleRasputin", "AI Implementation by: Claude (Anthropic)" ],
+    "links": [
+      {
+        "text": "GitHub Repository",
+        "url": "https://github.com/UncleRasputin/Fishcremental"
+      },
+      {
+        "text": "Report a Bug",
+        "url": "https://github.com/UncleRasputin/Fishcremental/issues"
+      }
+    ],
+    "attributions": [
+      {
+        "item": "Line Snap Sound Effect",
+        "source": "<br>Converted from : Maquina_de_escribirRoyal_Front_Roll_Snap by byronabadia<br><a target='_blank'href='https://freesound.org/s/724764/'>FreeSound Link</a>",
+        "license": "Attribution 4.0"
+      },
+      {
+        "item": "Other Sound Effects",
+        "source": "All sounds converted from CC0 sounds except where explicitly attributed.<br> <a target='_blank'href='https://freesound.org/people/KieranKeegan/sounds/418850/'> Reel </a>&nbsp;<a target='_blank'href='https://freesound.org/people/BranndyBottle/sounds/464697/'> Cast </a>&nbsp;<a target='_blank'href='https://freesound.org/people/Logicogonist/sounds/807961/'> Splash </a>",
+        "license": "CC0"
+      }
+    ]
+  }
+}
