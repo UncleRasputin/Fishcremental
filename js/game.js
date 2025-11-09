@@ -54,16 +54,16 @@ function handleRodClick(id) {
     updateShopDisplay();
 }
 
-function handleBaitClick(id) {
-    const bait = BAITS[id];
-    if (bait.unlocked) {
-        gameState.currentBait = id;
-        addLog(`Equipped ${bait.name}`);
-    } else if (gameState.money >= bait.cost) {
-        gameState.money -= bait.cost;
-        bait.unlocked = true;
-        gameState.currentBait = id;
-        addLog(`Purchased and equipped ${bait.name}!`);
+function handleHookClick(id) {
+    const hook = HOOKS[id];
+    if (hook.unlocked) {
+        gameState.currentHook = id;
+        addLog(`Equipped ${hook.name}`);
+    } else if (gameState.money >= hook.cost) {
+        gameState.money -= hook.cost;
+        hook.unlocked = true;
+        gameState.currentHook = id;
+        addLog(`Purchased and equipped ${hook.name}!`);
     }
     updateDisplay();
     updateShopDisplay();
@@ -109,7 +109,7 @@ function advanceTime(amount) {
 // Fish generation
 function rollFish() {
     const region = gameState.currentLake;
-    const baitPower = BAITS[gameState.currentBait].power;
+    const hookSizeMultiplier = HOOKS[gameState.currentHook].sizeMultiplier;
 
     const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>
         fish.regions.includes(region)
@@ -119,10 +119,9 @@ function rollFish() {
     availableFish.forEach(([id, fish]) => {
         let weight = RARITY_WEIGHTS[fish.rarity];
         
-        // Apply bait power to rare fish
-        if (fish.rarity === 'rare') weight *= baitPower * 0.8;
-        if (fish.rarity === 'epic') weight *= baitPower * 0.6;
-        if (fish.rarity === 'legendary') weight *= baitPower * 0.4;
+        // Note: Hook size doesn't affect rarity weights (future: baits will modify these)
+        //if (fish.rarity === 'epic') weight *= baitPower * 0.6;
+        //if (fish.rarity === 'legendary') weight *= baitPower * 0.4;
 
         // Apply fishing conditions modifier (location + season specific)
         const conditionModifier = getFishingModifier(
@@ -142,7 +141,7 @@ function rollFish() {
     const fishData = FISH_DB[fishId];
 
     const weightVariance = 0.5 + Math.random() * 1.5;
-    const weight = parseFloat((fishData.baseWeight * weightVariance).toFixed(2));
+    const weight = parseFloat((fishData.baseWeight * weightVariance * hookSizeMultiplier).toFixed(2));
     const size = parseFloat((weight * 10 + Math.random() * 20).toFixed(1));
 
     return {

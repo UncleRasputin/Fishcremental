@@ -1,7 +1,7 @@
 const SEASONS = ['Spring', 'Summer', 'Fall', 'Winter'];
 var LAKES = {};
 var FISH_DB = {};
-var BAITS = {};
+var HOOKS = {};
 var RODS = {};
 var RARITY_WEIGHTS = {};
 var RARITY_ORDER = {};
@@ -9,6 +9,9 @@ var EQUIPMENT = {};
 var UPGRADES = {};
 var CONSUMABLES = {};
 var GAME_INFO = {};
+
+// Save file version for future migration support
+const SAVE_VERSION = 2; // v1: old bait system, v2: hooks + baits separation
 
 // Game state
 let gameState = {
@@ -20,7 +23,7 @@ let gameState = {
     seasonThreshold: 10000,
     currentLake: 'fork',
     currentSpot: 0,
-    currentBait: 'worm',
+    currentHook: 'basic',
     currentRod: 'basic',
     currentScreen: 'fish',
     travelIndex: 0,

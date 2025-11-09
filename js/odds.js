@@ -15,7 +15,7 @@ function updateOddsDisplay() {
     const spot = lake.spots[gameState.currentSpot];
     const season = SEASONS[gameState.season];
     const rod = RODS[gameState.currentRod];
-    const bait = BAITS[gameState.currentBait];
+    const hook = HOOKS[gameState.currentHook];
     
     // Get current conditions for this location
     const conditions = getCurrentConditions(gameState.currentLake, gameState.currentSpot, gameState.season);
@@ -67,8 +67,8 @@ function updateOddsDisplay() {
                     <span class="odds-value">${rod.name} (Str: ${rod.strength})</span>
                 </div>
                 <div class="odds-info-row">
-                    <span class="odds-label">Bait:</span>
-                    <span class="odds-value">${bait.name} (Power: ${bait.power}x)</span>
+                    <span class="odds-label">Hook:</span>
+                    <span class="odds-value">${hook.name} (Power: ${hook.power}x)</span>
                 </div>
             </div>
             

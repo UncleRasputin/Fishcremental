@@ -31,11 +31,11 @@ function updateDisplay() {
         `${lake.name} - ${lake.spots[gameState.currentSpot]}`;
 
     const rod = RODS[gameState.currentRod];
-    const bait = BAITS[gameState.currentBait];
+    const hook = HOOKS[gameState.currentHook];
     document.getElementById('rod-name').textContent = rod.name;
     document.getElementById('rod-stat').textContent = `(Str: ${rod.strength})`;
-    document.getElementById('bait-name').textContent = bait.name;
-    document.getElementById('bait-stat').textContent = `(Power: ${bait.power}x)`;
+    document.getElementById('hook-name').textContent = hook.name;
+    document.getElementById('hook-stat').textContent = `(Size: ${hook.sizeMultiplier}x)`;
 
     document.getElementById('inventory-count').textContent = gameState.inventory.length;
     let total = 0;
@@ -126,11 +126,11 @@ function updateShopDisplay() {
         `;
     }).join('');
 
-    const baitContainer = document.getElementById('bait-container');
-    baitContainer.innerHTML = Object.entries(BAITS).map(([id, bait]) => {
-        const isEquipped = gameState.currentBait === id;
-        const isOwned = bait.unlocked;
-        const canAfford = gameState.money >= bait.cost;
+    const hooksContainer = document.getElementById('hooks-container');
+    hooksContainer.innerHTML = Object.entries(HOOKS).map(([id, hook]) => {
+        const isEquipped = gameState.currentHook === id;
+        const isOwned = hook.unlocked;
+        const canAfford = gameState.money >= hook.cost;
 
         let buttonText = '';
         let buttonClass = 'shop-item-button';
@@ -144,17 +144,17 @@ function updateShopDisplay() {
             buttonText = 'Equip';
             buttonClass += ' owned';
         } else {
-            buttonText = `Buy $${bait.cost}`;
+            buttonText = `Buy $${hook.cost}`;
             if (!canAfford) disabled = 'disabled';
         }
 
         return `
             <div class="shop-item">
                 <div class="shop-item-info">
-                    <div class="shop-item-name">${bait.name}</div>
-                    <div class="shop-item-stats">Rare Fish Power: ${bait.power}x</div>
+                    <div class="shop-item-name">${hook.name}</div>
+                    <div class="shop-item-stats">Fish Size Multiplier: ${hook.sizeMultiplier}x</div>
                 </div>
-                <button class="${buttonClass}" onclick="handleBaitClick('${id}')" ${disabled}>${buttonText}</button>
+                <button class="${buttonClass}" onclick="handleHookClick('${id}')" ${disabled}>${buttonText}</button>
             </div>
         `;
     }).join('');

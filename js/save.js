@@ -10,6 +10,7 @@ function autoSave() {
 function saveGame(silent = false) {
     try {
         const saveData = {
+            version: SAVE_VERSION,
             gameState: {
                 money: gameState.money,
                 xp: gameState.xp,
@@ -18,7 +19,7 @@ function saveGame(silent = false) {
                 seasonProgress: gameState.seasonProgress,
                 currentLake: gameState.currentLake,
                 currentSpot: gameState.currentSpot,
-                currentBait: gameState.currentBait,
+                currentHook: gameState.currentHook,
                 currentRod: gameState.currentRod,
                 travelIndex: gameState.travelIndex,
                 inventory: gameState.inventory,
@@ -35,7 +36,7 @@ function saveGame(silent = false) {
                 records: gameState.records
             },
             lakes: LAKES,
-            baits: BAITS,
+            hooks: HOOKS,
             rods: RODS,
             equipment: EQUIPMENT,
             upgrades: UPGRADES,
@@ -59,6 +60,34 @@ function loadGame() {
         }
 
         const data = JSON.parse(saveData);
+        const saveVersion = data.version || 1;
+
+        // Migrate old saves (v1 used "bait" system, v2 uses "hooks")
+        if (saveVersion < 2) {
+            console.log('Migrating save from v1 to v2...');
+            // Map old bait IDs to new hook IDs
+            const baitToHookMapping = {
+                'worm': 'basic',
+                'cricket': 'basic',
+                'minnow': 'wide_gap',
+                'lure': 'circle',
+                'premium': 'octopus'
+            };
+            
+            // Migrate currentBait to currentHook
+            if (data.gameState.currentBait) {
+                gameState.currentHook = baitToHookMapping[data.gameState.currentBait] || 'basic';
+            }
+            
+            // If they had any baits unlocked, give them basic hook
+            if (data.baits) {
+                HOOKS['basic'].unlocked = true;
+                addLog('Save migrated: Old bait system converted to hooks. Check the shop!');
+            }
+        } else {
+            // v2 save, load currentHook normally
+            gameState.currentHook = data.gameState.currentHook || 'basic';
+        }
 
         gameState.money = data.gameState.money;
         gameState.xp = data.gameState.xp;
@@ -67,7 +96,6 @@ function loadGame() {
         gameState.seasonProgress = data.gameState.seasonProgress || 0;
         gameState.currentLake = data.gameState.currentLake;
         gameState.currentSpot = data.gameState.currentSpot;
-        gameState.currentBait = data.gameState.currentBait;
         gameState.currentRod = data.gameState.currentRod;
         gameState.travelIndex = data.gameState.travelIndex || 0;
         gameState.inventory = data.gameState.inventory;
@@ -86,9 +114,15 @@ function loadGame() {
         Object.keys(data.lakes).forEach(id => {
             LAKES[id].unlocked = data.lakes[id].unlocked;
         });
-        Object.keys(data.baits).forEach(id => {
-            BAITS[id].unlocked = data.baits[id].unlocked;
+        
+        // Load hooks data (handles both old 'baits' and new 'hooks' keys)
+        const hooksData = data.hooks || data.baits || {};
+        Object.keys(hooksData).forEach(id => {
+            if (HOOKS[id]) {
+                HOOKS[id].unlocked = hooksData[id].unlocked;
+            }
         });
+        
         Object.keys(data.rods).forEach(id => {
             RODS[id].unlocked = data.rods[id].unlocked;
         });

@@ -1394,21 +1394,21 @@ body {
 }
 
 /* Scrollbar styling for modal */
-.modal-content::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 8px;
 }
 
-.modal-content::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: rgba(30, 58, 138, 0.3);
     border-radius: 4px;
 }
 
-.modal-content::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #3b82f6;
     border-radius: 4px;
 }
 
-.modal-content::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #60a5fa;
 }
 
