@@ -100,6 +100,3 @@ function setVolume(vol) {
         sound.volume = audioSystem.volume;
     }
 }
-
-// Call this when page loads
-initAudio();

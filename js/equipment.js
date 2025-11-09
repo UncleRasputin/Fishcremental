@@ -23,14 +23,11 @@ function updateTokenShop() {
 }
 
 function updateEquipmentShop() {
-    console.log('updateEquipmentShop called');
     const container = document.getElementById('equipment-shop-container');
     if (!container) {
-        console.error('equipment-shop-container not found!');
         return;
     }
 
-    console.log('Equipment container found, building HTML...');
     let html = '';
 
     Object.entries(EQUIPMENT).forEach(([slot, items]) => {
@@ -68,7 +65,6 @@ function updateEquipmentShop() {
         });
     });
 
-    console.log('Equipment HTML length:', html.length);
     container.innerHTML = html;
 }
 

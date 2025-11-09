@@ -1,16 +1,12 @@
 ﻿// Quest system
 
 function generateQuest() {
-    console.log('generateQuest called');
-    console.log('questCooldown:', gameState.questCooldown);
 
     if (gameState.questCooldown) {
-        console.log('Quest on cooldown');
         return;
     }
 
     const rod = RODS[gameState.currentRod];
-    console.log('Current rod:', rod.name, 'strength:', rod.strength);
 
     // Get all fish from unlocked regions that player can catch
     const availableFish = Object.entries(FISH_DB).filter(([id, fish]) => {
@@ -21,17 +17,12 @@ function generateQuest() {
         return inUnlockedRegion && canCatch;
     });
 
-    console.log('Available fish for quests:', availableFish.length);
-
     if (availableFish.length === 0) {
-        // No catchable fish available
-        console.log('No catchable fish available for quests');
         return null;
     }
 
     // Pick random fish
     const [fishId, fishData] = availableFish[Math.floor(Math.random() * availableFish.length)];
-    console.log('Selected fish:', fishData.name);
 
     // Determine quantity based on rarity
     const rarityQuantity = {
@@ -81,7 +72,6 @@ function generateQuest() {
         reward: reward
     };
 
-    console.log('Quest generated:', gameState.quest);
     addLog(`New quest: Catch ${quantity} ${fishData.name}${constraint ? ` (${formatConstraint(constraint)})` : ''}!`);
 
     // Force save immediately to prevent refresh-scumming

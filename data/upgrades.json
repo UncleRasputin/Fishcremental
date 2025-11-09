@@ -1,0 +1,8 @@
+{
+  "recaster": {
+    "name": "Auto-Recaster",
+    "cost": 10,
+    "unlocked": false,
+    "description": "Automatically cast again after catching/losing a fish"
+  }
+}

@@ -1,0 +1,485 @@
+[
+  {
+    "lake": "fork",
+    "spot": 0,
+    "season": 1,
+    "fish": "largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "fork",
+    "spot": 0,
+    "season": 2,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "fork",
+    "spot": 1,
+    "season": 0,
+    "fish": "trophy_largemouth",
+    "modifier": 10
+  },
+  {
+    "lake": "fork",
+    "spot": 1,
+    "season": 1,
+    "fish": "trophy_largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "fork",
+    "spot": 1,
+    "season": 3,
+    "fish": "trophy_largemouth",
+    "modifier": -10
+  },
+  {
+    "lake": "fork",
+    "spot": 2,
+    "season": 0,
+    "fish": "bluegill",
+    "modifier": 20
+  },
+  {
+    "lake": "fork",
+    "spot": 2,
+    "season": 1,
+    "fish": "bluegill",
+    "modifier": 15
+  },
+  {
+    "lake": "fork",
+    "spot": 0,
+    "season": 3,
+    "fish": "crappie_white",
+    "modifier": 15
+  },
+  {
+    "lake": "fork",
+    "spot": 0,
+    "season": 3,
+    "fish": "crappie_black",
+    "modifier": 15
+  },
+  {
+    "lake": "texoma",
+    "spot": 0,
+    "season": 0,
+    "fish": "striped_bass",
+    "modifier": 25
+  },
+  {
+    "lake": "texoma",
+    "spot": 0,
+    "season": 2,
+    "fish": "striped_bass",
+    "modifier": 20
+  },
+  {
+    "lake": "texoma",
+    "spot": 0,
+    "season": 1,
+    "fish": "blue_cat",
+    "modifier": 15
+  },
+  {
+    "lake": "texoma",
+    "spot": 1,
+    "season": 1,
+    "fish": "white_bass",
+    "modifier": 20
+  },
+  {
+    "lake": "texoma",
+    "spot": 2,
+    "season": 0,
+    "fish": "channel_cat",
+    "modifier": 15
+  },
+  {
+    "lake": "texoma",
+    "spot": 2,
+    "season": 2,
+    "fish": "channel_cat",
+    "modifier": 15
+  },
+  {
+    "lake": "texoma",
+    "spot": 1,
+    "season": 3,
+    "fish": "alligator_gar",
+    "modifier": 10
+  },
+  {
+    "lake": "amistad",
+    "spot": 0,
+    "season": 0,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "amistad",
+    "spot": 1,
+    "season": 1,
+    "fish": "smallmouth_buff",
+    "modifier": 15
+  },
+  {
+    "lake": "amistad",
+    "spot": 2,
+    "season": 2,
+    "fish": "blue_cat",
+    "modifier": 20
+  },
+  {
+    "lake": "amistad",
+    "spot": 0,
+    "season": 1,
+    "fish": "spotted_bass",
+    "modifier": 15
+  },
+  {
+    "lake": "okeechobee",
+    "spot": 0,
+    "season": 3,
+    "fish": "trophy_largemouth",
+    "modifier": 25
+  },
+  {
+    "lake": "okeechobee",
+    "spot": 0,
+    "season": 0,
+    "fish": "trophy_largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "okeechobee",
+    "spot": 1,
+    "season": 2,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "okeechobee",
+    "spot": 2,
+    "season": 1,
+    "fish": "bluegill",
+    "modifier": 25
+  },
+  {
+    "lake": "okeechobee",
+    "spot": 2,
+    "season": 0,
+    "fish": "redear",
+    "modifier": 20
+  },
+  {
+    "lake": "michigan",
+    "spot": 0,
+    "season": 1,
+    "fish": "chinook_salmon",
+    "modifier": 30
+  },
+  {
+    "lake": "michigan",
+    "spot": 0,
+    "season": 2,
+    "fish": "coho_salmon",
+    "modifier": 25
+  },
+  {
+    "lake": "michigan",
+    "spot": 1,
+    "season": 0,
+    "fish": "lake_trout",
+    "modifier": 20
+  },
+  {
+    "lake": "michigan",
+    "spot": 1,
+    "season": 3,
+    "fish": "lake_trout",
+    "modifier": 15
+  },
+  {
+    "lake": "michigan",
+    "spot": 2,
+    "season": 1,
+    "fish": "smallmouth",
+    "modifier": 20
+  },
+  {
+    "lake": "michigan",
+    "spot": 0,
+    "season": 1,
+    "fish": "yellow_perch",
+    "modifier": 15
+  },
+  {
+    "lake": "erie",
+    "spot": 0,
+    "season": 0,
+    "fish": "walleye",
+    "modifier": 30
+  },
+  {
+    "lake": "erie",
+    "spot": 0,
+    "season": 2,
+    "fish": "walleye",
+    "modifier": 25
+  },
+  {
+    "lake": "erie",
+    "spot": 1,
+    "season": 1,
+    "fish": "smallmouth",
+    "modifier": 25
+  },
+  {
+    "lake": "erie",
+    "spot": 1,
+    "season": 0,
+    "fish": "trophy_smallmouth",
+    "modifier": 15
+  },
+  {
+    "lake": "erie",
+    "spot": 2,
+    "season": 1,
+    "fish": "yellow_perch",
+    "modifier": 20
+  },
+  {
+    "lake": "erie",
+    "spot": 2,
+    "season": 2,
+    "fish": "yellow_perch",
+    "modifier": 20
+  },
+  {
+    "lake": "superior",
+    "spot": 0,
+    "season": 1,
+    "fish": "lake_trout",
+    "modifier": 25
+  },
+  {
+    "lake": "superior",
+    "spot": 0,
+    "season": 2,
+    "fish": "trophy_laker",
+    "modifier": 20
+  },
+  {
+    "lake": "superior",
+    "spot": 1,
+    "season": 0,
+    "fish": "northern_pike",
+    "modifier": 20
+  },
+  {
+    "lake": "superior",
+    "spot": 2,
+    "season": 2,
+    "fish": "muskie",
+    "modifier": 25
+  },
+  {
+    "lake": "superior",
+    "spot": 2,
+    "season": 0,
+    "fish": "muskie",
+    "modifier": 15
+  },
+  {
+    "lake": "superior",
+    "spot": 1,
+    "season": 3,
+    "fish": "giant_laker",
+    "modifier": 10
+  },
+  {
+    "lake": "santee",
+    "spot": 0,
+    "season": 0,
+    "fish": "monster_blue",
+    "modifier": 20
+  },
+  {
+    "lake": "santee",
+    "spot": 0,
+    "season": 1,
+    "fish": "monster_blue",
+    "modifier": 25
+  },
+  {
+    "lake": "santee",
+    "spot": 1,
+    "season": 2,
+    "fish": "striped_bass",
+    "modifier": 25
+  },
+  {
+    "lake": "santee",
+    "spot": 2,
+    "season": 0,
+    "fish": "crappie_white",
+    "modifier": 20
+  },
+  {
+    "lake": "santee",
+    "spot": 1,
+    "season": 1,
+    "fish": "flathead_cat",
+    "modifier": 20
+  },
+  {
+    "lake": "ozarks",
+    "spot": 0,
+    "season": 0,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "ozarks",
+    "spot": 0,
+    "season": 2,
+    "fish": "largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "ozarks",
+    "spot": 1,
+    "season": 1,
+    "fish": "spotted_bass",
+    "modifier": 20
+  },
+  {
+    "lake": "ozarks",
+    "spot": 2,
+    "season": 3,
+    "fish": "crappie_black",
+    "modifier": 25
+  },
+  {
+    "lake": "ozarks",
+    "spot": 2,
+    "season": 0,
+    "fish": "crappie_black",
+    "modifier": 20
+  },
+  {
+    "lake": "champlain",
+    "spot": 0,
+    "season": 1,
+    "fish": "smallmouth",
+    "modifier": 25
+  },
+  {
+    "lake": "champlain",
+    "spot": 0,
+    "season": 0,
+    "fish": "trophy_smallmouth",
+    "modifier": 20
+  },
+  {
+    "lake": "champlain",
+    "spot": 1,
+    "season": 2,
+    "fish": "northern_pike",
+    "modifier": 20
+  },
+  {
+    "lake": "champlain",
+    "spot": 2,
+    "season": 2,
+    "fish": "muskie",
+    "modifier": 25
+  },
+  {
+    "lake": "champlain",
+    "spot": 2,
+    "season": 0,
+    "fish": "record_muskie",
+    "modifier": 15
+  },
+  {
+    "lake": "champlain",
+    "spot": 1,
+    "season": 1,
+    "fish": "largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "mead",
+    "spot": 0,
+    "season": 0,
+    "fish": "striped_bass_trophy",
+    "modifier": 25
+  },
+  {
+    "lake": "mead",
+    "spot": 0,
+    "season": 2,
+    "fish": "striped_bass_trophy",
+    "modifier": 20
+  },
+  {
+    "lake": "mead",
+    "spot": 1,
+    "season": 1,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "mead",
+    "spot": 2,
+    "season": 3,
+    "fish": "rainbow_trout",
+    "modifier": 25
+  },
+  {
+    "lake": "mead",
+    "spot": 1,
+    "season": 1,
+    "fish": "smallmouth",
+    "modifier": 15
+  },
+  {
+    "lake": "powell",
+    "spot": 0,
+    "season": 0,
+    "fish": "striped_bass",
+    "modifier": 25
+  },
+  {
+    "lake": "powell",
+    "spot": 0,
+    "season": 2,
+    "fish": "monster_striper",
+    "modifier": 20
+  },
+  {
+    "lake": "powell",
+    "spot": 1,
+    "season": 1,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "powell",
+    "spot": 2,
+    "season": 3,
+    "fish": "rainbow_trout",
+    "modifier": 25
+  },
+  {
+    "lake": "powell",
+    "spot": 2,
+    "season": 0,
+    "fish": "brown_trout",
+    "modifier": 20
+  }
+]

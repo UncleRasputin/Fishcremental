@@ -1,0 +1,73 @@
+{
+  "fork": {
+    "name": "Lake Fork, TX",
+    "spots": [ "Main Lake", "Big Fish Creek", "Little Fish Creek" ],
+    "unlocked": true
+  },
+  "texoma": {
+    "name": "Lake Texoma, TX/OK",
+    "spots": [ "Dam Area", "Sandy Point", "Little Mineral Creek" ],
+    "unlocked": false,
+    "unlockCost": 50
+  },
+  "amistad": {
+    "name": "Lake Amistad, TX",
+    "spots": [ "Diablo East", "Rough Canyon", "San Pedro" ],
+    "unlocked": false,
+    "unlockCost": 100
+  },
+  "okeechobee": {
+    "name": "Lake Okeechobee, FL",
+    "spots": [ "Monkey Box", "King's Bar", "Tin House Cove" ],
+    "unlocked": false,
+    "unlockCost": 150
+  },
+  "michigan": {
+    "name": "Lake Michigan",
+    "spots": [ "Milwaukee Harbor", "Ludington", "Grand Haven" ],
+    "unlocked": false,
+    "unlockCost": 200
+  },
+  "erie": {
+    "name": "Lake Erie",
+    "spots": [ "Western Basin", "Central Basin", "Eastern Basin" ],
+    "unlocked": false,
+    "unlockCost": 250
+  },
+  "superior": {
+    "name": "Lake Superior",
+    "spots": [ "Apostle Islands", "Grand Marais", "Whitefish Bay" ],
+    "unlocked": false,
+    "unlockCost": 300
+  },
+  "santee": {
+    "name": "Santee Cooper Lakes, SC",
+    "spots": [ "Lake Marion", "Lake Moultrie", "Diversion Canal" ],
+    "unlocked": false,
+    "unlockCost": 175
+  },
+  "ozarks": {
+    "name": "Lake of the Ozarks, MO",
+    "spots": [ "Grand Glaize Arm", "Gravois Arm", "Niangua Arm" ],
+    "unlocked": false,
+    "unlockCost": 125
+  },
+  "champlain": {
+    "name": "Lake Champlain, VT/NY",
+    "spots": [ "Malletts Bay", "South Lake", "Inland Sea" ],
+    "unlocked": false,
+    "unlockCost": 225
+  },
+  "mead": {
+    "name": "Lake Mead, NV/AZ",
+    "spots": [ "Boulder Basin", "Virgin Basin", "Overton Arm" ],
+    "unlocked": false,
+    "unlockCost": 275
+  },
+  "powell": {
+    "name": "Lake Powell, UT/AZ",
+    "spots": [ "Wahweap Bay", "Padre Bay", "Rainbow Bridge" ],
+    "unlocked": false,
+    "unlockCost": 325
+  }
+}

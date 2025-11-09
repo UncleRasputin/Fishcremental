@@ -1,5 +1,3 @@
-// Info modal system
-
 let currentInfoTab = 'intro';
 
 function openInfoModal(tab = 'intro') {

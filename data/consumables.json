@@ -1,0 +1,20 @@
+{
+  "lucky_coin": {
+    "name": "Lucky Coin",
+    "cost": 2,
+    "uses": 5,
+    "description": "No line breaks for 5 casts"
+  },
+  "xp_boost": {
+    "name": "XP Boost",
+    "cost": 3,
+    "uses": 10,
+    "description": "2x XP for 10 casts"
+  },
+  "super_bait": {
+    "name": "Super Bait",
+    "cost": 5,
+    "uses": 1,
+    "description": "Guarantees Epic+ fish on next catch"
+  }
+}

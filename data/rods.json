@@ -1,0 +1,37 @@
+{
+  "basic": {
+    "name": "Basic Rod",
+    "strength": 10,
+    "castSpeed": 1,
+    "cost": 0,
+    "unlocked": true
+  },
+  "bamboo": {
+    "name": "Bamboo Rod",
+    "strength": 25,
+    "castSpeed": 1.2,
+    "cost": 100,
+    "unlocked": false
+  },
+  "fiberglass": {
+    "name": "Fiberglass Rod",
+    "strength": 50,
+    "castSpeed": 1.5,
+    "cost": 500,
+    "unlocked": false
+  },
+  "carbon": {
+    "name": "Carbon Fiber Rod",
+    "strength": 100,
+    "castSpeed": 2,
+    "cost": 2000,
+    "unlocked": false
+  },
+  "legendary": {
+    "name": "Legendary Rod",
+    "strength": 250,
+    "castSpeed": 3,
+    "cost": 10000,
+    "unlocked": false
+  }
+}

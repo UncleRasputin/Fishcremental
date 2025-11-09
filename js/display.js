@@ -38,6 +38,10 @@ function updateDisplay() {
     document.getElementById('bait-stat').textContent = `(Power: ${bait.power}x)`;
 
     document.getElementById('inventory-count').textContent = gameState.inventory.length;
+    let total = 0;
+    gameState.inventory.forEach((fish) => total += fish.value);
+    document.getElementById('inventory-total').textContent = '$' + total;
+
     document.getElementById('sell-all-button').style.display =
         gameState.inventory.length > 0 ? 'block' : 'none';
 

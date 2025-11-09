@@ -124,9 +124,6 @@ function rollFish() {
         if (fish.rarity === 'epic') weight *= baitPower * 0.6;
         if (fish.rarity === 'legendary') weight *= baitPower * 0.4;
 
-        // Season bonus (Fall)
-        if (gameState.season === 2) weight *= 1.2;
-        
         // Apply fishing conditions modifier (location + season specific)
         const conditionModifier = getFishingModifier(
             gameState.currentLake, 
@@ -434,39 +431,3 @@ function sellAll() {
     updateDisplay();
     updateInventoryDisplay();
 }
-
-// Initialize game
-console.log('Initializing game...');
-
-// Load saved game FIRST
-const gameLoaded = loadGame();
-
-if (gameLoaded) {
-    addLog('Welcome back! Game loaded.');
-} else {
-    addLog('Welcome to Fishcremental!');
-}
-
-// Load unit preferences
-loadUnitsPreference();
-
-// Update display with loaded data
-updateDisplay();
-
-// Small delay to ensure everything is rendered
-setTimeout(() => {
-    updateQuestDisplay();
-
-    // Generate quest if none exists and not on cooldown
-    if (!gameState.quest && !gameState.questCooldown) {
-        console.log('No quest found, generating initial quest...');
-        generateQuest();
-    } else if (gameState.quest) {
-        console.log('Quest already exists:', gameState.quest.targetName);
-    } else if (gameState.questCooldown) {
-        console.log('Quest on cooldown');
-    }
-
-    // Check if first-time player and show intro
-    checkFirstTimePlayer();
-}, 100);

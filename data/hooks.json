@@ -1,0 +1,32 @@
+{
+  "worm": {
+    "name": "Worm",
+    "cost": 0,
+    "power": 1,
+    "unlocked": true
+  },
+  "cricket": {
+    "name": "Cricket",
+    "cost": 10,
+    "power": 1.5,
+    "unlocked": true
+  },
+  "minnow": {
+    "name": "Minnow",
+    "cost": 50,
+    "power": 2,
+    "unlocked": false
+  },
+  "lure": {
+    "name": "Fancy Lure",
+    "cost": 200,
+    "power": 3,
+    "unlocked": false
+  },
+  "premium": {
+    "name": "Premium Lure",
+    "cost": 1000,
+    "power": 5,
+    "unlocked": false
+  }
+}

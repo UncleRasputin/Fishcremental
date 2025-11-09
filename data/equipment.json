@@ -1,0 +1,90 @@
+{
+  "hat": {
+    "none": {
+      "name": "No Hat",
+      "bonus": {},
+      "cost": 0,
+      "unlocked": true
+    },
+    "lucky": {
+      "name": "Lucky Hat",
+      "bonus": { "rareChance": 5 },
+      "cost": 3,
+      "unlocked": false,
+      "description": "+5% rare fish chance"
+    },
+    "scholar": {
+      "name": "Scholar's Cap",
+      "bonus": { "xpBonus": 10 },
+      "cost": 5,
+      "unlocked": true,
+      "description": "+10% XP gained"
+    }
+  },
+  "vest": {
+    "none": {
+      "name": "No Vest",
+      "bonus": {},
+      "cost": 0,
+      "unlocked": true
+    },
+    "fishing": {
+      "name": "Fishing Vest",
+      "bonus": { "sellValue": 10 },
+      "cost": 4,
+      "unlocked": false,
+      "description": "+10% sell value"
+    },
+    "weighted": {
+      "name": "Weighted Vest",
+      "bonus": { "weightBonus": 15 },
+      "cost": 6,
+      "unlocked": true,
+      "description": "+15% fish weight"
+    }
+  },
+  "tackle": {
+    "none": {
+      "name": "No Tackle Box",
+      "bonus": {},
+      "cost": 0,
+      "unlocked": true
+    },
+    "basic": {
+      "name": "Basic Tackle Box",
+      "bonus": { "baitPower": 0.5 },
+      "cost": 5,
+      "unlocked": false,
+      "description": "+0.5x bait effectiveness"
+    },
+    "pro": {
+      "name": "Pro Tackle Box",
+      "bonus": { "waitReduction": 10 },
+      "cost": 8,
+      "unlocked": true,
+      "description": "-10% wait time"
+    }
+  },
+  "boots": {
+    "none": {
+      "name": "No Boots",
+      "bonus": {},
+      "cost": 0,
+      "unlocked": true
+    },
+    "waders": {
+      "name": "Hip Waders",
+      "bonus": { "sizeBonus": 10 },
+      "cost": 4,
+      "unlocked": false,
+      "description": "+10% fish size"
+    },
+    "speed": {
+      "name": "Speed Boots",
+      "bonus": { "castSpeed": 0.2 },
+      "cost": 6,
+      "unlocked": true,
+      "description": "+0.2x cast speed"
+    }
+  }
+}
