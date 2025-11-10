@@ -1,4 +1,4 @@
-https://UncleRasputin.github.io/Fishcremental
+https://fishcremental.com
 A fishing incremental game!
 
 AI was utilized to implement the html, css, and js based on UncleRasputin's ideas and designs.
@@ -16,4 +16,5 @@ audio/cast.mp3
 https://freesound.org/people/BranndyBottle/sounds/464697/
 
 audio/splash.mp3
+
 https://freesound.org/people/Logicogonist/sounds/807961/
