@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Sync to S3
-      uses: aws-actions/s3-sync@v2
+      uses: aws-actions/s3-sync@v1
       with:
         bucket: ${{ secrets.AWS_S3_BUCKET }}
         region: ${{ secrets.AWS_REGION }}
