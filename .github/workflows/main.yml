@@ -22,6 +22,7 @@ jobs:
           SOURCE_DIR: "."
           EXCLUDE: |
             *.md
+            .git*
             .github/*
             .gitignore
           AWS_REGION: ${{ secrets.AWS_REGION }}
