@@ -1,0 +1,33 @@
+name: Deploy Website to S3
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Website
+        run: npm run build
+
+      - name: Deploy to S3
+        uses: andrewdex/s3-deploy-action@v1
+        with:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          SOURCE_DIR: "."
+          EXCLUDE: |
+            *.md
+            .github/*
+            .gitignore
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
