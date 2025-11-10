@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fishcremental - Idle Fishing Game</title>
     <link rel="stylesheet" href="css/style.css?v=1762601552">
+    <script src="https://www.w3counter.com/tracker.js?id=156616"></script>
 </head>
 <body>
     <!-- Header with stats -->
@@ -137,6 +138,7 @@
                 <div class="shop-tabs">
                     <button class="shop-tab active" onclick="changeShopTab('rods')">🎣 Rods</button>
                     <button class="shop-tab" onclick="changeShopTab('hooks')">🪝 Hooks</button>
+                    <button class="shop-tab" onclick="changeShopTab('baits')">🪱 Bait</button>
                     <button class="shop-tab" onclick="changeShopTab('tokens')">🎫 Token Shop</button>
                 </div>
 
@@ -146,6 +148,9 @@
 
                 <div id="shop-tab-hooks" class="shop-tab-content">
                     <div id="hooks-container" class="shop-items"></div>
+                </div>
+                <div id="shop-tab-baits" class="shop-tab-content">
+                    <div id="baits-container" class="shop-items"></div>
                 </div>
 
                 <div id="shop-tab-tokens" class="shop-tab-content">
@@ -275,7 +280,7 @@
             </div>
         </div>
     </div>
-
+    <script src="js/ui.js"></script>
     <script src="js/data.js?v=1762601552"></script>
     <script src="js/fishingConditions.js?v=1762601552"></script>
     <script src="js/audio.js?v=1762601552"></script>

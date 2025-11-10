@@ -1,14 +1,16 @@
-// Save, load, and reset functionality
-
-function autoSave() {
-    if (!autoSave.lastSave || Date.now() - autoSave.lastSave > 3000) {
+function autoSave()
+{
+    if (!autoSave.lastSave || Date.now() - autoSave.lastSave > 3000)
+    {
         saveGame(true);
         autoSave.lastSave = Date.now();
     }
 }
 
-function saveGame(silent = false) {
-    try {
+function saveGame(silent = false)
+{
+    try
+    {
         const saveData = {
             version: SAVE_VERSION,
             gameState: {
@@ -44,28 +46,25 @@ function saveGame(silent = false) {
         };
 
         localStorage.setItem('fishcremental_save', JSON.stringify(saveData));
-        if (!silent) {
+        if (!silent)
             addLog('Game saved successfully!');
-        }
-    } catch (error) {
-        console.error('Save error:', error);
     }
+    catch (error) { console.error('Save error:', error); }
 }
 
-function loadGame() {
-    try {
+function loadGame()
+{
+    try
+    {
         const saveData = localStorage.getItem('fishcremental_save');
-        if (!saveData) {
+        if (!saveData) 
             return false;
-        }
 
         const data = JSON.parse(saveData);
-        const saveVersion = data.version || 1;
-
-        // Migrate old saves (v1 used "bait" system, v2 uses "hooks")
-        if (saveVersion < 2) {
+        const saveVersion = data.version;
+        if (!saveVersion)
+        {
             console.log('Migrating save from v1 to v2...');
-            // Map old bait IDs to new hook IDs
             const baitToHookMapping = {
                 'worm': 'basic',
                 'cricket': 'basic',
@@ -74,20 +73,17 @@ function loadGame() {
                 'premium': 'octopus'
             };
             
-            // Migrate currentBait to currentHook
-            if (data.gameState.currentBait) {
+            if (data.gameState.currentBait) 
                 gameState.currentHook = baitToHookMapping[data.gameState.currentBait] || 'basic';
-            }
-            
-            // If they had any baits unlocked, give them basic hook
-            if (data.baits) {
+
+            if (data.baits)
+            {
                 HOOKS['basic'].unlocked = true;
                 addLog('Save migrated: Old bait system converted to hooks. Check the shop!');
             }
-        } else {
-            // v2 save, load currentHook normally
-            gameState.currentHook = data.gameState.currentHook || 'basic';
         }
+        else 
+            gameState.currentHook = data.gameState.currentHook || 'basic';
 
         gameState.money = data.gameState.money;
         gameState.xp = data.gameState.xp;
@@ -115,7 +111,6 @@ function loadGame() {
             LAKES[id].unlocked = data.lakes[id].unlocked;
         });
         
-        // Load hooks data (handles both old 'baits' and new 'hooks' keys)
         const hooksData = data.hooks || data.baits || {};
         Object.keys(hooksData).forEach(id => {
             if (HOOKS[id]) {
@@ -127,8 +122,8 @@ function loadGame() {
             RODS[id].unlocked = data.rods[id].unlocked;
         });
 
-        // Restore equipment unlocks
-        if (data.equipment) {
+        if (data.equipment)
+        {
             Object.keys(data.equipment).forEach(slot => {
                 Object.keys(data.equipment[slot]).forEach(id => {
                     if (EQUIPMENT[slot] && EQUIPMENT[slot][id]) {
@@ -140,20 +135,20 @@ function loadGame() {
 
         updateDisplay();
         return true;
-    } catch (error) {
+    }
+    catch (error)
+    {
         console.error('Load error:', error);
         return false;
     }
 }
 
-function hardReset() {
-    if (!confirm('Are you sure you want to HARD RESET? This will delete ALL progress and cannot be undone!')) {
+function hardReset()
+{
+    if (!confirm('Are you sure you want to HARD RESET? This will delete ALL progress and cannot be undone!'))
         return;
-    }
-
-    if (!confirm('Really? This will permanently delete everything!')) {
+    if (!confirm('Really? This will permanently delete everything!')) 
         return;
-    }
 
     localStorage.removeItem('fishcremental_save');
     location.reload();

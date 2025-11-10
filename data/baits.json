@@ -1,19 +1,10 @@
 {
-  "_comment": "Baits will attract/repel specific fish species",
-  "_structure_example": {
-    "id": {
-      "name": "Bait Name",
-      "cost": 100,
-      "attracts": ["fish_id1", "fish_id2"],
-      "repels": ["fish_id3", "fish_id4"],
-      "unlocked": false
-    }
-  },
-  "none": {
-    "name": "No Bait",
+  "worm" :{
+    "name": "Worm",
     "cost": 0,
     "attracts": [],
     "repels": [],
+    "strength": 1,
     "unlocked": true
   }
 }

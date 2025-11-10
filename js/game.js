@@ -53,7 +53,6 @@ function handleRodClick(id) {
     updateDisplay();
     updateShopDisplay();
 }
-
 function handleHookClick(id) {
     const hook = HOOKS[id];
     if (hook.unlocked) {
@@ -64,6 +63,20 @@ function handleHookClick(id) {
         hook.unlocked = true;
         gameState.currentHook = id;
         addLog(`Purchased and equipped ${hook.name}!`);
+    }
+    updateDisplay();
+    updateShopDisplay();
+}
+function handleBaitClick(id) {
+    const bait = BAITS[id];
+    if (bait.unlocked) {
+        gameState.currentBait = id;
+        addLog(`Equipped ${bait.name}`);
+    } else if (gameState.money >= bait.cost) {
+        gameState.money -= bait.cost;
+        bait.unlocked = true;
+        gameState.currentBait = id;
+        addLog(`Purchased and equipped ${bait.name}!`);
     }
     updateDisplay();
     updateShopDisplay();
@@ -127,7 +140,8 @@ function rollFish() {
         const conditionModifier = getFishingModifier(
             gameState.currentLake, 
             gameState.currentSpot, 
-            gameState.season, 
+            gameState.season,
+            gameState.currentBait,
             id
         );
         if (conditionModifier !== 0) {
@@ -180,10 +194,10 @@ function startCast() {
         if (btn.dataset.screen !== 'fish') btn.disabled = true;
     });
 
-    document.getElementById('cast-button').disabled = true;
-    document.getElementById('cast-button').textContent = 'Casting...';
-    document.getElementById('progress-container').style.display = 'block';
-    document.getElementById('progress-label').textContent = 'Casting';
+    UI.castButton.disabled = true;
+    UI.castButton.textContent = 'Casting...';
+    UI.progressContainer.style.display = 'block';
+    UI.progressLabel.textContent = 'Casting';
 
     const rod = RODS[gameState.currentRod];
     const castTime = 2000 / rod.castSpeed;
@@ -201,21 +215,18 @@ function startCast() {
             gameState.casting = false;
             startWaiting();
         }
-        document.getElementById('progress-fill').style.width = gameState.progress + '%';
+        UI.progressFill.style.width = gameState.progress + '%';
     }, 50);
 }
 
 function startWaiting() {
     gameState.waiting = true;
     gameState.progress = 0;
-    document.getElementById('cast-button').textContent = 'Waiting...';
-    document.getElementById('progress-label').textContent = 'Waiting for bite';
-
+    UI.castButton.textContent = 'Waiting...';
+    UI.progressLabel.textContent = 'Waiting for bite';
     addLog("Line cast! Waiting for a bite...");
-
     const waitTime = 3000 + Math.random() * 12000;
     const step = 100 / (waitTime / 100);
-
     gameState.progressInterval = setInterval(() => {
         gameState.progress += step;
         advanceTime(step);
@@ -225,23 +236,21 @@ function startWaiting() {
             gameState.waiting = false;
             getBite();
         }
-        document.getElementById('progress-fill').style.width = gameState.progress + '%';
+        UI.progressFill.style.width = gameState.progress + '%';
     }, 100);
 }
 
-function getBite() {
+function getBite()
+{
     const fish = rollFish();
     gameState.currentFish = fish;
-
     const hint = getFishHint(fish.rarity);
     addLog(hint);
-
-    // Show mystery fish info (no exact details)
-    document.getElementById('fish-display').style.display = 'block';
-    document.getElementById('fish-name').textContent = `??? (${fish.rarity})`;
-    document.getElementById('fish-name').className = `rarity-${fish.rarity}`;
-    document.getElementById('fish-stats').textContent = hint;
-    document.getElementById('fish-strength').textContent =
+    UI.fishDisplay.style.display = 'block';
+    UI.fishName.textContent = `??? (${fish.rarity})`;
+    UI.fishName.className = `rarity-${fish.rarity}`;
+    UI.fishStats.textContent = hint;
+    UI.fishStrength.textContent =
         `Your rod strength: ${RODS[gameState.currentRod].strength}`;
 
     startReel(fish);
@@ -250,8 +259,8 @@ function getBite() {
 function startReel(fish) {
     gameState.reeling = true;
     gameState.progress = 0;
-    document.getElementById('cast-button').textContent = 'Reeling...';
-    document.getElementById('progress-label').textContent = 'Reeling in';
+    UI.castButton.textContent = 'Reeling...';
+    UI.progressLabel.textContent = 'Reeling in';
 
     // Play reel sound
     playSound('reel');
@@ -268,7 +277,7 @@ function startReel(fish) {
             gameState.reeling = false;
             completeCatch(fish);
         }
-        document.getElementById('progress-fill').style.width = gameState.progress + '%';
+        UI.progressFill.style.width = gameState.progress + '%';
     }, 50);
 }
 
@@ -289,66 +298,53 @@ function TryRecast() {
 
 function completeCatch(fish) {
     const rod = RODS[gameState.currentRod];
-
-    // Stop reel sound
     stopReelSound();
-
-    // Decrement active consumables
     decrementConsumables();
-
-    document.getElementById('progress-container').style.display = 'none';
-    document.getElementById('fish-display').style.display = 'none';
-    document.getElementById('cast-button').disabled = false;
-    document.getElementById('cast-button').textContent = 'Cast Line';
+    UI.progressContainer.style.display = 'none';
+    UI.fishDisplay.style.display = 'none';
+    UI.castButton.disabled = false;
+    UI.castButton.textContent = 'Cast Line';
 
     document.querySelectorAll('.nav-button').forEach(btn => btn.disabled = false);
-
-    // Check Lucky Coin (prevents line breaks)
     const hasLuckyCoin = gameState.activeConsumables['lucky_coin'];
 
-    if (rod.strength < fish.actualStrength && !hasLuckyCoin) {
+    if (rod.strength < fish.actualStrength && !hasLuckyCoin)
+    {
         gameState.stats.lineBreaks++;
         playSound('snap');
         addLog(`The line snapped! The ${fish.name} was too strong (${fish.actualStrength} vs ${rod.strength}).`);
         gameState.currentFish = null;
         gameState.progress = 0;
-
         TryRecast();
         return;
     }
-
-    // Get equipment bonuses
     const bonuses = getEquipmentBonuses();
 
-    // Apply weight and size bonuses
     const modifiedWeight = fish.weight * (1 + bonuses.weightBonus / 100);
     const modifiedSize = fish.size * (1 + bonuses.sizeBonus / 100);
     fish.weight = parseFloat(modifiedWeight.toFixed(2));
     fish.size = parseFloat(modifiedSize.toFixed(1));
 
     const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight) * (1 + bonuses.sellValue / 100));
-
-    if (value === 0) {
+    if (value === 0)
+    {
         gameState.stats.fishThrownBack++;
         playSound('splash');
         addLog(`The ${fish.name} was too small to keep. You threw it back.`);
         gameState.currentFish = null;
         gameState.progress = 0;
-
         TryRecast();
         return;
     }
 
     gameState.stats.fishCaught++;
-
-    // Apply XP bonus from equipment and consumables
     let xpGain = Math.floor(value / 2);
-    if (bonuses.xpBonus) {
+
+    if (bonuses.xpBonus)
         xpGain = Math.floor(xpGain * (1 + bonuses.xpBonus / 100));
-    }
-    if (gameState.activeConsumables['xp_boost']) {
+
+    if (gameState.activeConsumables['xp_boost'])
         xpGain *= 2;
-    }
 
     gameState.xp += xpGain;
 
@@ -357,41 +353,34 @@ function completeCatch(fish) {
     gameState.lastCatch = caughtFish;
 
     playSound('splash');
-
     checkQuestProgress(fish);
     updateRecords(fish, value);
-
     addLog(`Caught a ${fish.name}! (${formatFishMeasurements(fish)})`);
     gameState.currentFish = null;
     gameState.progress = 0;
-
     updateDisplay();
-
     TryRecast();
 }
 
-// Records tracking
-function updateRecords(fish, value) {
-    if (!gameState.records.heaviestFish || fish.weight > gameState.records.heaviestFish.weight) {
+function updateRecords(fish, value)
+{
+    if (!gameState.records.heaviestFish || fish.weight > gameState.records.heaviestFish.weight) 
         gameState.records.heaviestFish = { ...fish, value };
-    }
 
-    if (!gameState.records.largestFish || fish.size > gameState.records.largestFish.size) {
+    if (!gameState.records.largestFish || fish.size > gameState.records.largestFish.size) 
         gameState.records.largestFish = { ...fish, value };
-    }
 
-    if (!gameState.records.mostValuable || value > gameState.records.mostValuable.value) {
+    if (!gameState.records.mostValuable || value > gameState.records.mostValuable.value)
         gameState.records.mostValuable = { ...fish, value };
-    }
 
-    if (!gameState.records.rarestCatch ||
-        RARITY_ORDER[fish.rarity] > RARITY_ORDER[gameState.records.rarestCatch.rarity]) {
+    if (!gameState.records.rarestCatch || RARITY_ORDER[fish.rarity] > RARITY_ORDER[gameState.records.rarestCatch.rarity])
         gameState.records.rarestCatch = { ...fish, value };
-    }
 
     const location = gameState.currentLake;
-    if (!gameState.records.byLocation[location]) {
-        gameState.records.byLocation[location] = {
+    if (!gameState.records.byLocation[location])
+    {
+        gameState.records.byLocation[location] =
+        {
             heaviest: null,
             largest: null,
             totalCaught: 0
@@ -401,17 +390,15 @@ function updateRecords(fish, value) {
     const locRecords = gameState.records.byLocation[location];
     locRecords.totalCaught++;
 
-    if (!locRecords.heaviest || fish.weight > locRecords.heaviest.weight) {
+    if (!locRecords.heaviest || fish.weight > locRecords.heaviest.weight) 
         locRecords.heaviest = { ...fish, value };
-    }
 
-    if (!locRecords.largest || fish.size > locRecords.largest.size) {
+    if (!locRecords.largest || fish.size > locRecords.largest.size)
         locRecords.largest = { ...fish, value };
-    }
 }
 
-// Inventory management
-function sellFish(idx) {
+function sellFish(idx)
+{
     const fish = gameState.inventory[idx];
     gameState.money += fish.value;
     gameState.stats.totalMoneyEarned += fish.value;
@@ -421,7 +408,8 @@ function sellFish(idx) {
     updateInventoryDisplay();
 }
 
-function sellAll() {
+function sellAll()
+{
     const total = gameState.inventory.reduce((sum, fish) => sum + fish.value, 0);
     gameState.money += total;
     gameState.stats.totalMoneyEarned += total;

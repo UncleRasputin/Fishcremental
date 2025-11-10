@@ -5,6 +5,7 @@ const DATA_FILES = [
     { name: 'Lakes', path: './data/lakes.json', target: 'LAKES' },
     { name: 'Fish', path: './data/fish.json', target: 'FISH_DB' },
     { name: 'Hooks', path: './data/hooks.json', target: 'HOOKS' },
+    { name: 'Baits', path: './data/baits.json', target: 'BAITS' },
     { name: 'Rods', path: './data/rods.json', target: 'RODS' },
     { name: 'Rarity Weights', path: './data/rarity_weights.json', target: 'RARITY_WEIGHTS' },
     { name: 'Rarity Order', path: './data/rarity_order.json', target: 'RARITY_ORDER' },

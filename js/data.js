@@ -3,6 +3,7 @@ var LAKES = {};
 var FISH_DB = {};
 var HOOKS = {};
 var RODS = {};
+var BAITS = {};
 var RARITY_WEIGHTS = {};
 var RARITY_ORDER = {};
 var EQUIPMENT = {};
@@ -26,6 +27,7 @@ let gameState = {
     currentHook: 'basic',
     currentRod: 'basic',
     currentScreen: 'fish',
+    currentBait: 'worm',
     travelIndex: 0,
     casting: false,
     waiting: false,

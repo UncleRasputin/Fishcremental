@@ -1,56 +1,51 @@
-﻿// Equipment and token shop management
-
-function changeInventoryTab(tab) {
+﻿function changeInventoryTab(tab)
+{
     document.querySelectorAll('.inventory-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.inventory-tab-content').forEach(c => c.classList.remove('active'));
-
     event.target.classList.add('active');
     document.getElementById('inventory-tab-' + tab).classList.add('active');
 
-    if (tab === 'consumables') {
+    if (tab === 'consumables') 
         updateConsumablesInventory();
-    } else if (tab === 'equipment') {
+    else if (tab === 'equipment') 
         updateEquipmentSlots();
-    } else if (tab === 'upgrades') {
+    else if (tab === 'upgrades')
         updateUpgradesOwned();
-    }
 }
 
-function updateTokenShop() {
+function updateTokenShop()
+{
     updateEquipmentShop();
     updateUpgradesShop();
     updateConsumablesShop();
 }
 
-function updateEquipmentShop() {
-    const container = document.getElementById('equipment-shop-container');
-    if (!container) {
-        return;
-    }
-
+function updateEquipmentShop()
+{
     let html = '';
-
-    Object.entries(EQUIPMENT).forEach(([slot, items]) => {
-        Object.entries(items).forEach(([id, item]) => {
-            if (id === 'none') return; // Skip "none" items
-
-            const isOwned = item.unlocked;
-            const isEquipped = gameState.equipped[slot] === id;
-            const canAfford = gameState.questTokens >= item.cost;
-
+    Object.entries(EQUIPMENT).forEach(([slot, items]) =>
+    {
+        Object.entries(items).forEach(([id, item]) =>
+        {
+            if (id === 'none') return; 
             let buttonText, buttonClass, disabled;
-            if (isEquipped) {
+            if (gameState.equipped[slot] === id)
+            {
                 buttonText = 'Equipped';
                 buttonClass = 'shop-item-button equipped';
                 disabled = 'disabled';
-            } else if (isOwned) {
+            }
+            else if (item.unlocked)
+            {
                 buttonText = 'Equip';
                 buttonClass = 'shop-item-button owned';
                 disabled = '';
-            } else {
+            }
+            else
+            {
                 buttonText = `Buy ${item.cost} 🎫`;
                 buttonClass = 'shop-item-button';
-                disabled = canAfford ? '' : 'disabled';
+                disabled = (gameState.questTokens >= item.cost) ? '' : 'disabled';
             }
 
             html += `
@@ -64,27 +59,26 @@ function updateEquipmentShop() {
             `;
         });
     });
-
-    container.innerHTML = html;
+    UI.equipmentShopContainer.innerHTML = html;
 }
 
-function updateUpgradesShop() {
-    const container = document.getElementById('upgrades-shop-container');
+function updateUpgradesShop()
+{
     let html = '';
-
-    Object.entries(UPGRADES).forEach(([id, upgrade]) => {
-        const isOwned = gameState.upgrades[id];
-        const canAfford = gameState.questTokens >= upgrade.cost;
-
+    Object.entries(UPGRADES).forEach(([id, upgrade]) =>
+    {
         let buttonText, buttonClass, disabled;
-        if (isOwned) {
+        if (gameState.upgrades[id])
+        {
             buttonText = 'Owned';
             buttonClass = 'shop-item-button owned';
             disabled = 'disabled';
-        } else {
+        }
+        else
+        {
             buttonText = `Buy ${upgrade.cost} 🎫`;
             buttonClass = 'shop-item-button';
-            disabled = canAfford ? '' : 'disabled';
+            disabled = (gameState.questTokens >= upgrade.cost)? '' : 'disabled';
         }
 
         html += `
@@ -98,57 +92,55 @@ function updateUpgradesShop() {
         `;
     });
 
-    container.innerHTML = html;
+    UI.upgradesShopContainer.innerHTML = html;
 }
 
-function updateConsumablesShop() {
-    const container = document.getElementById('consumables-shop-container');
+function updateConsumablesShop()
+{
     let html = '';
-
     Object.entries(CONSUMABLES).forEach(([id, consumable]) => {
-        const canAfford = gameState.questTokens >= consumable.cost;
-
         html += `
             <div class="shop-item">
                 <div class="shop-item-info">
                     <div class="shop-item-name">${consumable.name}</div>
                     <div class="shop-item-stats">${consumable.description}</div>
                 </div>
-                <button class="shop-item-button" onclick="handleConsumablePurchase('${id}')" ${!canAfford ? 'disabled' : ''}>Buy ${consumable.cost} 🎫</button>
+                <button class="shop-item-button" onclick="handleConsumablePurchase('${id}')" ${(gameState.questTokens >= consumable.cost) ? '' : 'disabled'}>Buy ${consumable.cost} 🎫</button>
             </div>
         `;
     });
-
-    container.innerHTML = html;
+    UI.consumablesShopContainer.innerHTML = html;
 }
 
-function handleEquipmentClick(slot, id) {
+function handleEquipmentClick(slot, id)
+{
     const item = EQUIPMENT[slot][id];
-
-    if (!item.unlocked) {
-        // Purchase
-        if (gameState.questTokens >= item.cost) {
+    if (!item.unlocked)
+    {
+        if (gameState.questTokens >= item.cost)
+        {
             gameState.questTokens -= item.cost;
             item.unlocked = true;
             gameState.equipped[slot] = id;
             addLog(`Purchased and equipped ${item.name}!`);
             saveGame(true);
         }
-    } else {
-        // Equip
+    }
+    else
+    {
         gameState.equipped[slot] = id;
         addLog(`Equipped ${item.name}`);
         saveGame(true);
     }
-
     updateDisplay();
     updateTokenShop();
 }
 
-function handleUpgradeClick(id) {
+function handleUpgradeClick(id)
+{
     const upgrade = UPGRADES[id];
-
-    if (gameState.questTokens >= upgrade.cost) {
+    if (gameState.questTokens >= upgrade.cost)
+    {
         gameState.questTokens -= upgrade.cost;
         gameState.upgrades[id] = true;
         addLog(`Purchased ${upgrade.name}!`);
@@ -157,18 +149,15 @@ function handleUpgradeClick(id) {
         updateTokenShop();
     }
 }
-
-function handleConsumablePurchase(id) {
+function handleConsumablePurchase(id)
+{
     const consumable = CONSUMABLES[id];
-
-    if (gameState.questTokens >= consumable.cost) {
+    if (gameState.questTokens >= consumable.cost)
+    {
         gameState.questTokens -= consumable.cost;
-
-        if (!gameState.consumableInventory[id]) {
+        if (!gameState.consumableInventory[id])
             gameState.consumableInventory[id] = 0;
-        }
         gameState.consumableInventory[id]++;
-
         addLog(`Purchased ${consumable.name}!`);
         saveGame(true);
         updateDisplay();
@@ -176,50 +165,57 @@ function handleConsumablePurchase(id) {
     }
 }
 
-function useConsumable(id) {
-    if (!gameState.consumableInventory[id] || gameState.consumableInventory[id] <= 0) return;
-    if (gameState.casting || gameState.waiting || gameState.reeling) {
+function useConsumable(id)
+{
+    if (!gameState.consumableInventory[id] || gameState.consumableInventory[id] <= 0)
+        return;
+    if (gameState.casting || gameState.waiting || gameState.reeling)
+    {
         addLog("Can't use consumables while fishing!");
         return;
     }
 
     gameState.consumableInventory[id]--;
-    if (gameState.consumableInventory[id] === 0) {
+    if (gameState.consumableInventory[id] === 0)
+    {
         delete gameState.consumableInventory[id];
     }
 
     const consumable = CONSUMABLES[id];
     gameState.activeConsumables[id] = consumable.uses;
-
     addLog(`Activated ${consumable.name}! (${consumable.uses} casts)`);
     saveGame(true);
     updateConsumablesInventory();
 }
 
-function decrementConsumables() {
+function decrementConsumables()
+{
     Object.keys(gameState.activeConsumables).forEach(id => {
         gameState.activeConsumables[id]--;
-        if (gameState.activeConsumables[id] <= 0) {
+        if (gameState.activeConsumables[id] <= 0)
+        {
             delete gameState.activeConsumables[id];
             addLog(`${CONSUMABLES[id].name} expired`);
         }
     });
 }
 
-function updateConsumablesInventory() {
-    const container = document.getElementById('consumables-inventory-container');
-
+function updateConsumablesInventory()
+{
     const allConsumables = { ...gameState.consumableInventory };
-    Object.keys(gameState.activeConsumables).forEach(id => {
+    Object.keys(gameState.activeConsumables).forEach(id =>
+    {
         if (!allConsumables[id]) allConsumables[id] = 0;
     });
 
-    if (Object.keys(allConsumables).length === 0) {
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #93c5fd;">No consumables. Purchase from Token Shop!</div>';
+    if (Object.keys(allConsumables).length === 0)
+    {
+        UI.consumablesInventoryContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #93c5fd;">No consumables. Purchase from Token Shop!</div>';
         return;
     }
 
-    container.innerHTML = Object.entries(allConsumables).map(([id, count]) => {
+    UI.consumablesInventoryContainer.innerHTML = Object.entries(allConsumables).map(([id, count]) =>
+    {
         const consumable = CONSUMABLES[id];
         const isActive = gameState.activeConsumables[id];
         const activeClass = isActive ? 'consumable-active' : '';
@@ -238,25 +234,23 @@ function updateConsumablesInventory() {
     }).join('');
 }
 
-function updateEquipmentSlots() {
-    const container = document.getElementById('equipment-slots-container');
-
-    container.innerHTML = `
+function updateEquipmentSlots()
+{
+    UI.equipmentSlotsContainer.innerHTML = `
         <div class="equipment-slots">
             ${Object.entries(gameState.equipped).map(([slot, itemId]) => {
-        const item = EQUIPMENT[slot][itemId];
-        const bonusText = Object.entries(item.bonus).map(([key, value]) => {
-            if (key === 'rareChance') return `+${value}% rare fish`;
-            if (key === 'xpBonus') return `+${value}% XP`;
-            if (key === 'sellValue') return `+${value}% sell value`;
-            if (key === 'weightBonus') return `+${value}% weight`;
-            if (key === 'baitPower') return `+${value}x bait power`;
-            if (key === 'waitReduction') return `-${value}% wait time`;
-            if (key === 'sizeBonus') return `+${value}% size`;
-            if (key === 'castSpeed') return `+${value}x cast speed`;
-            return '';
-        }).filter(Boolean).join(', ');
-
+                const item = EQUIPMENT[slot][itemId];
+                const bonusText = Object.entries(item.bonus).map(([key, value]) => {
+                if (key === 'rareChance') return `+${value}% rare fish`;
+                if (key === 'xpBonus') return `+${value}% XP`;
+                if (key === 'sellValue') return `+${value}% sell value`;
+                if (key === 'weightBonus') return `+${value}% weight`;
+                if (key === 'baitPower') return `+${value}x bait power`;
+                if (key === 'waitReduction') return `-${value}% wait time`;
+                if (key === 'sizeBonus') return `+${value}% size`;
+                if (key === 'castSpeed') return `+${value}x cast speed`;
+                return '';
+            }).filter(Boolean).join(', ');
         return `
                     <div class="equipment-slot">
                         <div class="equipment-slot-name">${slot}</div>
@@ -269,17 +263,17 @@ function updateEquipmentSlots() {
     `;
 }
 
-function updateUpgradesOwned() {
-    const container = document.getElementById('upgrades-owned-container');
-
+function updateUpgradesOwned()
+{
     const ownedUpgrades = Object.entries(gameState.upgrades).filter(([id, owned]) => owned);
-
-    if (ownedUpgrades.length === 0) {
-        container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #93c5fd;">No upgrades purchased yet. Visit the Token Shop!</div>';
+    if (ownedUpgrades.length === 0)
+    {
+        UI.upgradesOwnedContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: #93c5fd;">No upgrades purchased yet. Visit the Token Shop!</div>';
         return;
     }
 
-    container.innerHTML = ownedUpgrades.map(([id]) => {
+    UI.upgradesOwnedContainer.innerHTML = ownedUpgrades.map(([id]) =>
+    {
         const upgrade = UPGRADES[id];
         return `
             <div class="upgrade-item">
@@ -290,7 +284,8 @@ function updateUpgradesOwned() {
     }).join('');
 }
 
-function getEquipmentBonuses() {
+function getEquipmentBonuses()
+{
     const bonuses = {
         rareChance: 0,
         xpBonus: 0,

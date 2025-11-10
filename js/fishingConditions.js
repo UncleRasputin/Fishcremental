@@ -1,21 +1,28 @@
-// Fishing conditions - location, season, and species-specific modifiers
-// Positive modifiers increase spawn chance, negative decrease it
-
 var FISHING_CONDITIONS = [];
-
-// Helper function to get modifier for current conditions
-function getFishingModifier(lake, spot, season, fishId) {
-    const condition = FISHING_CONDITIONS.find(c => 
-        c.lake === lake && 
-        c.spot === spot && 
-        c.season === season && 
+function getFishingModifier(lake, spot, season, bait, fishId)
+{
+    const condition = FISHING_CONDITIONS.find(c =>
+        c.lake === lake &&
+        c.spot === spot &&
+        c.season === season &&
         c.fish === fishId
     );
-    return condition ? condition.modifier : 0;
+    return (condition ? condition.modifier : 0) + getBaitAdjustment(bait, fishId);
 }
 
-// Get all conditions for current location/season (for display)
-function getCurrentConditions(lake, spot, season) {
+function getBaitAdjustment(baitid, fishId)
+{
+    var adjusment = 0;
+    var bait = BAITS[baitid];
+    if (bait.attracts.includes(fishId)) 
+        adjusment = bait.strength * 10;
+    else if (bait.repels.includes(fishId))
+        adjusment = bait.strength * -10;
+    return adjusment;
+}
+
+function getCurrentConditions(lake, spot, season)
+{
     return FISHING_CONDITIONS.filter(c =>
         c.lake === lake &&
         c.spot === spot &&

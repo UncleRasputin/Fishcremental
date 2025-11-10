@@ -1,56 +1,46 @@
-// Fishing odds modal system
-
-function openOddsModal() {
-    document.getElementById('odds-modal').style.display = 'flex';
+function openOddsModal()
+{
+    UI.oddsModal.style.display = 'flex';
     updateOddsDisplay();
 }
 
-function closeOddsModal() {
-    document.getElementById('odds-modal').style.display = 'none';
+function closeOddsModal()
+{
+    UI.oddsModal.style.display = 'none';
 }
 
-function updateOddsDisplay() {
-    const content = document.getElementById('odds-content');
+function updateOddsDisplay()
+{
     const lake = LAKES[gameState.currentLake];
     const spot = lake.spots[gameState.currentSpot];
     const season = SEASONS[gameState.season];
     const rod = RODS[gameState.currentRod];
     const hook = HOOKS[gameState.currentHook];
-    
-    // Get current conditions for this location
     const conditions = getCurrentConditions(gameState.currentLake, gameState.currentSpot, gameState.season);
-    
-    // Get all fish available at this location
-    const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>
-        fish.regions.includes(gameState.currentLake)
-    );
-    
-    // Separate into catchable and too strong
+    const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>fish.regions.includes(gameState.currentLake));
+
     const catchable = [];
     const tooStrong = [];
-    
-    availableFish.forEach(([fishId, fish]) => {
-        const modifier = getFishingModifier(gameState.currentLake, gameState.currentSpot, gameState.season, fishId);
+    availableFish.forEach(([fishId, fish]) =>
+    {
+        const modifier = getFishingModifier(gameState.currentLake, gameState.currentSpot, gameState.season, gameState.currentBait, fishId);
         const fishData = {
             id: fishId,
             ...fish,
             modifier: modifier
         };
         
-        if (fish.strength <= rod.strength) {
+        if (fish.strength <= rod.strength) 
             catchable.push(fishData);
-        } else {
+        else
             tooStrong.push(fishData);
-        }
     });
     
-    // Sort by modifier (highest first), then by rarity
     catchable.sort((a, b) => {
         if (b.modifier !== a.modifier) return b.modifier - a.modifier;
         return RARITY_ORDER[b.rarity] - RARITY_ORDER[a.rarity];
     });
     
-    // Build HTML
     let html = `
         <div class="odds-info-section">
             <div class="odds-location-info">
@@ -123,22 +113,19 @@ function updateOddsDisplay() {
             </div>
         </div>
     `;
-    
-    content.innerHTML = html;
+    UI.oddsContent.innerHTML = html;
 }
 
-// Close modal when clicking outside
 document.addEventListener('click', (e) => {
-    const modal = document.getElementById('odds-modal');
+    const modal = UI.oddsModal;
     if (e.target === modal) {
         closeOddsModal();
     }
 });
 
-// Close modal with Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const modal = document.getElementById('odds-modal');
+        const modal = UI.oddsModal;
         if (modal && modal.style.display === 'flex') {
             closeOddsModal();
         }

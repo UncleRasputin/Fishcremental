@@ -1,27 +1,25 @@
 let currentInfoTab = 'intro';
 
-function openInfoModal(tab = 'intro') {
-    document.getElementById('info-modal').style.display = 'flex';
+function openInfoModal(tab = 'intro')
+{
+    UI.infoModal.style.display = 'flex';
     switchInfoTab(tab);
 }
-
-function closeInfoModal() {
-    document.getElementById('info-modal').style.display = 'none';
+function closeInfoModal()
+{
+    UI.infoModal.style.display = 'none';
 }
 
-function switchInfoTab(tab) {
+function switchInfoTab(tab)
+{
     currentInfoTab = tab;
-    
-    // Update tab buttons
     document.querySelectorAll('.modal-tab').forEach(btn => {
         btn.classList.remove('active');
     });
     document.getElementById('info-' + tab).classList.add('active');
-    
-    // Load content
-    const content = document.getElementById('modal-content');
-    
-    switch(tab) {
+    const content = UI.modalContent;
+    switch (tab)
+    {
         case 'intro':
             content.innerHTML = renderIntro();
             break;
@@ -37,7 +35,8 @@ function switchInfoTab(tab) {
     }
 }
 
-function renderIntro() {
+function renderIntro()
+{
     return `
         <div class="info-section">
             <h3>${GAME_INFO.intro.title}</h3>
@@ -46,7 +45,8 @@ function renderIntro() {
     `;
 }
 
-function renderChangelog() {
+function renderChangelog()
+{
     return `
         <div class="info-section">
             ${GAME_INFO.changelog.map(entry => `
@@ -64,7 +64,8 @@ function renderChangelog() {
     `;
 }
 
-function renderRoadmap() {
+function renderRoadmap()
+{
     const statusLabels = {
         planned: '📅 Planned',
         'in-progress': '🚧 In Progress',
@@ -89,7 +90,8 @@ function renderRoadmap() {
     `;
 }
 
-function renderAbout() {
+function renderAbout()
+{
     return `
         <div class="info-section">
             <div class="about-section">
@@ -126,13 +128,13 @@ function renderAbout() {
     `;
 }
 
-// Check if this is first time playing (show intro)
-function checkFirstTimePlayer() {
+function checkFirstTimePlayer()
+{
     const savedGame = localStorage.getItem('fishcremental_save');
     const hasSeenIntro = localStorage.getItem('fishcremental_seen_intro');
     
-    if (!savedGame && !hasSeenIntro) {
-        // First time player - show intro after a brief delay
+    if (!savedGame && !hasSeenIntro)
+    {
         setTimeout(() => {
             openInfoModal('intro');
             localStorage.setItem('fishcremental_seen_intro', 'true');
@@ -140,19 +142,18 @@ function checkFirstTimePlayer() {
     }
 }
 
-// Close modal when clicking outside
 document.addEventListener('click', (e) => {
-    const modal = document.getElementById('info-modal');
-    if (e.target === modal) {
+    const modal = UI.infoModal;
+    if (e.target === modal)
         closeInfoModal();
-    }
 });
 
-// Close modal with Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const modal = document.getElementById('info-modal');
-        if (modal.style.display === 'flex') {
+    if (e.key === 'Escape')
+    {
+        const modal = UI.infoModal;
+        if (modal.style.display === 'flex')
+        {
             closeInfoModal();
         }
     }

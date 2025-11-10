@@ -1,54 +1,54 @@
-// UI update functions
-
-function addLog(msg) {
+function addLog(msg)
+{
     gameState.log.unshift({ msg, time: Date.now() });
     gameState.log = gameState.log.slice(0, 15);
     updateLogDisplay();
 }
 
-function updateLogDisplay() {
-    const container = document.getElementById('log-container');
-    container.innerHTML = gameState.log.map(entry =>
+function updateLogDisplay()
+{
+    UI.logContainer.innerHTML = gameState.log.map(entry =>
         `<div class="log-entry">${entry.msg}</div>`
     ).join('');
 }
 
-function updateDisplay() {
-    document.getElementById('money').textContent = '$' + gameState.money + " 💰";
-    document.getElementById('level').textContent = 'Level '+gameState.level;
-    //document.getElementById('xp-text').textContent = `XP ${gameState.xp}/${gameState.level * 100}`;
+function updateDisplay()
+{
+    UI.money.textContent = '$' + gameState.money + " 💰";
+    UI.level.textContent = 'Level '+gameState.level;
+
     const expProgressPercent = (gameState.xp / (gameState.level * 100)) * 100;
-    document.getElementById('exp-progress').style.width = expProgressPercent + '%';
-    document.getElementById('exp-progress-bar').title = "XP "+gameState.xp+" / " + (gameState.level * 100);
-    document.getElementById('season').textContent = SEASONS[gameState.season];
-    document.getElementById('header-tokens').textContent = gameState.questTokens +" 🎫";
+    UI.expProgress.style.width = expProgressPercent + '%';
+    UI.expProgressBar.title = "XP " + gameState.xp + " / " + (gameState.level * 100);
+
+    UI.season.textContent = SEASONS[gameState.season];
+    UI.headerTokens.textContent = gameState.questTokens + " 🎫";
 
     const seasonProgressPercent = (gameState.seasonProgress / gameState.seasonThreshold) * 100;
-    document.getElementById('season-progress').style.width = seasonProgressPercent + '%';
+    UI.seasonProgressBar.style.width = seasonProgressPercent + '%';
 
     const lake = LAKES[gameState.currentLake];
-    document.getElementById('location-name').textContent =
-        `${lake.name} - ${lake.spots[gameState.currentSpot]}`;
+    UI.locationName.textContent = `${lake.name} - ${lake.spots[gameState.currentSpot]}`;
 
     const rod = RODS[gameState.currentRod];
     const hook = HOOKS[gameState.currentHook];
-    document.getElementById('rod-name').textContent = rod.name;
-    document.getElementById('rod-stat').textContent = `(Str: ${rod.strength})`;
-    document.getElementById('hook-name').textContent = hook.name;
-    document.getElementById('hook-stat').textContent = `(Size: ${hook.sizeMultiplier}x)`;
+    UI.rodName.textContent = rod.name;
+    UI.rodStat.textContent = `(Str: ${rod.strength})`;
+    UI.hookName.textContent = hook.name;
+    UI.hookStat.textContent = `(Size: ${hook.sizeMultiplier}x)`;
+    UI.inventoryCount.textContent = gameState.inventory.length;
 
-    document.getElementById('inventory-count').textContent = gameState.inventory.length;
     let total = 0;
     gameState.inventory.forEach((fish) => total += fish.value);
-    document.getElementById('inventory-total').textContent = '$' + total;
+    UI.inventoryTotal.textContent = '$' + total;
 
-    document.getElementById('sell-all-button').style.display =
-        gameState.inventory.length > 0 ? 'block' : 'none';
+    UI.sellAll.style.display = (gameState.inventory.length > 0) ? 'block' : 'none';
 
     updateLastCatchDisplay();
 
     const xpNeeded = gameState.level * 100;
-    if (gameState.xp >= xpNeeded) {
+    if (gameState.xp >= xpNeeded)
+    {
         gameState.level++;
         gameState.xp = 0;
         addLog(`Level up! You are now level ${gameState.level}`);
@@ -58,112 +58,117 @@ function updateDisplay() {
     autoSave();
 }
 
-function updateLastCatchDisplay() {
-    const container = document.getElementById('last-catch-display');
-    if (!container) return;
+function updateLastCatchDisplay()
+{
+    if (!UI.lastCatchDisplay)
+        return;
 
-    if (gameState.lastCatch) {
+    if (gameState.lastCatch)
+    {
         const fish = gameState.lastCatch;
-        container.style.display = 'block';
-        container.innerHTML = `
+        UI.lastCatchDisplay.style.display = 'block';
+        UI.lastCatchDisplay.innerHTML = `
             <div class="last-catch-title">Last Catch</div>
             <div class="rarity-${fish.rarity}" style="font-weight: bold; font-size: 1.125rem;">${fish.name}</div>
             <div style="color: #93c5fd; margin-top: 0.25rem;">
                 ${formatFishMeasurements(fish)} | $${fish.value}
-            </div>
-        `;
-    } else {
-        container.style.display = 'none';
+            </div>`;
+    }
+    else
+    {
+        UI.lastCatchDisplay.style.display = 'none';
     }
 }
 
-function updateInventoryDisplay() {
-    const grid = document.getElementById('inventory-grid');
-    if (gameState.inventory.length === 0) {
-        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #93c5fd;">No fish caught yet. Go fishing!</div>';
-    } else {
-        grid.innerHTML = gameState.inventory.map((fish, i) => `
+function updateInventoryDisplay()
+{
+    if (gameState.inventory.length === 0)
+    {
+        UI.inventoryGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #93c5fd;">No fish caught yet. Go fishing!</div>';
+    }
+    else
+    {
+        UI.inventoryGrid.innerHTML = gameState.inventory.map((fish, i) => `
             <div class="inventory-item">
                 <div class="rarity-${fish.rarity}">${fish.name}</div>
                 <div>${formatFishMeasurements(fish)}</div>
                 <button class="sell-button" onclick="sellFish(${i})">Sell $${fish.value}</button>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
 }
 
+const renderFish = fishid =>
+{
+    const f = FISH_DB[fishid];
+    return `<span class="rarity-${f.rarity}">${f.name}</span>`;
+};
+
+const renderFishList = (label, list = []) =>
+    list.length ? `<div class="shop-item-stats">${label}: ${list.map(renderFish).join(", ")}</div>` : "";
+
+const renderBait = bait => `
+    <div class="shop-item-info">
+        <div class="shop-item-name">${bait.name}</div>
+        ${renderFishList("Attracts", bait.attracts)}
+        ${renderFishList("Repels", bait.repels)}
+        <div class="shop-item-stats">Strength: ${bait.strength}</div>
+    </div>
+`;
+
+const renderHook = hook => `
+    <div class="shop-item-info">
+        <div class="shop-item-name">${hook.name}</div>
+        <div class="shop-item-stats">Fish Size Multiplier: ${hook.sizeMultiplier}x</div>
+    </div>
+`;
+
+const renderRod = rod => `
+    <div class="shop-item-info">
+        <div class="shop-item-name">${rod.name}</div>
+        <div class="shop-item-stats">
+            Strength: ${rod.strength} | Cast Speed: ${rod.castSpeed}x
+        </div>
+    </div>
+`;
+
+const getShopButtonState = (item, id, currentId, money) => {
+    const isEquipped = currentId === id;
+    const isOwned = item.unlocked;
+    const canAfford = money >= item.cost;
+
+    if (isEquipped)
+        return { text: "Equipped", class: "shop-item-button equipped", disabled: true };
+    if (isOwned)
+        return { text: "Equip", class: "shop-item-button owned", disabled: false };
+    return { text: `Buy $${item.cost}`, class: "shop-item-button", disabled: !canAfford };
+};
+
 function updateShopDisplay() {
-    const rodsContainer = document.getElementById('rods-container');
-    rodsContainer.innerHTML = Object.entries(RODS).map(([id, rod]) => {
-        const isEquipped = gameState.currentRod === id;
-        const isOwned = rod.unlocked;
-        const canAfford = gameState.money >= rod.cost;
-
-        let buttonText = '';
-        let buttonClass = 'shop-item-button';
-        let disabled = '';
-
-        if (isEquipped) {
-            buttonText = 'Equipped';
-            buttonClass += ' equipped';
-            disabled = 'disabled';
-        } else if (isOwned) {
-            buttonText = 'Equip';
-            buttonClass += ' owned';
-        } else {
-            buttonText = `Buy $${rod.cost}`;
-            if (!canAfford) disabled = 'disabled';
-        }
-
-        return `
-            <div class="shop-item">
-                <div class="shop-item-info">
-                    <div class="shop-item-name">${rod.name}</div>
-                    <div class="shop-item-stats">Strength: ${rod.strength} | Cast Speed: ${rod.castSpeed}x</div>
-                </div>
-                <button class="${buttonClass}" onclick="handleRodClick('${id}')" ${disabled}>${buttonText}</button>
-            </div>
-        `;
-    }).join('');
-
-    const hooksContainer = document.getElementById('hooks-container');
-    hooksContainer.innerHTML = Object.entries(HOOKS).map(([id, hook]) => {
-        const isEquipped = gameState.currentHook === id;
-        const isOwned = hook.unlocked;
-        const canAfford = gameState.money >= hook.cost;
-
-        let buttonText = '';
-        let buttonClass = 'shop-item-button';
-        let disabled = '';
-
-        if (isEquipped) {
-            buttonText = 'Equipped';
-            buttonClass += ' equipped';
-            disabled = 'disabled';
-        } else if (isOwned) {
-            buttonText = 'Equip';
-            buttonClass += ' owned';
-        } else {
-            buttonText = `Buy $${hook.cost}`;
-            if (!canAfford) disabled = 'disabled';
-        }
-
-        return `
-            <div class="shop-item">
-                <div class="shop-item-info">
-                    <div class="shop-item-name">${hook.name}</div>
-                    <div class="shop-item-stats">Fish Size Multiplier: ${hook.sizeMultiplier}x</div>
-                </div>
-                <button class="${buttonClass}" onclick="handleHookClick('${id}')" ${disabled}>${buttonText}</button>
-            </div>
-        `;
-    }).join('');
-
+    const { currentRod, currentHook, currentBait, money } = gameState;
+    const renderShopSection = (containerId, data, renderItem, currentId, clickHandler) => {
+        const container = document.getElementById(containerId);
+        container.innerHTML = Object.entries(data)
+            .map(([id, item]) => {
+                const btn = getShopButtonState(item, id, currentId, money);
+                return `
+                    <div class="shop-item">
+                        ${renderItem(item)}
+                        <button class="${btn.class}" onclick="${clickHandler}('${id}')" ${btn.disabled ? "disabled" : ""}>
+                            ${btn.text}
+                        </button>
+                    </div>
+                `;
+            })
+            .join("");
+    };
+    renderShopSection("rods-container", RODS, renderRod, currentRod, "handleRodClick");
+    renderShopSection("hooks-container", HOOKS, renderHook, currentHook, "handleHookClick");
+    renderShopSection("baits-container", BAITS, renderBait, currentBait, "handleBaitClick");
     updateTokenShop();
 }
 
+
 function updateTravelDisplay() {
-    const container = document.getElementById('travel-container');
     const currentRod = RODS[gameState.currentRod];
 
     const lakeKeys = Object.keys(LAKES);
@@ -239,7 +244,7 @@ function updateTravelDisplay() {
         `;
     }
 
-    container.innerHTML = `
+    UI.travelContainer.innerHTML = `
         <div class="travel-carousel">
             <div class="travel-nav-header">
                 <button class="travel-nav-button" onclick="changeTravelLocation(-1)" ${prevDisabled ? 'disabled' : ''}>
@@ -266,32 +271,31 @@ function changeTravelLocation(direction) {
 }
 
 function updateStatsDisplay() {
-    document.getElementById('stat-casts').textContent = gameState.stats.totalCasts;
-    document.getElementById('stat-caught').textContent = gameState.stats.fishCaught;
-    document.getElementById('stat-thrown-back').textContent = gameState.stats.fishThrownBack;
-    document.getElementById('stat-breaks').textContent = gameState.stats.lineBreaks;
-    document.getElementById('stat-money-earned').textContent = '$' + gameState.stats.totalMoneyEarned;
-    document.getElementById('stat-quests').textContent = gameState.stats.questsCompleted;
-    document.getElementById('stat-tokens').textContent = gameState.questTokens;
+    UI.statCasts.textContent = gameState.stats.totalCasts;
+    UI.statCaught.textContent = gameState.stats.fishCaught;
+    UI.statThrownBack.textContent = gameState.stats.fishThrownBack;
+    UI.statBreaks.textContent = gameState.stats.lineBreaks;
+    UI.statMoneyEarned.textContent = '$' + gameState.stats.totalMoneyEarned;
+    UI.statQuests.textContent = gameState.stats.questsCompleted;
+    UI.statTokens.textContent = gameState.questTokens;
 
     const formatRecord = (fish) => {
         if (!fish) return 'None';
         return `${fish.name} (${formatFishMeasurements(fish)})`;
     };
 
-    document.getElementById('record-heaviest').textContent = formatRecord(gameState.records.heaviestFish);
-    document.getElementById('record-largest').textContent = formatRecord(gameState.records.largestFish);
-    document.getElementById('record-valuable').textContent =
+    UI.recordHeaviest.textContent = formatRecord(gameState.records.heaviestFish);
+    UI.recordLargest.textContent = formatRecord(gameState.records.largestFish);
+    UI.recordValuable.textContent =
         gameState.records.mostValuable ?
             `${gameState.records.mostValuable.name} ($${gameState.records.mostValuable.value})` :
             'None';
-    document.getElementById('record-rarest').textContent =
+    UI.recordRarest.textContent =
         gameState.records.rarestCatch ?
             `${gameState.records.rarestCatch.name} (${gameState.records.rarestCatch.rarity})` :
             'None';
 
-    const locationRecords = document.getElementById('location-records');
-    locationRecords.innerHTML = Object.entries(gameState.records.byLocation).map(([lakeId, records]) => {
+    UI.locationRecords.innerHTML = Object.entries(gameState.records.byLocation).map(([lakeId, records]) => {
         const lake = LAKES[lakeId];
         return `
             <div class="location-record">
