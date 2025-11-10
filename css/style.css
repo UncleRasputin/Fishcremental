@@ -1583,3 +1583,71 @@ body {
 .odds-too-strong-section {
     padding-top: 0.5rem;
 }
+
+
+
+
+
+/* ====== MOBILE FIXES ====== */
+
+/* Prevent global overflow */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Make header responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-stats {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .header-left h1 {
+        font-size: 1.25rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive nav bar */
+@media (max-width: 600px) {
+    .nav-bar {
+        flex-wrap: wrap;
+    }
+
+    .nav-button {
+        flex: 1 1 50%;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tabs wrap or scroll cleanly */
+.shop-tabs,
+.inventory-tabs,
+.modal-tabs {
+    flex-wrap: wrap;
+    overflow-x: auto;
+}
+
+/* Prevent padding from shrinking play area */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Fix modal alignment on mobile */
+.modal-overlay {
+    overflow-y: auto;
+    align-items: flex-start;
+}

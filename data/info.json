@@ -6,6 +6,15 @@
   },
   "changelog": [
     {
+      "version": "1.0.5",
+      "date": "2024-11-10",
+      "changes": [
+        "Moved to the cloud!  You may have lost your save, I will try to prevent that from now on, <a href='https://fishcremental.com'>Fihscremental.com is now live!</a>",
+        "Fixed some mobile display issues.  Still not pretty, but at least all screens are visible. More to come.",
+        "Cleaned up code, reorganized data storage."
+      ]
+    },
+    {
       "version": "1.0.4",
       "date": "2024-11-08",
       "changes": [
