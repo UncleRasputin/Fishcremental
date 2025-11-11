@@ -17,7 +17,7 @@
       "name": "Scholar's Cap",
       "bonus": { "xpBonus": 10 },
       "cost": 5,
-      "unlocked": true,
+      "unlocked": false,
       "description": "+10% XP gained"
     }
   },
@@ -39,7 +39,7 @@
       "name": "Weighted Vest",
       "bonus": { "weightBonus": 15 },
       "cost": 6,
-      "unlocked": true,
+      "unlocked": false,
       "description": "+15% fish weight"
     }
   },
@@ -61,7 +61,7 @@
       "name": "Pro Tackle Box",
       "bonus": { "waitReduction": 10 },
       "cost": 8,
-      "unlocked": true,
+      "unlocked": false,
       "description": "-10% wait time"
     }
   },
@@ -83,7 +83,7 @@
       "name": "Speed Boots",
       "bonus": { "castSpeed": 0.2 },
       "cost": 6,
-      "unlocked": true,
+      "unlocked": false,
       "description": "+0.2x cast speed"
     }
   }
