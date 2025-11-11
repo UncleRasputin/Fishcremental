@@ -43,6 +43,9 @@ function playSound(soundName)
     const clone = sound.cloneNode();
     clone.volume = audioSystem.volume;
 
+    clone.play().catch(err => {
+        console.debug('Audio play prevented:', err);
+    });
     if (soundName === 'reel')
     {
         stopReelSound(); 
