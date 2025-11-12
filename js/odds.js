@@ -58,7 +58,7 @@ function updateOddsDisplay()
                 </div>
                 <div class="odds-info-row">
                     <span class="odds-label">Hook:</span>
-                    <span class="odds-value">${hook.name} (Power: ${hook.power}x)</span>
+                    <span class="odds-value">${hook.name} (Power: ${hook.sizeMultiplier}x)</span>
                 </div>
             </div>
             
