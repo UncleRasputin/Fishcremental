@@ -11,7 +11,10 @@ function updateLogDisplay()
         `<div class="log-entry">${entry.msg}</div>`
     ).join('');
 }
-
+function showVersion() {
+    UI.gameVersion.textContent = 'v' + GAME_INFO.version;
+    UI.gameVersion.addEventListener('click',() => {openInfoModal('changelog')});
+}
 function updateDisplay()
 {
     UI.money.textContent = '$' + gameState.money + " 💰";

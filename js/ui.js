@@ -50,5 +50,6 @@ const UI = {
     questPanel: document.getElementById('quest-panel'),
     infoModal: document.getElementById('info-modal'),
     modalContent: document.getElementById('modal-content'),
-    unitsButton: document.getElementById('units-button')
+    unitsButton: document.getElementById('units-button'),
+    gameVersion: document.getElementById('game-version')
 }

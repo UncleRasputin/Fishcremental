@@ -145,6 +145,7 @@ function AllLoaded() {
         addLog('Welcome to Fishcremental!');
     }
     loadUnitsPreference();
+    showVersion();
     updateDisplay();
     setTimeout(() => {
         updateQuestDisplay();

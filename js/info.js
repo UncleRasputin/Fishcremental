@@ -130,10 +130,8 @@ function renderAbout()
 
 function checkFirstTimePlayer()
 {
-    const savedGame = localStorage.getItem('fishcremental_save');
-    const hasSeenIntro = localStorage.getItem('fishcremental_seen_intro');
-    
-    if (!savedGame && !hasSeenIntro)
+    const hasSeenIntro = !!localStorage.getItem('fishcremental_seen_intro');
+    if (!hasSeenIntro)
     {
         setTimeout(() => {
             openInfoModal('intro');

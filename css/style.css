@@ -20,12 +20,22 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
+.header-left {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+.header-version {
+    margin-left:0.5rem;
+    margin-top:auto;
+    font-size:0.8rem;
+    cursor: pointer;
+}
 .header-left h1 {
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 .header-stats {
@@ -1221,7 +1231,20 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
+    background: #00003E;
+    border-radius:8px;
 }
+
+.changelog-entry a {
+    color: #60a5fa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    .changelog-entry a:hover {
+        color: #93c5fd;
+        text-decoration: underline;
+    }
 
 .info-section {
     color: #e0e7ff;
@@ -1608,7 +1631,6 @@ html, body {
         justify-content: flex-start;
         width: 100%;
     }
-
     .header-left h1 {
         font-size: 1.25rem;
     }
