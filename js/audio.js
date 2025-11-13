@@ -11,7 +11,10 @@ function initAudio()
         cast: 'audio/cast.mp3',
         snap: 'audio/snap.mp3',
         reel: 'audio/reel.mp3',
-        splash: 'audio/splash.mp3'
+        splash: 'audio/splash.mp3',
+        sell: 'audio/sell.mp3',
+        level: 'audio/chime.mp3',
+        quest: 'audio/quest.mp3'
     };
     
     for (const [name, path] of Object.entries(soundFiles))

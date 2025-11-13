@@ -123,6 +123,7 @@ function handleEquipmentClick(slot, id)
             item.unlocked = true;
             gameState.equipped[slot] = id;
             addLog(`Purchased and equipped ${item.name}!`);
+            playSound('sell');
             saveGame(true);
         }
     }
@@ -144,6 +145,7 @@ function handleUpgradeClick(id)
         gameState.questTokens -= upgrade.cost;
         gameState.upgrades[id] = true;
         addLog(`Purchased ${upgrade.name}!`);
+        playSound('sell');
         saveGame(true);
         updateDisplay();
         updateTokenShop();
@@ -159,6 +161,7 @@ function handleConsumablePurchase(id)
             gameState.consumableInventory[id] = 0;
         gameState.consumableInventory[id]++;
         addLog(`Purchased ${consumable.name}!`);
+        playSound('sell');
         saveGame(true);
         updateDisplay();
         updateTokenShop();
