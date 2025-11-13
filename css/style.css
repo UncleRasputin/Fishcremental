@@ -20,16 +20,19 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .header-left {
     display: grid;
     grid-template-columns: 1fr auto;
 }
+
 .header-version {
-    margin-left:0.5rem;
-    margin-top:auto;
-    font-size:0.8rem;
+    margin-left: 0.5rem;
+    margin-top: auto;
+    font-size: 0.8rem;
     cursor: pointer;
 }
+
 .header-left h1 {
     font-size: 1.5rem;
     display: flex;
@@ -83,6 +86,7 @@ body {
     width: 0%;
     transition: width 0.3s ease;
 }
+
 .exp-progress-container {
     min-width: 150px;
 }
@@ -107,7 +111,7 @@ body {
 .icon-button {
     background: transparent;
     border: none;
-    color:white;
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.15rem;
@@ -248,7 +252,7 @@ body {
     font-size: 1rem;
     margin-bottom: 0.2rem;
     color: white;
-    text-align:center;
+    text-align: center;
 }
 
 .quest-progress-container {
@@ -356,6 +360,7 @@ body {
         background: #594300;
         cursor: not-allowed;
     }
+
     .cast-button:active {
         transform: translateY(0);
     }
@@ -437,14 +442,14 @@ body {
     border: 2px solid #1010F2;
     border-radius: 12px;
     padding: 1rem;
-    padding-top:0;
+    padding-top: 0;
 }
 
 .panel-header {
     display: flex;
     justify-content: end;
     align-items: center;
-    gap:0.5rem;
+    gap: 0.5rem;
 }
 
     .panel-header h2 {
@@ -455,7 +460,7 @@ body {
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top:0.5em;
+    margin-top: 0.5em;
     gap: 0.5rem;
 }
 
@@ -501,10 +506,10 @@ body {
     margin-bottom: 0rem;
 }
 
-#sell-all-button:hover:not(:disabled) {
-    background: #E2A900;
-    transform: translateY(-2px);
-}
+    #sell-all-button:hover:not(:disabled) {
+        background: #E2A900;
+        transform: translateY(-2px);
+    }
 
     #sell-all-button:disabled {
         background: #594300;
@@ -529,19 +534,19 @@ body {
     transition: background 0.2s;
 }
 
-.sell-button:hover:not(:disabled) {
-    background: #E2A900;
-    transform: translateY(-2px);
-}
+    .sell-button:hover:not(:disabled) {
+        background: #E2A900;
+        transform: translateY(-2px);
+    }
 
-.sell-button:disabled {
-    background: #594300;
-    cursor: not-allowed;
-}
+    .sell-button:disabled {
+        background: #594300;
+        cursor: not-allowed;
+    }
 
-.sell-button:active {
-    transform: translateY(0);
-}
+    .sell-button:active {
+        transform: translateY(0);
+    }
 
 /* Shop Screen */
 .shop-panel {
@@ -549,7 +554,7 @@ body {
     border: 2px solid #1010F2;
     border-radius: 12px;
     padding: 1rem;
-    padding-top:0;
+    padding-top: 0;
 }
 
 .shop-tabs {
@@ -1178,11 +1183,11 @@ body {
     padding: 0;
 }
 
-.modal-header h2 {
-    margin: 0;
-    color: #93c5fd;
-    font-size: 1.5rem;
-}
+    .modal-header h2 {
+        margin: 0;
+        color: #93c5fd;
+        font-size: 1.5rem;
+    }
 
 .modal-close {
     background: none;
@@ -1194,9 +1199,9 @@ body {
     transition: color 0.2s;
 }
 
-.modal-close:hover {
-    color: #ffffff;
-}
+    .modal-close:hover {
+        color: #ffffff;
+    }
 
 .modal-tabs {
     display: flex;
@@ -1232,7 +1237,7 @@ body {
     overflow-y: auto;
     padding: 1rem;
     background: #00003E;
-    border-radius:8px;
+    border-radius: 8px;
 }
 
 .changelog-entry a {
@@ -1250,35 +1255,35 @@ body {
     color: #e0e7ff;
 }
 
-.info-section h3 {
-    color: #60a5fa;
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
+    .info-section h3 {
+        color: #60a5fa;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
 
-.info-section h4 {
-    color: #93c5fd;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-}
+    .info-section h4 {
+        color: #93c5fd;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
 
-.info-section p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
+    .info-section p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
 
-.info-section ul {
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}
+    .info-section ul {
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
 
-.info-section li {
-    margin-left: 1rem;
-}
+    .info-section li {
+        margin-left: 1rem;
+    }
 
-.info-section strong {
-    color: #93c5fd;
-}
+    .info-section strong {
+        color: #93c5fd;
+    }
 
 /* Changelog Styles */
 .changelog-entry {
@@ -1287,9 +1292,9 @@ body {
     margin-bottom: 0.2rem;
 }
 
-.changelog-entry:last-child {
-    border-bottom: none;
-}
+    .changelog-entry:last-child {
+        border-bottom: none;
+    }
 
 .changelog-header {
     display: flex;
@@ -1298,10 +1303,10 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.changelog-header h3 {
-    margin: 0;
-    color: #60a5fa;
-}
+    .changelog-header h3 {
+        margin: 0;
+        color: #60a5fa;
+    }
 
 .changelog-date {
     color: #93c5fd;
@@ -1313,18 +1318,18 @@ body {
     padding: 0;
 }
 
-.changelog-list li {
-    padding-left: 1.5rem;
-    position: relative;
-}
+    .changelog-list li {
+        padding-left: 1.5rem;
+        position: relative;
+    }
 
-.changelog-list li:before {
-    content: "•";
-    color: #60a5fa;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
+        .changelog-list li:before {
+            content: "â€¢";
+            color: #60a5fa;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
 
 /* Roadmap Styles */
 .roadmap-item {
@@ -1342,10 +1347,10 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.roadmap-header h4 {
-    margin: 0;
-    color: #93c5fd;
-}
+    .roadmap-header h4 {
+        margin: 0;
+        color: #93c5fd;
+    }
 
 .roadmap-status {
     font-size: 0.75rem;
@@ -1377,31 +1382,31 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.about-section h4 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    color: #60a5fa;
-}
+    .about-section h4 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        color: #60a5fa;
+    }
 
-.about-section ul {
-    list-style: none;
-    padding: 0;
-}
+    .about-section ul {
+        list-style: none;
+        padding: 0;
+    }
 
-.about-section li {
-    margin-bottom: 0.5rem;
-}
+    .about-section li {
+        margin-bottom: 0.5rem;
+    }
 
-.about-section a {
-    color: #60a5fa;
-    text-decoration: none;
-    transition: color 0.2s;
-}
+    .about-section a {
+        color: #60a5fa;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
 
-.about-section a:hover {
-    color: #93c5fd;
-    text-decoration: underline;
-}
+        .about-section a:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
 
 .attribution-item {
     background: #00003E;
@@ -1431,9 +1436,9 @@ body {
     border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #60a5fa;
-}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #60a5fa;
+    }
 
 /* Fishing Actions (Cast + Check Odds buttons) */
 .fishing-actions {
@@ -1466,9 +1471,9 @@ body {
         box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
     }
 
-.check-odds-button:active {
-    transform: translateY(0);
-}
+    .check-odds-button:active {
+        transform: translateY(0);
+    }
 
 /* Odds Modal Specific Styles */
 .odds-modal {
@@ -1492,10 +1497,10 @@ body {
     justify-content: space-between;
 }
 
-.odds-info-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
+    .odds-info-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
 
 .odds-label {
     color: #93c5fd;
@@ -1537,33 +1542,33 @@ body {
     transition: all 0.2s;
 }
 
-.odds-fish-item:hover {
-    background: rgba(30, 58, 138, 0.5);
-    border-color: #60a5fa;
-}
+    .odds-fish-item:hover {
+        background: rgba(30, 58, 138, 0.5);
+        border-color: #60a5fa;
+    }
 
-.odds-fish-item.fish-boosted {
-    background: rgba(34, 197, 94, 0.15);
-    border-color: #22c55e;
-}
+    .odds-fish-item.fish-boosted {
+        background: rgba(34, 197, 94, 0.15);
+        border-color: #22c55e;
+    }
 
-.odds-fish-item.fish-boosted:hover {
-    background: rgba(34, 197, 94, 0.25);
-}
+        .odds-fish-item.fish-boosted:hover {
+            background: rgba(34, 197, 94, 0.25);
+        }
 
-.odds-fish-item.fish-penalized {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: #ef4444;
-}
+    .odds-fish-item.fish-penalized {
+        background: rgba(239, 68, 68, 0.15);
+        border-color: #ef4444;
+    }
 
-.odds-fish-item.fish-penalized:hover {
-    background: rgba(239, 68, 68, 0.25);
-}
+        .odds-fish-item.fish-penalized:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
 
-.odds-fish-item.too-strong-item {
-    background: rgba(107, 114, 128, 0.15);
-    border-color: #6b7280;
-}
+    .odds-fish-item.too-strong-item {
+        background: rgba(107, 114, 128, 0.15);
+        border-color: #6b7280;
+    }
 
 .odds-fish-name {
     display: flex;
@@ -1585,23 +1590,23 @@ body {
     white-space: nowrap;
 }
 
-.odds-modifier.positive {
-    background: rgba(34, 197, 94, 0.2);
-    color: #86efac;
-    border: 1px solid #22c55e;
-}
+    .odds-modifier.positive {
+        background: rgba(34, 197, 94, 0.2);
+        color: #86efac;
+        border: 1px solid #22c55e;
+    }
 
-.odds-modifier.negative {
-    background: rgba(239, 68, 68, 0.2);
-    color: #fca5a5;
-    border: 1px solid #ef4444;
-}
+    .odds-modifier.negative {
+        background: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+        border: 1px solid #ef4444;
+    }
 
-.odds-modifier.neutral {
-    background: rgba(107, 114, 128, 0.2);
-    color: #9ca3af;
-    border: 1px solid #6b7280;
-}
+    .odds-modifier.neutral {
+        background: rgba(107, 114, 128, 0.2);
+        color: #9ca3af;
+        border: 1px solid #6b7280;
+    }
 
 .odds-too-strong-section {
     padding-top: 0.5rem;
@@ -1621,22 +1626,54 @@ html, body {
 /* Make header responsive */
 @media (max-width: 768px) {
     .header {
+        padding: 0.5rem;
         flex-direction: column;
-        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .header-left {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .header-left h1 {
+            font-size: 1.125rem;
+            gap: 4px;
+        }
+
+    .header-version {
+        font-size: 0.75rem;
+        margin-left: 0.25rem;
     }
 
     .header-stats {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        justify-content: flex-start;
         width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
     }
-    .header-left h1 {
-        font-size: 1.25rem;
+
+    .stat {
+        font-size: 0.875rem;
     }
 
     .stat-value {
-        font-size: 1rem;
+        font-size: 0.875rem;
+    }
+
+    /* Make progress bars more compact on mobile */
+    .exp-progress-bar,
+    .season-progress-bar {
+        height: 6px;
+        min-width: 80px;
+    }
+
+
+
+    .icon-button {
+        font-size: 1.25rem;
     }
 }
 
@@ -1647,9 +1684,19 @@ html, body {
     }
 
     .nav-button {
+        flex: 1 1 33.333%;
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+        min-width: 0; /* Allow text to shrink */
+    }
+}
+
+/* Even smaller screens - stack nav buttons 2 per row */
+@media (max-width: 400px) {
+    .nav-button {
         flex: 1 1 50%;
-        padding: 0.75rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -1657,14 +1704,107 @@ html, body {
 .shop-tabs,
 .inventory-tabs,
 .modal-tabs {
-    flex-wrap: wrap;
     overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* On mobile, prevent wrapping and enable smooth scrolling */
+@media (max-width: 768px) {
+    .shop-tabs,
+    .inventory-tabs {
+        flex-wrap: nowrap;
+        gap: 0.25rem;
+    }
+
+    .shop-tab,
+    .inventory-tab {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+        flex-shrink: 0; /* Prevent tabs from shrinking */
+    }
+
+    .modal-tabs {
+        flex-wrap: nowrap;
+    }
+
+    .modal-tab {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        flex-shrink: 0;
+    }
 }
 
 /* Prevent padding from shrinking play area */
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
+        padding: 0.5rem;
+    }
+
+    /* Make panels more compact on mobile */
+    .fishing-panel,
+    .inventory-panel,
+    .shop-panel,
+    .travel-panel,
+    .stats-panel {
+        padding: 0.75rem;
+    }
+
+    /* Smaller text in some areas to fit better */
+    .location-display h2 {
+        font-size: 1.125rem;
+    }
+
+    /* Make buttons more touch-friendly */
+    .cast-button {
+        font-size: 1.125rem;
+        padding: 0.75rem;
+    }
+
+    /* Adjust fishing actions layout on very small screens */
+    @media (max-width: 400px) {
+        .fishing-actions {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .cast-button {
+            flex: 1;
+        }
+
+        .check-odds-button {
+            flex: 1;
+        }
+    }
+
+    /* Travel screen improvements */
+    .travel-nav-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .travel-current-lake {
+        font-size: 1.5rem;
+    }
+
+    .travel-nav-button {
+        width: 100%;
+    }
+
+    /* Stats grid on mobile */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Equipment slots on mobile */
+    .equipment-slots {
+        grid-template-columns: 1fr;
+    }
+
+    /* Inventory grid adjustments */
+    .inventory-grid {
+        grid-template-columns: 1fr;
     }
 }
 
