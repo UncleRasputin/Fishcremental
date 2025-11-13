@@ -36,9 +36,9 @@ function updateDisplay()
     const rod = RODS[gameState.currentRod];
     const hook = HOOKS[gameState.currentHook];
     UI.rodName.textContent = rod.name;
-    UI.rodStat.textContent = `(Str: ${rod.strength})`;
+    UI.rodStat.textContent = `Strength: ${rod.strength} Cast Speed: ${rod.castSpeed}x`;
     UI.hookName.textContent = hook.name;
-    UI.hookStat.textContent = `(Size: ${hook.sizeMultiplier}x)`;
+    UI.hookStat.textContent = `Size: ${hook.sizeMultiplier}x`;
     UI.inventoryCount.textContent = gameState.inventory.length;
 
     let total = 0;
@@ -49,13 +49,15 @@ function updateDisplay()
 
     updateLastCatchDisplay();
 
-    const xpNeeded = gameState.level * 100;
-    if (gameState.xp >= xpNeeded)
+    let xpNeeded = gameState.level * 100;
+    while (gameState.xp >= xpNeeded)
     {
         gameState.level++;
-        gameState.xp = 0;
+        gameState.xp -= xpNeeded;
+        playSound('level');
         addLog(`Level up! You are now level ${gameState.level}`);
         updateDisplay();
+        xpNeeded = gameState.level * 100;
     }
 
     autoSave();

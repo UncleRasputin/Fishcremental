@@ -49,6 +49,7 @@ function handleRodClick(id) {
         rod.unlocked = true;
         gameState.currentRod = id;
         addLog(`Purchased and equipped ${rod.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -63,6 +64,7 @@ function handleHookClick(id) {
         hook.unlocked = true;
         gameState.currentHook = id;
         addLog(`Purchased and equipped ${hook.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -77,6 +79,7 @@ function handleBaitClick(id) {
         bait.unlocked = true;
         gameState.currentBait = id;
         addLog(`Purchased and equipped ${bait.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -97,6 +100,7 @@ function unlockLake(id) {
         gameState.money -= lake.unlockCost;
         lake.unlocked = true;
         addLog(`Unlocked ${lake.name}!`);
+        playSound('sell');
         updateDisplay();
         updateTravelDisplay();
     }
@@ -404,6 +408,7 @@ function sellFish(idx)
     gameState.stats.totalMoneyEarned += fish.value;
     gameState.inventory.splice(idx, 1);
     addLog(`Sold ${fish.name} for $${fish.value}`);
+    playSound('sell');
     updateDisplay();
     updateInventoryDisplay();
 }
@@ -415,6 +420,7 @@ function sellAll()
     gameState.stats.totalMoneyEarned += total;
     gameState.inventory = [];
     addLog(`Sold all fish for $${total}`);
+    playSound('sell');
     updateDisplay();
     updateInventoryDisplay();
 }

@@ -54,11 +54,11 @@ function updateOddsDisplay()
                 </div>
                 <div class="odds-info-row">
                     <span class="odds-label">Rod:</span>
-                    <span class="odds-value">${rod.name} (Str: ${rod.strength})</span>
+                    <span class="odds-value">${rod.name} - Strength: ${rod.strength} Cast Speed: ${rod.castSpeed}x</span>
                 </div>
                 <div class="odds-info-row">
                     <span class="odds-label">Hook:</span>
-                    <span class="odds-value">${hook.name} (Power: ${hook.sizeMultiplier}x)</span>
+                    <span class="odds-value">${hook.name} - Power: ${hook.sizeMultiplier}x</span>
                 </div>
             </div>
             

@@ -105,6 +105,7 @@ function completeQuest()
     gameState.questTokens += reward.tokens;
     gameState.stats.questsCompleted++;
     addLog(`Quest complete! +${reward.money}, +${reward.xp} XP, +${reward.tokens} Quest Token${reward.tokens > 1 ? 's' : ''}`);
+    playSound('quest');
     gameState.quest = null;
     saveGame(true);
     generateQuest();
