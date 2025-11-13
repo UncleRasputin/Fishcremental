@@ -1680,7 +1680,9 @@ html, body {
 /* Responsive nav bar */
 @media (max-width: 600px) {
     .nav-bar {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
     }
 
     .nav-button {
