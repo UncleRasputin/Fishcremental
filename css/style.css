@@ -1651,7 +1651,7 @@ html, body {
     .header-stats {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 0.5rem;
     }
 
