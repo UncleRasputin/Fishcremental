@@ -1324,7 +1324,6 @@ body {
     }
 
         .changelog-list li:before {
-            content: "â€¢";
             color: #60a5fa;
             font-weight: bold;
             position: absolute;
