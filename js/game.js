@@ -49,7 +49,6 @@ function handleRodClick(id) {
         rod.unlocked = true;
         gameState.currentRod = id;
         addLog(`Purchased and equipped ${rod.name}!`);
-        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -64,7 +63,6 @@ function handleHookClick(id) {
         hook.unlocked = true;
         gameState.currentHook = id;
         addLog(`Purchased and equipped ${hook.name}!`);
-        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -79,7 +77,6 @@ function handleBaitClick(id) {
         bait.unlocked = true;
         gameState.currentBait = id;
         addLog(`Purchased and equipped ${bait.name}!`);
-        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
@@ -100,7 +97,6 @@ function unlockLake(id) {
         gameState.money -= lake.unlockCost;
         lake.unlocked = true;
         addLog(`Unlocked ${lake.name}!`);
-        playSound('sell');
         updateDisplay();
         updateTravelDisplay();
     }
@@ -115,6 +111,7 @@ function advanceTime(amount) {
         gameState.seasonProgress = 0;
         gameState.season = (gameState.season + 1) % 4;
         addLog(`Season changed to ${SEASONS[gameState.season]}!`);
+        trackSeasonChange(oldSeason); // Track season and check achievements
 
         // Check quest cooldown on season change
         checkQuestCooldown();
@@ -316,6 +313,7 @@ function completeCatch(fish) {
     {
         gameState.stats.lineBreaks++;
         playSound('snap');
+        checkAllAchievements(); // Check for line break achievements
         addLog(`The line snapped! The ${fish.name} was too strong (${fish.actualStrength} vs ${rod.strength}).`);
         gameState.currentFish = null;
         gameState.progress = 0;
@@ -333,6 +331,7 @@ function completeCatch(fish) {
     if (value === 0)
     {
         gameState.stats.fishThrownBack++;
+        checkAllAchievements(); // Check for thrown back achievements
         playSound('splash');
         addLog(`The ${fish.name} was too small to keep. You threw it back.`);
         gameState.currentFish = null;
@@ -359,6 +358,7 @@ function completeCatch(fish) {
     playSound('splash');
     checkQuestProgress(fish);
     updateRecords(fish, value);
+    trackFishCaught(fish.id); // Track species and check achievements
     addLog(`Caught a ${fish.name}! (${formatFishMeasurements(fish)})`);
     gameState.currentFish = null;
     gameState.progress = 0;
@@ -409,6 +409,7 @@ function sellFish(idx)
     gameState.inventory.splice(idx, 1);
     addLog(`Sold ${fish.name} for $${fish.value}`);
     playSound('sell');
+    checkAllAchievements();
     updateDisplay();
     updateInventoryDisplay();
 }
@@ -421,6 +422,7 @@ function sellAll()
     gameState.inventory = [];
     addLog(`Sold all fish for $${total}`);
     playSound('sell');
+    checkAllAchievements();
     updateDisplay();
     updateInventoryDisplay();
 }

@@ -1,4 +1,4 @@
-﻿// Data Loading System with Progress Modal
+// Data Loading System with Progress Modal
 
 // List of all data files to load
 const DATA_FILES = [
@@ -13,7 +13,8 @@ const DATA_FILES = [
     { name: 'Equipment', path: './data/equipment.json', target: 'EQUIPMENT' },
     { name: 'Upgrades', path: './data/upgrades.json', target: 'UPGRADES' },
     { name: 'Fishing Conditions', path: './data/fishing_conditions.json', target: 'FISHING_CONDITIONS' },
-    { name: 'Game Information', path: './data/info.json', target: 'GAME_INFO' }
+    { name: 'Game Information', path: './data/info.json', target: 'GAME_INFO' },
+    { name: 'Achievements', path: './data/achievements.json', target: 'ACHIEVEMENTS' }
 ];
 
 // Show loading modal
@@ -146,6 +147,7 @@ function AllLoaded() {
     }
     loadUnitsPreference();
     showVersion();
+    initializeAchievementStats();
     updateDisplay();
     setTimeout(() => {
         updateQuestDisplay();
@@ -154,6 +156,7 @@ function AllLoaded() {
         }
         checkFirstTimePlayer();
     }, 100);
+        checkAllAchievements(); // Check achievements after loading
 }
 
 // Start loading when page loads

@@ -10,6 +10,7 @@ var EQUIPMENT = {};
 var UPGRADES = {};
 var CONSUMABLES = {};
 var GAME_INFO = {};
+var ACHIEVEMENTS = {};
 
 // Save file version for future migration support
 const SAVE_VERSION = 2; // v1: old bait system, v2: hooks + baits separation

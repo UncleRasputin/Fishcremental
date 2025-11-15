@@ -17,32 +17,45 @@ function saveGame(silent = false)
                 money: gameState.money,
                 xp: gameState.xp,
                 level: gameState.level,
-                season: gameState.season,
-                seasonProgress: gameState.seasonProgress,
-                currentLake: gameState.currentLake,
-                currentSpot: gameState.currentSpot,
-                currentHook: gameState.currentHook,
-                currentRod: gameState.currentRod,
-                travelIndex: gameState.travelIndex,
-                inventory: gameState.inventory,
-                lastCatch: gameState.lastCatch,
-                useImperial: gameState.useImperial,
                 questTokens: gameState.questTokens,
-                quest: gameState.quest,
-                questCooldown: gameState.questCooldown,
-                equipped: gameState.equipped,
-                upgrades: gameState.upgrades,
-                activeConsumables: gameState.activeConsumables,
-                consumableInventory: gameState.consumableInventory,
-                stats: gameState.stats,
-                records: gameState.records
+                useImperial: gameState.useImperial
             },
-            lakes: LAKES,
-            hooks: HOOKS,
-            rods: RODS,
-            equipment: EQUIPMENT,
-            upgrades: UPGRADES,
-            timestamp: Date.now()
+
+            phases: {
+                freshwater: {
+                    season: gameState.season,
+                    seasonProgress: gameState.seasonProgress,
+                    currentLake: gameState.currentLake,
+                    currentSpot: gameState.currentSpot,
+                    travelIndex: gameState.travelIndex,
+
+                    currentRod: gameState.currentRod,
+                    currentHook: gameState.currentHook,
+                    currentBait: gameState.currentBait,
+                    equipped: gameState.equipped,
+
+                    inventory: gameState.inventory,
+                    lastCatch: gameState.lastCatch,
+
+                    quest: gameState.quest,
+                    questCooldown: gameState.questCooldown,
+
+                    activeConsumables: gameState.activeConsumables,
+                    consumableInventory: gameState.consumableInventory,
+
+                    upgrades: gameState.upgrades,
+
+                    stats: gameState.stats,
+                    records: gameState.records,
+
+                    unlockedLakes: extractUnlockedData(LAKES),
+                    unlockedRods: extractUnlockedData(RODS),
+                    unlockedHooks: extractUnlockedData(HOOKS),
+                    unlockedBaits: extractUnlockedData(BAITS),
+                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT),
+                    unlockedAchievements: extractUnlockedData(ACHIEVEMENTS),
+                }
+            }
         };
 
         localStorage.setItem('fishcremental_save', JSON.stringify(saveData));
@@ -107,31 +120,149 @@ function loadGame()
         gameState.stats = data.gameState.stats;
         gameState.records = data.gameState.records;
 
-        Object.keys(data.lakes).forEach(id => {
-            LAKES[id].unlocked = data.lakes[id].unlocked;
-        });
-        
-        const hooksData = data.hooks || data.baits || {};
-        Object.keys(hooksData).forEach(id => {
-            if (HOOKS[id]) {
-                HOOKS[id].unlocked = hooksData[id].unlocked;
-            }
-        });
-        
-        Object.keys(data.rods).forEach(id => {
-            RODS[id].unlocked = data.rods[id].unlocked;
-        });
+    return oldData;
+}
 
-        if (data.equipment)
-        {
-            Object.keys(data.equipment).forEach(slot => {
-                Object.keys(data.equipment[slot]).forEach(id => {
-                    if (EQUIPMENT[slot] && EQUIPMENT[slot][id]) {
-                        EQUIPMENT[slot][id].unlocked = data.equipment[slot][id].unlocked;
-                    }
-                });
-            });
+function migrateV2toV3(oldData) {
+    console.log('Migrating v2 -> v3: Restructuring to phase-based save');
+
+    const gs = oldData.gameState || {};
+
+    const newData = {
+        version: 3,
+        timestamp: oldData.timestamp || Date.now(),
+
+        player: {
+            money: gs.money || 0,
+            xp: gs.xp || 0,
+            level: gs.level || 1,
+            questTokens: gs.questTokens || 0,
+            useImperial: gs.useImperial !== undefined ? gs.useImperial : true
+        },
+
+        phases: {
+            freshwater: {
+                season: gs.season || 0,
+                seasonProgress: gs.seasonProgress || 0,
+                currentLake: gs.currentLake || 'fork',
+                currentSpot: gs.currentSpot || 0,
+                travelIndex: gs.travelIndex || 0,
+
+                currentRod: gs.currentRod || 'basic',
+                currentHook: gs.currentHook || 'basic',
+                currentBait: gs.currentBait || 'worm',
+                equipped: gs.equipped || { hat: 'none', vest: 'none', tackle: 'none', boots: 'none' },
+
+                inventory: gs.inventory || [],
+                lastCatch: gs.lastCatch || null,
+
+                quest: gs.quest || null,
+                questCooldown: gs.questCooldown || false,
+
+                activeConsumables: gs.activeConsumables || {},
+                consumableInventory: gs.consumableInventory || {},
+
+                upgrades: gs.upgrades || { recaster: false },
+
+                stats: gs.stats || {
+                    totalCasts: 0,
+                    fishCaught: 0,
+                    fishThrownBack: 0,
+                    lineBreaks: 0,
+                    totalMoneyEarned: 0,
+                    questsCompleted: 0
+                },
+
+                records: gs.records || {
+                    heaviestFish: null,
+                    largestFish: null,
+                    mostValuable: null,
+                    rarestCatch: null,
+                    byLocation: {}
+                },
+
+                unlockedLakes: oldData.lakes || {},
+                unlockedRods: oldData.rods || {},
+                unlockedHooks: oldData.hooks || {},
+                unlockedBaits: oldData.baits || {},
+                unlockedEquipment: oldData.equipment || {}
+            }
         }
+    };
+
+    addLog('Save migrated to new phase-based structure!');
+
+    return newData;
+}
+
+function applySaveData(data) {
+    if (data.player) {
+        gameState.money = data.player.money;
+        gameState.xp = data.player.xp;
+        gameState.level = data.player.level;
+        gameState.questTokens = data.player.questTokens;
+        gameState.useImperial = data.player.useImperial;
+    }
+
+    if (data.phases && data.phases.freshwater) {
+        const fw = data.phases.freshwater;
+
+        gameState.season = fw.season;
+        gameState.seasonProgress = fw.seasonProgress;
+        gameState.currentLake = fw.currentLake;
+        gameState.currentSpot = fw.currentSpot;
+        gameState.travelIndex = fw.travelIndex;
+
+        gameState.currentRod = fw.currentRod;
+        gameState.currentHook = fw.currentHook;
+        gameState.currentBait = fw.currentBait || 'worm';
+        gameState.equipped = fw.equipped;
+
+        gameState.inventory = fw.inventory;
+        gameState.lastCatch = fw.lastCatch;
+
+        gameState.quest = fw.quest;
+        gameState.questCooldown = fw.questCooldown;
+
+        gameState.activeConsumables = fw.activeConsumables;
+        gameState.consumableInventory = fw.consumableInventory;
+
+        gameState.upgrades = fw.upgrades;
+
+        gameState.stats = fw.stats;
+        gameState.records = fw.records;
+
+        applyUnlockedData(LAKES, fw.unlockedLakes);
+        applyUnlockedData(RODS, fw.unlockedRods);
+        applyUnlockedData(HOOKS, fw.unlockedHooks);
+        applyUnlockedData(BAITS, fw.unlockedBaits);
+        applyUnlockedEquipment(EQUIPMENT, fw.unlockedEquipment);
+        applyUnlockedData(ACHIEVEMENTS, fw.unlockedAchievements);
+    }
+}
+
+function extractUnlockedData(dataObj) {
+    const unlocked = {};
+    Object.keys(dataObj).forEach(id => {
+        if (dataObj[id].unlocked)
+            unlocked[id] = { unlocked: true };
+    });
+    return unlocked;
+}
+
+function extractUnlockedEquipment(equipmentObj) {
+    const unlocked = {};
+    Object.keys(equipmentObj).forEach(slot => {
+        unlocked[slot] = {};
+        Object.keys(equipmentObj[slot]).forEach(id => {
+            if (equipmentObj[slot][id].unlocked)
+                unlocked[slot][id] = { unlocked: true };
+        });
+    });
+    return unlocked;
+}
+function applyUnlockedData(dataObj, unlockedData) {
+    if (!unlockedData) return;
 
         updateDisplay();
         return true;
