@@ -1417,7 +1417,7 @@ body {
 /* Header buttons adjustment */
 .header-buttons {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 /* Scrollbar styling for modal */
@@ -1813,4 +1813,224 @@ html, body {
 .modal-overlay {
     overflow-y: auto;
     align-items: flex-start;
+}
+
+/* Achievement Notification */
+.achievement-notification {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 350px;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(251, 191, 36, 0.4);
+    z-index: 10000;
+    transition: top 0.5s ease-in-out;
+}
+
+.achievement-notification.show {
+    top: 80px;
+}
+
+.achievement-notification-content {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.achievement-notification-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.achievement-notification-text {
+    flex: 1;
+}
+
+.achievement-notification-title {
+    font-size: 0.875rem;
+    color: #fbbf24;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.achievement-notification-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.achievement-notification-description {
+    font-size: 0.875rem;
+    color: #93c5fd;
+}
+
+/* Achievements Modal Content */
+.achievements-content {
+    max-height: 70vh;
+}
+
+.achievements-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.achievements-progress-bar {
+    width: 100%;
+    height: 2rem;
+    background: #1e3a8a;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #3b82f6;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.achievements-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.achievements-stats-text {
+    text-align: center;
+    font-weight: 600;
+    color: #fbbf24;
+    font-size: 1.125rem;
+}
+
+.achievement-category {
+    margin-bottom: 1.5rem;
+    background: #00003E;
+    border: 2px solid #1010F2;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.achievement-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.achievement-category-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #60a5fa;
+}
+
+.achievement-category-count {
+    font-size: 0.875rem;
+    color: #93c5fd;
+    font-weight: 600;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid #3b82f6;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.achievement-item:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #60a5fa;
+}
+
+.achievement-item.achievement-locked {
+    background: rgba(107, 114, 128, 0.1);
+    border-color: #4b5563;
+    opacity: 0.6;
+}
+
+.achievement-item.achievement-locked:hover {
+    background: rgba(107, 114, 128, 0.15);
+    opacity: 0.8;
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 3rem;
+    text-align: center;
+}
+
+.achievement-info {
+    flex: 1;
+}
+
+.achievement-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.achievement-description {
+    font-size: 0.875rem;
+    color: #93c5fd;
+}
+
+.achievement-check {
+    font-size: 2rem;
+    color: #4ade80;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.achievement-item.achievement-locked .achievement-icon {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* Mobile responsive adjustments for achievements */
+@media (max-width: 768px) {
+    .achievement-notification {
+        min-width: 300px;
+        padding: 0.75rem 1rem;
+    }
+    
+    .achievement-notification.show {
+        top: 60px;
+    }
+    
+    .achievement-notification-icon {
+        font-size: 2rem;
+    }
+    
+    .achievement-notification-name {
+        font-size: 1rem;
+    }
+    
+    .achievement-icon {
+        font-size: 2rem;
+        width: 2.5rem;
+    }
+    
+    .achievement-check {
+        font-size: 1.5rem;
+    }
 }

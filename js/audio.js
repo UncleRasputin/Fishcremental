@@ -14,7 +14,8 @@ function initAudio()
         splash: 'audio/splash.mp3',
         sell: 'audio/sell.mp3',
         level: 'audio/chime.mp3',
-        quest: 'audio/quest.mp3'
+        quest: 'audio/quest.mp3',
+        achievement: 'audio/achievement.mp3'
     };
     
     for (const [name, path] of Object.entries(soundFiles))

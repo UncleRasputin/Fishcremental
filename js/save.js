@@ -56,7 +56,8 @@ function saveGame(silent = false) {
                     unlockedRods: extractUnlockedData(RODS),
                     unlockedHooks: extractUnlockedData(HOOKS),
                     unlockedBaits: extractUnlockedData(BAITS),
-                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT)
+                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT),
+                    unlockedAchievements: extractUnlockedData(ACHIEVEMENTS),
                 }
             }
         };
@@ -252,6 +253,7 @@ function applySaveData(data) {
         applyUnlockedData(HOOKS, fw.unlockedHooks);
         applyUnlockedData(BAITS, fw.unlockedBaits);
         applyUnlockedEquipment(EQUIPMENT, fw.unlockedEquipment);
+        applyUnlockedData(ACHIEVEMENTS, fw.unlockedAchievements);
     }
 }
 

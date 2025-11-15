@@ -1,0 +1,515 @@
+{
+  "first_steps": {
+    "id": "first_steps",
+    "name": "First Steps",
+    "description": "Cast your line for the first time",
+    "icon": "🎣",
+    "category": "fishing",
+    "condition": "gameState.stats.totalCasts >= 1",
+    "unlocked": false
+  },
+  "getting_started": {
+    "id": "getting_started",
+    "name": "Getting Started",
+    "description": "Cast your line 10 times",
+    "icon": "🎣",
+    "category": "fishing",
+    "condition": "gameState.stats.totalCasts >= 10",
+    "unlocked": false
+  },
+  "dedicated_angler": {
+    "id": "dedicated_angler",
+    "name": "Dedicated Angler",
+    "description": "Cast your line 100 times",
+    "icon": "🎣",
+    "category": "fishing",
+    "condition": "gameState.stats.totalCasts >= 100",
+    "unlocked": false
+  },
+  "master_caster": {
+    "id": "master_caster",
+    "name": "Master Caster",
+    "description": "Cast your line 1,000 times",
+    "icon": "🎣",
+    "category": "fishing",
+    "condition": "gameState.stats.totalCasts >= 1000",
+    "unlocked": false
+  },
+  "legendary_caster": {
+    "id": "legendary_caster",
+    "name": "Legendary Caster",
+    "description": "Cast your line 10,000 times",
+    "icon": "🎣",
+    "category": "fishing",
+    "condition": "gameState.stats.totalCasts >= 10000",
+    "unlocked": false
+  },
+  "first_catch": {
+    "id": "first_catch",
+    "name": "First Catch",
+    "description": "Catch your first fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 1",
+    "unlocked": false
+  },
+  "budding_fisherman": {
+    "id": "budding_fisherman",
+    "name": "Budding Fisherman",
+    "description": "Catch 10 fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 10",
+    "unlocked": false
+  },
+  "skilled_angler": {
+    "id": "skilled_angler",
+    "name": "Skilled Angler",
+    "description": "Catch 50 fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 50",
+    "unlocked": false
+  },
+  "expert_fisherman": {
+    "id": "expert_fisherman",
+    "name": "Expert Fisherman",
+    "description": "Catch 100 fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 100",
+    "unlocked": false
+  },
+  "master_angler": {
+    "id": "master_angler",
+    "name": "Master Angler",
+    "description": "Catch 500 fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 500",
+    "unlocked": false
+  },
+  "legendary_fisherman": {
+    "id": "legendary_fisherman",
+    "name": "Legendary Fisherman",
+    "description": "Catch 1,000 fish",
+    "icon": "🐟",
+    "category": "catching",
+    "condition": "gameState.stats.fishCaught >= 1000",
+    "unlocked": false
+  },
+  "first_sale": {
+    "id": "first_sale",
+    "name": "First Sale",
+    "description": "Earn your first dollar",
+    "icon": "💰",
+    "category": "money",
+    "condition": "gameState.stats.totalMoneyEarned >= 1",
+    "unlocked": false
+  },
+  "entrepreneur": {
+    "id": "entrepreneur",
+    "name": "Entrepreneur",
+    "description": "Earn $1,000",
+    "icon": "💰",
+    "category": "money",
+    "condition": "gameState.stats.totalMoneyEarned >= 1000",
+    "unlocked": false
+  },
+  "tycoon": {
+    "id": "tycoon",
+    "name": "Tycoon",
+    "description": "Earn $10,000",
+    "icon": "💰",
+    "category": "money",
+    "condition": "gameState.stats.totalMoneyEarned >= 10000",
+    "unlocked": false
+  },
+  "mogul": {
+    "id": "mogul",
+    "name": "Mogul",
+    "description": "Earn $100,000",
+    "icon": "💰",
+    "category": "money",
+    "condition": "gameState.stats.totalMoneyEarned >= 100000",
+    "unlocked": false
+  },
+  "millionaire": {
+    "id": "millionaire",
+    "name": "Millionaire",
+    "description": "Earn $1,000,000",
+    "icon": "💰",
+    "category": "money",
+    "condition": "gameState.stats.totalMoneyEarned >= 1000000",
+    "unlocked": false
+  },
+  "uncommon_hunter": {
+    "id": "uncommon_hunter",
+    "name": "Uncommon Hunter",
+    "description": "Catch an uncommon fish",
+    "icon": "🟢",
+    "category": "rarity",
+    "condition": "gameState.records.rarestCatch && RARITY_ORDER[gameState.records.rarestCatch.rarity] >= 2",
+    "unlocked": false
+  },
+  "rare_finder": {
+    "id": "rare_finder",
+    "name": "Rare Finder",
+    "description": "Catch a rare fish",
+    "icon": "🔵",
+    "category": "rarity",
+    "condition": "gameState.records.rarestCatch && RARITY_ORDER[gameState.records.rarestCatch.rarity] >= 3",
+    "unlocked": false
+  },
+  "epic_seeker": {
+    "id": "epic_seeker",
+    "name": "Epic Seeker",
+    "description": "Catch an epic fish",
+    "icon": "🟣",
+    "category": "rarity",
+    "condition": "gameState.records.rarestCatch && RARITY_ORDER[gameState.records.rarestCatch.rarity] >= 4",
+    "unlocked": false
+  },
+  "legend_hunter": {
+    "id": "legend_hunter",
+    "name": "Legend Hunter",
+    "description": "Catch a legendary fish",
+    "icon": "🟡",
+    "category": "rarity",
+    "condition": "gameState.records.rarestCatch && RARITY_ORDER[gameState.records.rarestCatch.rarity] >= 5",
+    "unlocked": false
+  },
+  "line_breaker": {
+    "id": "line_breaker",
+    "name": "Line Breaker",
+    "description": "Break your line for the first time",
+    "icon": "💔",
+    "category": "mishaps",
+    "condition": "gameState.stats.lineBreaks >= 1",
+    "unlocked": false
+  },
+  "catch_and_release": {
+    "id": "catch_and_release",
+    "name": "Catch and Release",
+    "description": "Throw back 10 fish",
+    "icon": "🔄",
+    "category": "mishaps",
+    "condition": "gameState.stats.fishThrownBack >= 10",
+    "unlocked": false
+  },
+  "quest_starter": {
+    "id": "quest_starter",
+    "name": "Quest Starter",
+    "description": "Complete your first quest",
+    "icon": "📜",
+    "category": "quests",
+    "condition": "gameState.stats.questsCompleted >= 1",
+    "unlocked": false
+  },
+  "quest_master": {
+    "id": "quest_master",
+    "name": "Quest Master",
+    "description": "Complete 10 quests",
+    "icon": "📜",
+    "category": "quests",
+    "condition": "gameState.stats.questsCompleted >= 10",
+    "unlocked": false
+  },
+  "quest_legend": {
+    "id": "quest_legend",
+    "name": "Quest Legend",
+    "description": "Complete 50 quests",
+    "icon": "📜",
+    "category": "quests",
+    "condition": "gameState.stats.questsCompleted >= 50",
+    "unlocked": false
+  },
+  "world_traveler": {
+    "id": "world_traveler",
+    "name": "World Traveler",
+    "description": "Unlock 5 different lakes",
+    "icon": "🗺️",
+    "category": "exploration",
+    "condition": "Object.values(LAKES).filter(l => l.unlocked).length >= 5",
+    "unlocked": false
+  },
+  "globe_trotter": {
+    "id": "globe_trotter",
+    "name": "Globe Trotter",
+    "description": "Unlock all lakes",
+    "icon": "🗺️",
+    "category": "exploration",
+    "condition": "Object.values(LAKES).filter(l => l.unlocked).length >= Object.keys(LAKES).length",
+    "unlocked": false
+  },
+  "fork_master": {
+    "id": "fork_master",
+    "name": "Lake Fork Master",
+    "description": "Catch all fish species available at Lake Fork",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('fork')",
+    "unlocked": false
+  },
+  "texoma_master": {
+    "id": "texoma_master",
+    "name": "Lake Texoma Master",
+    "description": "Catch all fish species available at Lake Texoma",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('texoma')",
+    "unlocked": false
+  },
+  "amistad_master": {
+    "id": "amistad_master",
+    "name": "Lake Amistad Master",
+    "description": "Catch all fish species available at Lake Amistad",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('amistad')",
+    "unlocked": false
+  },
+  "okeechobee_master": {
+    "id": "okeechobee_master",
+    "name": "Lake Okeechobee Master",
+    "description": "Catch all fish species available at Lake Okeechobee",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('okeechobee')",
+    "unlocked": false
+  },
+  "michigan_master": {
+    "id": "michigan_master",
+    "name": "Lake Michigan Master",
+    "description": "Catch all fish species available at Lake Michigan",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('michigan')",
+    "unlocked": false
+  },
+  "erie_master": {
+    "id": "erie_master",
+    "name": "Lake Erie Master",
+    "description": "Catch all fish species available at Lake Erie",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('erie')",
+    "unlocked": false
+  },
+  "superior_master": {
+    "id": "superior_master",
+    "name": "Lake Superior Master",
+    "description": "Catch all fish species available at Lake Superior",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('superior')",
+    "unlocked": false
+  },
+  "santee_master": {
+    "id": "santee_master",
+    "name": "Santee Cooper Master",
+    "description": "Catch all fish species available at Santee Cooper Lakes",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('santee')",
+    "unlocked": false
+  },
+  "ozarks_master": {
+    "id": "ozarks_master",
+    "name": "Lake of the Ozarks Master",
+    "description": "Catch all fish species available at Lake of the Ozarks",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('ozarks')",
+    "unlocked": false
+  },
+  "champlain_master": {
+    "id": "champlain_master",
+    "name": "Lake Champlain Master",
+    "description": "Catch all fish species available at Lake Champlain",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('champlain')",
+    "unlocked": false
+  },
+  "mead_master": {
+    "id": "mead_master",
+    "name": "Lake Mead Master",
+    "description": "Catch all fish species available at Lake Mead",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('mead')",
+    "unlocked": false
+  },
+  "powell_master": {
+    "id": "powell_master",
+    "name": "Lake Powell Master",
+    "description": "Catch all fish species available at Lake Powell",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('powell')",
+    "unlocked": false
+  },
+  "species_collector": {
+    "id": "species_collector",
+    "name": "Species Collector",
+    "description": "Catch 10 different fish species",
+    "icon": "🐠",
+    "category": "collections",
+    "condition": "Object.keys(gameState.stats.speciesCaught || {}).length >= 10",
+    "unlocked": false
+  },
+  "master_collector": {
+    "id": "master_collector",
+    "name": "Master Collector",
+    "description": "Catch 25 different fish species",
+    "icon": "🐠",
+    "category": "collections",
+    "condition": "Object.keys(gameState.stats.speciesCaught || {}).length >= 25",
+    "unlocked": false
+  },
+  "complete_collection": {
+    "id": "complete_collection",
+    "name": "Complete Collection",
+    "description": "Catch every fish species in the game",
+    "icon": "🐠",
+    "category": "collections",
+    "condition": "Object.keys(gameState.stats.speciesCaught || {}).length >= Object.keys(FISH_DB).length",
+    "unlocked": false
+  },
+  "spring_fishing": {
+    "id": "spring_fishing",
+    "name": "Spring Fishing",
+    "description": "Fish through an entire Spring season",
+    "icon": "🌸",
+    "category": "seasons",
+    "condition": "gameState.stats.seasonsPassed?.spring >= 1",
+    "unlocked": false
+  },
+  "summer_fishing": {
+    "id": "summer_fishing",
+    "name": "Summer Fishing",
+    "description": "Fish through an entire Summer season",
+    "icon": "☀️",
+    "category": "seasons",
+    "condition": "gameState.stats.seasonsPassed?.summer >= 1",
+    "unlocked": false
+  },
+  "fall_fishing": {
+    "id": "fall_fishing",
+    "name": "Fall Fishing",
+    "description": "Fish through an entire Fall season",
+    "icon": "🍂",
+    "category": "seasons",
+    "condition": "gameState.stats.seasonsPassed?.fall >= 1",
+    "unlocked": false
+  },
+  "winter_fishing": {
+    "id": "winter_fishing",
+    "name": "Winter Fishing",
+    "description": "Fish through an entire Winter season",
+    "icon": "❄️",
+    "category": "seasons",
+    "condition": "gameState.stats.seasonsPassed?.winter >= 1",
+    "unlocked": false
+  },
+  "full_year": {
+    "id": "full_year",
+    "name": "Full Year",
+    "description": "Experience all four seasons",
+    "icon": "📅",
+    "category": "seasons",
+    "condition": "gameState.stats.seasonsPassed?.spring >= 1 && gameState.stats.seasonsPassed?.summer >= 1 && gameState.stats.seasonsPassed?.fall >= 1 && gameState.stats.seasonsPassed?.winter >= 1",
+    "unlocked": false
+  },
+  "level_5": {
+    "id": "level_5",
+    "name": "Level 5",
+    "description": "Reach level 5",
+    "icon": "⭐",
+    "category": "progression",
+    "condition": "gameState.level >= 5",
+    "unlocked": false
+  },
+  "level_10": {
+    "id": "level_10",
+    "name": "Level 10",
+    "description": "Reach level 10",
+    "icon": "⭐",
+    "category": "progression",
+    "condition": "gameState.level >= 10",
+    "unlocked": false
+  },
+  "level_25": {
+    "id": "level_25",
+    "name": "Level 25",
+    "description": "Reach level 25",
+    "icon": "⭐",
+    "category": "progression",
+    "condition": "gameState.level >= 25",
+    "unlocked": false
+  },
+  "level_50": {
+    "id": "level_50",
+    "name": "Level 50",
+    "description": "Reach level 50",
+    "icon": "⭐",
+    "category": "progression",
+    "condition": "gameState.level >= 50",
+    "unlocked": false
+  },
+  "trophy_hunter": {
+    "id": "trophy_hunter",
+    "name": "Trophy Hunter",
+    "description": "Catch a Trophy Largemouth Bass",
+    "icon": "🏆",
+    "category": "special",
+    "condition": "checkSpeciesCaught('trophy_largemouth')",
+    "unlocked": false
+  },
+  "gar_slayer": {
+    "id": "gar_slayer",
+    "name": "Gar Slayer",
+    "description": "Catch an Alligator Gar",
+    "icon": "🐊",
+    "category": "special",
+    "condition": "checkSpeciesCaught('alligator_gar')",
+    "unlocked": false
+  },
+  "muskie_master": {
+    "id": "muskie_master",
+    "name": "Muskie Master",
+    "description": "Catch a Record Muskellunge",
+    "icon": "🦈",
+    "category": "special",
+    "condition": "checkSpeciesCaught('record_muskie')",
+    "unlocked": false
+  },
+  "big_spender": {
+    "id": "big_spender",
+    "name": "Big Spender",
+    "description": "Purchase a rod worth $5,000 or more",
+    "icon": "💳",
+    "category": "equipment",
+    "condition": "Object.entries(RODS).some(([id, rod]) => rod.unlocked && rod.cost >= 5000)",
+    "unlocked": false
+  },
+  "fully_equipped": {
+    "id": "fully_equipped",
+    "name": "Fully Equipped",
+    "description": "Equip items in all 4 equipment slots",
+    "icon": "⚙️",
+    "category": "equipment",
+    "condition": "Object.values(gameState.equipped).every(slot => slot !== 'none')",
+    "unlocked": false
+  },
+  "token_collector": {
+    "id": "token_collector",
+    "name": "Token Collector",
+    "description": "Earn 100 Quest Tokens",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.stats.totalTokensEarned >= 100",
+    "unlocked": false
+  }
+}

@@ -1,4 +1,4 @@
-﻿function generateQuest()
+function generateQuest()
 {
     if (gameState.questCooldown)
         return;
@@ -104,8 +104,8 @@ function completeQuest()
     gameState.xp += reward.xp;
     gameState.questTokens += reward.tokens;
     gameState.stats.questsCompleted++;
+    trackTokensEarned(reward.tokens); // Track tokens and check achievements
     addLog(`Quest complete! +${reward.money}, +${reward.xp} XP, +${reward.tokens} Quest Token${reward.tokens > 1 ? 's' : ''}`);
-    playSound('quest');
     gameState.quest = null;
     saveGame(true);
     generateQuest();

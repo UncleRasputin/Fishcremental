@@ -10,6 +10,7 @@ var EQUIPMENT = {};
 var UPGRADES = {};
 var CONSUMABLES = {};
 var GAME_INFO = {};
+var ACHIEVEMENTS = {};
 
 // Game state
 let gameState = {
