@@ -112,10 +112,10 @@ body {
     background: transparent;
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    padding: 0.15rem;
-    margin: 0 0.15rem;
+    padding: 0.05rem;
+    margin: 0;
     transition: transform 0.2s;
 }
 
@@ -1418,6 +1418,7 @@ body {
 .header-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 0.05rem;
 }
 
 /* Scrollbar styling for modal */
@@ -1672,7 +1673,7 @@ html, body {
 
 
     .icon-button {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 }
 

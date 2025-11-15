@@ -363,6 +363,7 @@ function completeCatch(fish) {
     gameState.currentFish = null;
     gameState.progress = 0;
     updateDisplay();
+    checkAllAchievements(); // Check for level up, etc. achievements
     TryRecast();
 }
 
