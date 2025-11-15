@@ -1,7 +1,7 @@
 {
-  "common": 50,
-  "uncommon": 25,
-  "rare": 15,
-  "epic": 8,
+  "common": 20,
+  "uncommon": 15,
+  "rare": 10,
+  "epic": 4,
   "legendary": 2
 }
