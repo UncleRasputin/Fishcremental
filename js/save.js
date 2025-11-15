@@ -1,19 +1,23 @@
-function autoSave()
-{
-    if (!autoSave.lastSave || Date.now() - autoSave.lastSave > 3000)
-    {
+const CURRENT_SAVE_VERSION = 3;
+const SAVE_KEY = 'fishcremental_save';
+
+// Save version history:
+// v1: Original unversioned save (baits system)
+// v2: Hooks + baits separation
+// v3: Phase-based structure (freshwater, etc.)
+function autoSave() {
+    if (!autoSave.lastSave || Date.now() - autoSave.lastSave > 3000) {
         saveGame(true);
         autoSave.lastSave = Date.now();
     }
 }
-
-function saveGame(silent = false)
-{
-    try
-    {
+function saveGame(silent = false) {
+    try {
         const saveData = {
-            version: SAVE_VERSION,
-            gameState: {
+            version: CURRENT_SAVE_VERSION,
+            timestamp: Date.now(),
+
+            player: {
                 money: gameState.money,
                 xp: gameState.xp,
                 level: gameState.level,
@@ -52,73 +56,85 @@ function saveGame(silent = false)
                     unlockedRods: extractUnlockedData(RODS),
                     unlockedHooks: extractUnlockedData(HOOKS),
                     unlockedBaits: extractUnlockedData(BAITS),
-                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT),
+                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT)
                     unlockedAchievements: extractUnlockedData(ACHIEVEMENTS),
                 }
             }
         };
 
-        localStorage.setItem('fishcremental_save', JSON.stringify(saveData));
+        localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
         if (!silent)
             addLog('Game saved successfully!');
     }
-    catch (error) { console.error('Save error:', error); }
+    catch (error) {
+        console.error('Save error:', error);
+        if (!silent)
+            addLog('Failed to save game!');
+    }
 }
 
-function loadGame()
-{
-    try
-    {
-        const saveData = localStorage.getItem('fishcremental_save');
-        if (!saveData) 
+function loadGame() {
+    try {
+        const saveData = localStorage.getItem(SAVE_KEY);
+        if (!saveData)
             return false;
 
         const data = JSON.parse(saveData);
-        const saveVersion = data.version;
-        if (!saveVersion)
-        {
-            console.log('Migrating save from v1 to v2...');
-            const baitToHookMapping = {
-                'worm': 'basic',
-                'cricket': 'basic',
-                'minnow': 'wide_gap',
-                'lure': 'circle',
-                'premium': 'octopus'
-            };
-            
-            if (data.gameState.currentBait) 
-                gameState.currentHook = baitToHookMapping[data.gameState.currentBait] || 'basic';
 
-            if (data.baits)
-            {
-                HOOKS['basic'].unlocked = true;
-                addLog('Save migrated: Old bait system converted to hooks. Check the shop!');
-            }
+        const saveVersion = data.version || 1;
+        console.log(`Loading save version ${saveVersion}`);
+
+        let migratedData = data;
+
+        if (saveVersion < CURRENT_SAVE_VERSION) {
+            console.log(`Migrating from v${saveVersion} to v${CURRENT_SAVE_VERSION}`);
+
+            if (saveVersion === 1)
+                migratedData = migrateV1toV2(migratedData);
+            if (saveVersion <= 2)
+                migratedData = migrateV2toV3(migratedData);
         }
-        else 
-            gameState.currentHook = data.gameState.currentHook || 'basic';
 
-        gameState.money = data.gameState.money;
-        gameState.xp = data.gameState.xp;
-        gameState.level = data.gameState.level;
-        gameState.season = data.gameState.season;
-        gameState.seasonProgress = data.gameState.seasonProgress || 0;
-        gameState.currentLake = data.gameState.currentLake;
-        gameState.currentSpot = data.gameState.currentSpot;
-        gameState.currentRod = data.gameState.currentRod;
-        gameState.travelIndex = data.gameState.travelIndex || 0;
-        gameState.inventory = data.gameState.inventory;
-        gameState.lastCatch = data.gameState.lastCatch || null;
-        gameState.useImperial = data.gameState.useImperial !== undefined ? data.gameState.useImperial : true;
-        gameState.questTokens = data.gameState.questTokens || 0;
-        gameState.quest = data.gameState.quest || null;
-        gameState.questCooldown = data.gameState.questCooldown || false;
-        gameState.equipped = data.gameState.equipped || { hat: 'none', vest: 'none', tackle: 'none', boots: 'none' };
-        gameState.upgrades = data.gameState.upgrades || { recaster: false };
-        gameState.activeConsumables = data.gameState.activeConsumables || {};
-        gameState.consumableInventory = data.gameState.consumableInventory || {};
-        gameState.stats = data.gameState.stats;
-        gameState.records = data.gameState.records;
+        applySaveData(migratedData);
+
+        updateDisplay();
+        return true;
+    }
+    catch (error) {
+        console.error('Load error:', error);
+        return false;
+    }
+}
+
+function migrateV1toV2(oldData) {
+    console.log('Migrating v1 -> v2: Converting bait system to hooks + baits');
+
+    const baitToHookMapping = {
+        'worm': 'basic',
+        'cricket': 'basic',
+        'minnow': 'wide_gap',
+        'lure': 'circle',
+        'premium': 'octopus'
+    };
+
+    if (oldData.gameState && oldData.gameState.currentBait) {
+        oldData.gameState.currentHook = baitToHookMapping[oldData.gameState.currentBait] || 'basic';
+        oldData.gameState.currentBait = 'worm'; 
+    }
+
+    if (oldData.baits) {
+        oldData.hooks = {};
+        Object.keys(oldData.baits).forEach(oldBaitId => {
+            const hookId = baitToHookMapping[oldBaitId];
+            if (hookId && oldData.baits[oldBaitId].unlocked) {
+                oldData.hooks[hookId] = { unlocked: true };
+            }
+        });
+        delete oldData.baits;
+    }
+
+    oldData.version = 2;
+    addLog('Save migrated: Old bait system converted to hooks + baits');
 
     return oldData;
 }
@@ -264,23 +280,31 @@ function extractUnlockedEquipment(equipmentObj) {
 function applyUnlockedData(dataObj, unlockedData) {
     if (!unlockedData) return;
 
-        updateDisplay();
-        return true;
-    }
-    catch (error)
-    {
-        console.error('Load error:', error);
-        return false;
-    }
+    Object.keys(unlockedData).forEach(id => {
+        if (dataObj[id])
+            dataObj[id].unlocked = true;
+    });
 }
 
-function hardReset()
-{
+function applyUnlockedEquipment(equipmentObj, unlockedData) {
+    if (!unlockedData) return;
+
+    Object.keys(unlockedData).forEach(slot => {
+        if (equipmentObj[slot]) {
+            Object.keys(unlockedData[slot]).forEach(id => {
+                if (equipmentObj[slot][id])
+                    equipmentObj[slot][id].unlocked = true;
+            });
+        }
+    });
+}
+
+function hardReset() {
     if (!confirm('Are you sure you want to HARD RESET? This will delete ALL progress and cannot be undone!'))
         return;
-    if (!confirm('Really? This will permanently delete everything!')) 
+    if (!confirm('Really? This will permanently delete everything!'))
         return;
 
-    localStorage.removeItem('fishcremental_save');
+    localStorage.removeItem(SAVE_KEY);
     location.reload();
 }
