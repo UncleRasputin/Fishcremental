@@ -56,7 +56,7 @@ function saveGame(silent = false) {
                     unlockedRods: extractUnlockedData(RODS),
                     unlockedHooks: extractUnlockedData(HOOKS),
                     unlockedBaits: extractUnlockedData(BAITS),
-                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT)
+                    unlockedEquipment: extractUnlockedEquipment(EQUIPMENT),
                     unlockedAchievements: extractUnlockedData(ACHIEVEMENTS),
                 }
             }
