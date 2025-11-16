@@ -202,7 +202,7 @@ function getFishHint(rarity) {
         epic: "Something big is on the line!",
         rare: "Feels like a good catch!",
         uncommon: "You've hooked something decent...",
-        common: "Light tug on the line..."
+        common: "You feel a light tug on the line..."
     };
     return hints[rarity] || "Something bit!";
 }
@@ -211,8 +211,6 @@ function getFishHint(rarity) {
 function startCast() {
     if (gameState.casting || gameState.waiting || gameState.reeling) return;
 
-    // Clear last catch when starting new cast
-    gameState.lastCatch = null;
     updateLastCatchDisplay();
 
     gameState.stats.totalCasts++;
@@ -225,7 +223,7 @@ function startCast() {
 
     UI.castButton.disabled = true;
     UI.castButton.textContent = 'Casting...';
-    UI.progressContainer.style.display = 'block';
+    //UI.progressContainer.style.display = 'block';
     UI.progressLabel.textContent = 'Casting';
 
     const rod = RODS[gameState.currentRod];
@@ -252,7 +250,7 @@ function startWaiting() {
     gameState.waiting = true;
     gameState.progress = 0;
     UI.castButton.textContent = 'Waiting...';
-    UI.progressLabel.textContent = 'Waiting for bite';
+    UI.progressLabel.textContent = 'Waiting for a bite';
     addLog("Line cast! Waiting for a bite...");
     const waitTime = 3000 + Math.random() * 12000;
     const step = 100 / (waitTime / 100);
@@ -276,11 +274,8 @@ function getBite()
     const hint = getFishHint(fish.rarity);
     addLog(hint);
     UI.fishDisplay.style.display = 'block';
-    UI.fishName.textContent = `??? (${fish.rarity})`;
-    UI.fishName.className = `rarity-${fish.rarity}`;
+    UI.fishStats.className = `rarity-${fish.rarity}`;
     UI.fishStats.textContent = hint;
-    UI.fishStrength.textContent =
-        `Your rod strength: ${RODS[gameState.currentRod].strength}`;
 
     startReel(fish);
 }
@@ -329,7 +324,8 @@ function completeCatch(fish) {
     const rod = RODS[gameState.currentRod];
     stopReelSound();
     decrementConsumables();
-    UI.progressContainer.style.display = 'none';
+    //UI.progressContainer.style.display = 'none';
+    UI.progressLabel.textContent = 'Idle';
     UI.fishDisplay.style.display = 'none';
     UI.castButton.disabled = false;
     UI.castButton.textContent = 'Cast Line';

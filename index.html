@@ -71,28 +71,23 @@
                         <span class="equipment-stat" id="hook-stat">(Size: 1x)</span>
                     </div>
                 </div>
-
+                <div id="last-catch-display" class="last-catch-panel"></div>
                 <div class="fishing-actions">
                     <button class="cast-button" id="cast-button" onclick="startCast()">Cast Line</button>
                     <button class="check-odds-button" onclick="openOddsModal()">🎯 Check Odds</button>
                 </div>
 
-                <div id="progress-container" style="display: none;">
-                    <div id="progress-label">Casting</div>
+                <div id="progress-container">
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill"></div>
                     </div>
-                </div>
-
-                <div id="fish-display" style="display: none;" class="fish-info">
-                    <div id="fish-name" class="rarity-common"></div>
-                    <div id="fish-stats"></div>
-                    <div id="fish-strength"></div>
+                    <div id="progress-header">
+                        <div id="progress-label">Idle</div>
+                        <div id="fish-display"><div id="fish-stats" class="rarity-common"></div></div>
+                    </div>
                 </div>
 
                 <div id="quest-panel" class="quest-panel"></div>
-
-                <div id="last-catch-display" class="last-catch-panel"></div>
 
                 <div class="log-panel">
                     <div class="log-header">Activity Log</div>
