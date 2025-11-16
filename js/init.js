@@ -148,6 +148,7 @@ function AllLoaded() {
     loadUnitsPreference();
     showVersion();
     initializeAchievementStats();
+    updateLastCatchDisplay();
     updateDisplay();
     setTimeout(() => {
         updateQuestDisplay();

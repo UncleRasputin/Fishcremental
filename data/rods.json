@@ -6,32 +6,88 @@
     "cost": 0,
     "unlocked": true
   },
-  "bamboo": {
-    "name": "Bamboo Rod",
-    "strength": 25,
-    "castSpeed": 1.2,
-    "cost": 100,
+  "bamboo_light": {
+    "name": "Light Bamboo Rod",
+    "strength": 20,
+    "castSpeed": 1.4,
+    "cost": 80,
     "unlocked": false
   },
-  "fiberglass": {
-    "name": "Fiberglass Rod",
-    "strength": 50,
+  "bamboo_heavy": {
+    "name": "Heavy Bamboo Rod",
+    "strength": 35,
+    "castSpeed": 0.9,
+    "cost": 120,
+    "unlocked": false
+  },
+  "fiberglass_light": {
+    "name": "Light Fiberglass Rod",
+    "strength": 45,
+    "castSpeed": 1.6,
+    "cost": 400,
+    "unlocked": false
+  },
+  "fiberglass_heavy": {
+    "name": "Heavy Fiberglass Rod",
+    "strength": 70,
+    "castSpeed": 1.1,
+    "cost": 600,
+    "unlocked": false
+  },
+  "fiberglass_balanced": {
+    "name": "Balanced Fiberglass Rod",
+    "strength": 55,
+    "castSpeed": 1.35,
+    "cost": 900,
+    "unlocked": false
+  },
+  "carbon_light": {
+    "name": "Light Carbon Fiber Rod",
+    "strength": 85,
+    "castSpeed": 1.9,
+    "cost": 1800,
+    "unlocked": false
+  },
+  "carbon_heavy": {
+    "name": "Heavy Carbon Fiber Rod",
+    "strength": 130,
+    "castSpeed": 1.3,
+    "cost": 2400,
+    "unlocked": false
+  },
+  "carbon_balanced": {
+    "name": "Balanced Carbon Rod",
+    "strength": 105,
+    "castSpeed": 1.6,
+    "cost": 3200,
+    "unlocked": false
+  },
+  "titanium_light": {
+    "name": "Light Titanium Rod",
+    "strength": 160,
+    "castSpeed": 2.2,
+    "cost": 6000,
+    "unlocked": false
+  },
+  "titanium_heavy": {
+    "name": "Heavy Titanium Rod",
+    "strength": 200,
     "castSpeed": 1.5,
-    "cost": 500,
+    "cost": 8000,
     "unlocked": false
   },
-  "carbon": {
-    "name": "Carbon Fiber Rod",
-    "strength": 100,
-    "castSpeed": 2,
-    "cost": 2000,
+  "titanium_balanced": {
+    "name": "Balanced Titanium Rod",
+    "strength": 175,
+    "castSpeed": 1.85,
+    "cost": 10000,
     "unlocked": false
   },
   "legendary": {
-    "name": "Legendary Rod",
+    "name": "Legendary Master Rod",
     "strength": 250,
-    "castSpeed": 3,
-    "cost": 10000,
+    "castSpeed": 2.5,
+    "cost": 25000,
     "unlocked": false
   }
 }

@@ -12,9 +12,6 @@ var CONSUMABLES = {};
 var GAME_INFO = {};
 var ACHIEVEMENTS = {};
 
-// Save file version for future migration support
-const SAVE_VERSION = 2; // v1: old bait system, v2: hooks + baits separation
-
 // Game state
 let gameState = {
     money: 0,
@@ -27,8 +24,8 @@ let gameState = {
     currentSpot: 0,
     currentHook: 'basic',
     currentRod: 'basic',
-    currentScreen: 'fish',
     currentBait: 'worm',
+    currentScreen: 'fish',
     travelIndex: 0,
     casting: false,
     waiting: false,

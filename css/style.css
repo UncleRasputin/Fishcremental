@@ -216,6 +216,8 @@ body {
     border-radius: 8px;
     margin-bottom: 1rem;
     border: 2px solid #1010F2;
+    display:grid;
+    grid-template-columns: 1fr max-content max-content max-content;
 }
 
 .last-catch-title {
