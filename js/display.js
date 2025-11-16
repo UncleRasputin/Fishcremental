@@ -17,7 +17,7 @@ function showVersion() {
 }
 function updateDisplay()
 {
-    UI.money.textContent = '$' + gameState.money + " 💰";
+    UI.money.textContent = '$' + gameState.money;
     UI.level.textContent = 'Level '+gameState.level;
 
     const expProgressPercent = (gameState.xp / (gameState.level * 100)) * 100;
@@ -25,7 +25,7 @@ function updateDisplay()
     UI.expProgressBar.title = "XP " + gameState.xp + " / " + (gameState.level * 100);
 
     UI.season.textContent = SEASONS[gameState.season];
-    UI.headerTokens.textContent = gameState.questTokens + " 🎫";
+    UI.headerTokens.textContent = gameState.questTokens;
 
     const seasonProgressPercent = (gameState.seasonProgress / gameState.seasonThreshold) * 100;
     UI.seasonProgressBar.style.width = seasonProgressPercent + '%';
@@ -87,10 +87,10 @@ function updateLastCatchDisplay()
         UI.lastCatchDisplay.innerHTML = '<div class="last-catch-title">Last Catch</div><div></div><div>None</div>';
     }
 }
-function notifyCatch(panel) {
-    panel.classList.remove("pop"); 
+function popPanel(panel, size = ["pop"]) {
+    panel.classList.remove(...size); 
     void panel.offsetWidth;        
-    panel.classList.add("pop");
+    panel.classList.add(...size);
 }
 function updateInventoryDisplay()
 {

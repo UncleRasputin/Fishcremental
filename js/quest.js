@@ -91,8 +91,11 @@ function checkQuestProgress(fish)
     }
     gameState.quest.caught++;
     addLog(`Quest progress: ${gameState.quest.caught}/${gameState.quest.quantity} ${gameState.quest.targetName}`);
-    if (gameState.quest.caught >= gameState.quest.quantity) 
+    popPanel(UI.questPanel,["smallpop"]);
+    if (gameState.quest.caught >= gameState.quest.quantity) {
         completeQuest();
+        popPanel(UI.headerTokens, ["attention"]);
+    }
     updateQuestDisplay();
 }
 

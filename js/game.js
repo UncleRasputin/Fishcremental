@@ -271,7 +271,7 @@ function getBite()
     gameState.currentFish = fish;
     const hint = getFishHint(fish.rarity);
     addLog(hint);
-    notifyCatch(UI.fishDisplay);
+    popPanel(UI.fishDisplay);
     UI.fishStats.className = `rarity-${fish.rarity}`;
     UI.fishStats.textContent = hint;
 
@@ -384,7 +384,7 @@ function completeCatch(fish) {
     gameState.currentFish = null;
     gameState.progress = 0;
     updateDisplay();
-    notifyCatch(UI.lastCatchDisplay);
+    popPanel(UI.lastCatchDisplay,["attention-pop"]);
     checkAllAchievements(); // Check for level up, etc. achievements
     TryRecast();
 }
@@ -434,6 +434,7 @@ function sellFish(idx)
     playSound('sell');
     checkAllAchievements();
     updateDisplay();
+    popPanel(UI.money, ["pop", "attention"]);
     updateInventoryDisplay();
 }
 
@@ -447,6 +448,7 @@ function sellAll()
     playSound('sell');
     checkAllAchievements();
     updateDisplay();
+    popPanel(UI.money,["pop","attention"]);
     updateInventoryDisplay();
 }
 
