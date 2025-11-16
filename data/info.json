@@ -1,10 +1,17 @@
 ﻿{
-  "version": "1.0.10",
+  "version": "1.0.11",
   "intro": {
     "title": "Welcome to Fishcremental!",
     "content": "\n            <p>Welcome, angler! Ready to catch some fish?</p>\n            \n            <h4>Getting Started:</h4>\n            <ul>\n                <li><strong>Cast your line</strong> - Click the \"Cast Line\" button to start fishing</li>\n                <li><strong>Catch fish</strong> - Wait for a bite, then reel it in!</li>\n                <li><strong>Sell your catch</strong> - Visit the Inventory tab to sell fish for money</li>\n                <li><strong>Upgrade gear</strong> - Buy better rods and bait in the Shop</li>\n                <li><strong>Explore locations</strong> - Travel to new lakes to find rare fish</li>\n                <li><strong>Complete quests</strong> - Earn Quest Tokens for special equipment and upgrades</li>\n            </ul>\n            \n            <h4>Tips:</h4>\n            <ul>\n                <li>Bigger fish = more money and XP</li>\n                <li>Better rods let you catch stronger fish without breaking your line</li>\n                <li>Different lakes have different fish species</li>\n                <li>Seasons change as you fish - some fish are more common in certain seasons</li>\n                <li>Complete quests to earn Quest Tokens for powerful upgrades!</li>\n            </ul>\n            \n            <p style=\"text-align: center; margin-top: 1.5rem;\"><strong>Good luck and tight lines! 🎣</strong></p>\n        "
   },
   "changelog": [
+    {
+      "version": "1.0.11",
+      "date": "2024-11-16",
+      "changes": [
+        "More UI updates, added a few simple animations."
+      ]
+    },
     {
       "version": "1.0.10",
       "date": "2024-11-15",

@@ -124,6 +124,8 @@ function handleEquipmentClick(slot, id)
             gameState.equipped[slot] = id;
             addLog(`Purchased and equipped ${item.name}!`);
             playSound('sell');
+            checkAllAchievements();
+            popPanel(UI.headerTokens, ["pop", "attention"]);
             saveGame(true);
         }
     }
@@ -147,7 +149,9 @@ function handleUpgradeClick(id)
         addLog(`Purchased ${upgrade.name}!`);
         playSound('sell');
         saveGame(true);
+        checkAllAchievements();
         updateDisplay();
+        popPanel(UI.headerTokens, ["pop", "attention"]);
         updateTokenShop();
     }
 }
@@ -163,7 +167,9 @@ function handleConsumablePurchase(id)
         addLog(`Purchased ${consumable.name}!`);
         playSound('sell');
         saveGame(true);
+        checkAllAchievements();
         updateDisplay();
+        popPanel(UI.headerTokens, ["pop", "attention"]);
         updateTokenShop();
     }
 }
@@ -189,6 +195,7 @@ function useConsumable(id)
     addLog(`Activated ${consumable.name}! (${consumable.uses} casts)`);
     saveGame(true);
     updateConsumablesInventory();
+    checkAllAchievements();
 }
 
 function decrementConsumables()

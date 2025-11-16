@@ -51,7 +51,6 @@ body {
     flex-direction: column;
     align-items: center;
     align-content: center;
-    margin-top: auto;
 }
 
 .stat-label {
@@ -62,8 +61,7 @@ body {
 }
 
 .stat-value {
-    font-size: 1.125rem;
-    font-weight: bold;
+    font-size: 1rem;
 }
 
 #progress-header {
@@ -89,7 +87,7 @@ body {
     background: #1e3a8a;
     border-radius: 4px;
     overflow: hidden;
-    margin-top: 4px;
+    margin: auto 0;
 }
 
 .season-progress-fill {
@@ -110,7 +108,7 @@ body {
     background: #1e3a8a;
     border-radius: 4px;
     overflow: hidden;
-    margin-top: 4px;
+    margin: auto 0;
 }
 
 .exp-progress-fill {
@@ -181,24 +179,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
-}
-
-.pop {
-    animation: pop 0.5s ease-out;
-}
-
-@keyframes pop {
-    0% {
-        transform: scale(1);
-    }
-
-    30% {
-        transform: scale(1.15);
-    }
-
-    100% {
-        transform: scale(1);
-    }
 }
 
 /* Screens */
@@ -1713,11 +1693,11 @@ html, body {
     }
 
     .stat {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
     }
 
     .stat-value {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
     }
 
     /* Make progress bars more compact on mobile */
