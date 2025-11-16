@@ -179,7 +179,7 @@ function updateQuestDisplay()
             </div>
             <div class="quest-rewards">
                 <div class="quest-rewards-display">
-                    <span style="color: #93c5fd; font-size: 0.875rem; margin-bottom: 0.25rem;">Rewards:</span>
+                    <span style="color: #93c5fd; font-size: 0.875rem;">Rewards:</span>
                     <span>💰 $${q.reward.money}</span>
                     <span>⭐ ${q.reward.xp} XP</span>
                     <span>🎫 ${q.reward.tokens} Token${q.reward.tokens > 1 ? 's' : ''}</span>

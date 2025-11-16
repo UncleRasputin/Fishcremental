@@ -71,17 +71,20 @@ function updateLastCatchDisplay()
     if (gameState.lastCatch)
     {
         const fish = gameState.lastCatch;
-        UI.lastCatchDisplay.style.display = 'block';
         UI.lastCatchDisplay.innerHTML = `
             <div class="last-catch-title">Last Catch</div>
-            <div class="rarity-${fish.rarity}" style="font-weight: bold; font-size: 1.125rem;">${fish.name}</div>
+            <div class="rarity-${fish.rarity}" style="font-weight: bold;">${fish.name}</div>
             <div style="color: #93c5fd; margin-top: 0.25rem;">
-                ${formatFishMeasurements(fish)} | $${fish.value}
-            </div>`;
+                ${formatFishMeasurements(fish)} 
+            </div>
+            <div style="color: #93c5fd; margin-top: 0.25rem;">
+            $${fish.value}
+            </div>
+            `;
     }
     else
     {
-        UI.lastCatchDisplay.style.display = 'none';
+        UI.lastCatchDisplay.innerHTML = '<div class="last-catch-title">Last Catch</div><div></div><div>None</div>';
     }
 }
 
@@ -304,10 +307,10 @@ function updateStatsDisplay() {
         const lake = LAKES[lakeId];
         return `
             <div class="location-record">
-                <div class="location-record-name">${lake.name}</div>
                 <div class="location-record-stats">
-                    <div>Total Caught: ${records.totalCaught}</div>
+                    <div class="location-record-name">${lake.name}</div>
                     <div>Heaviest: ${formatRecord(records.heaviest)}</div>
+                    <div>Total Caught: ${records.totalCaught}</div>
                     <div>Largest: ${formatRecord(records.largest)}</div>
                 </div>
             </div>
