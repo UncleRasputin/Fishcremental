@@ -271,7 +271,7 @@ function getBite()
     gameState.currentFish = fish;
     const hint = getFishHint(fish.rarity);
     addLog(hint);
-    UI.fishDisplay.style.display = 'block';
+    notifyCatch(UI.fishDisplay);
     UI.fishStats.className = `rarity-${fish.rarity}`;
     UI.fishStats.textContent = hint;
 
@@ -376,6 +376,7 @@ function completeCatch(fish) {
     gameState.lastCatch = caughtFish;
 
     playSound('splash');
+
     checkQuestProgress(fish);
     updateRecords(fish, value);
     trackFishCaught(fish.id); // Track species and check achievements
@@ -383,6 +384,7 @@ function completeCatch(fish) {
     gameState.currentFish = null;
     gameState.progress = 0;
     updateDisplay();
+    notifyCatch(UI.lastCatchDisplay);
     checkAllAchievements(); // Check for level up, etc. achievements
     TryRecast();
 }

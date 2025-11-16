@@ -87,7 +87,11 @@ function updateLastCatchDisplay()
         UI.lastCatchDisplay.innerHTML = '<div class="last-catch-title">Last Catch</div><div></div><div>None</div>';
     }
 }
-
+function notifyCatch(panel) {
+    panel.classList.remove("pop"); 
+    void panel.offsetWidth;        
+    panel.classList.add("pop");
+}
 function updateInventoryDisplay()
 {
     if (gameState.inventory.length === 0)
