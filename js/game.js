@@ -224,7 +224,6 @@ function startCast() {
     UI.castButton.disabled = true;
     UI.castButton.textContent = 'Casting...';
     //UI.progressContainer.style.display = 'block';
-    UI.progressLabel.textContent = 'Casting';
 
     const rod = RODS[gameState.currentRod];
     const castTime = 2000 / rod.castSpeed;
@@ -249,8 +248,7 @@ function startCast() {
 function startWaiting() {
     gameState.waiting = true;
     gameState.progress = 0;
-    UI.castButton.textContent = 'Waiting...';
-    UI.progressLabel.textContent = 'Waiting for a bite';
+    UI.castButton.textContent = 'Waiting for a bite';
     addLog("Line cast! Waiting for a bite...");
     const waitTime = 3000 + Math.random() * 12000;
     const step = 100 / (waitTime / 100);
@@ -283,8 +281,7 @@ function getBite()
 function startReel(fish) {
     gameState.reeling = true;
     gameState.progress = 0;
-    UI.castButton.textContent = 'Reeling...';
-    UI.progressLabel.textContent = 'Reeling in';
+    UI.castButton.textContent = 'Reeling in...';
 
     // Play reel sound
     playSound('reel');
@@ -325,10 +322,9 @@ function completeCatch(fish) {
     stopReelSound();
     decrementConsumables();
     //UI.progressContainer.style.display = 'none';
-    UI.progressLabel.textContent = 'Idle';
-    UI.fishDisplay.style.display = 'none';
     UI.castButton.disabled = false;
     UI.castButton.textContent = 'Cast Line';
+    UI.fishStats.innerHTML = `&nbsp;`;
 
     document.querySelectorAll('.nav-button').forEach(btn => btn.disabled = false);
     const hasLuckyCoin = gameState.activeConsumables['lucky_coin'];

@@ -38,7 +38,6 @@ const UI = {
     upgradesOwnedContainer: document.getElementById('upgrades-owned-container'),
     castButton: document.getElementById('cast-button'),
     progressContainer: document.getElementById('progress-container'),
-    progressLabel: document.getElementById('progress-label'),
     progressFill: document.getElementById('progress-fill'),
     fishDisplay: document.getElementById('fish-display'),
     fishStats: document.getElementById('fish-stats'),
