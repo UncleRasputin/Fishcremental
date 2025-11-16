@@ -35,10 +35,10 @@ function updateDisplay()
 
     const rod = RODS[gameState.currentRod];
     const hook = HOOKS[gameState.currentHook];
+    const bait = BAITS[gameState.currentBait];
     UI.rodName.textContent = rod.name;
-    UI.rodStat.textContent = `Strength: ${rod.strength} Cast Speed: ${rod.castSpeed}x`;
     UI.hookName.textContent = hook.name;
-    UI.hookStat.textContent = `Size: ${hook.sizeMultiplier}x`;
+    UI.baitName.textContent = bait.name;
     UI.inventoryCount.textContent = gameState.inventory.length;
 
     let total = 0;

@@ -18,6 +18,7 @@ function updateOddsDisplay()
     const season = SEASONS[gameState.season];
     const rod = RODS[gameState.currentRod];
     const hook = HOOKS[gameState.currentHook];
+    const bait = BAITS[gameState.currentBait];
     const conditions = getCurrentConditions(gameState.currentLake, gameState.currentSpot, gameState.season);
     const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>fish.regions.includes(gameState.currentLake));
 
@@ -64,11 +65,15 @@ function updateOddsDisplay()
                 </div>
                 <div class="odds-info-row">
                     <span class="odds-label">Rod:</span>
-                    <span class="odds-value">${rod.name} - Strength: ${rod.strength} Cast Speed: ${rod.castSpeed}x</span>
+                    <span class="odds-value">${rod.name}</span>
                 </div>
                 <div class="odds-info-row">
                     <span class="odds-label">Hook:</span>
-                    <span class="odds-value">${hook.name} - Power: ${hook.sizeMultiplier}x</span>
+                    <span class="odds-value">${hook.name}</span>
+                </div>
+                <div class="odds-info-row">
+                    <span class="odds-label">Bait:</span>
+                    <span class="odds-value">${bait.name}</span>
                 </div>
             </div>
             
