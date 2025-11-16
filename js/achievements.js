@@ -153,6 +153,7 @@ const CATEGORY_NAMES = {
     special: '🏆 Special Fish',
     equipment: '⚙️ Equipment',
     tokens: '🎫 Tokens',
+    weights: '⚖️ Weights',
     other: '📋 Other'
 };
 

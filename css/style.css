@@ -1532,7 +1532,8 @@ body {
 }
 
 .odds-fish-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr max-content max-content;
     justify-content: space-between;
     align-items: center;
     background: #00003E;
@@ -1581,6 +1582,17 @@ body {
     color: #93c5fd;
     text-transform: capitalize;
 }
+.odds-percentage {
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.3rem;
+    margin-right: 0.25rem;
+    border-radius: 12px;
+    white-space: nowrap;
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+    border: 1px solid #6b7280;
+}
 
 .odds-modifier {
     font-weight: 600;
@@ -1589,7 +1601,6 @@ body {
     border-radius: 12px;
     white-space: nowrap;
 }
-
     .odds-modifier.positive {
         background: rgba(34, 197, 94, 0.2);
         color: #86efac;

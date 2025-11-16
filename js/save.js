@@ -178,7 +178,7 @@ function migrateV2toV3(oldData) {
                 activeConsumables: gs.activeConsumables || {},
                 consumableInventory: gs.consumableInventory || {},
 
-                upgrades: gs.upgrades || { recaster: false },
+                upgrades: gs.upgrades || { recaster: false, fishfinder: false },
 
                 stats: gs.stats || {
                     totalCasts: 0,

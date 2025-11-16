@@ -120,27 +120,25 @@ function advanceTime(amount) {
     updateDisplay();
 }
 
-// Fish generation
-function rollFish() {
-    const region = gameState.currentLake;
-    const hookSizeMultiplier = HOOKS[gameState.currentHook].sizeMultiplier;
 
+
+
+function getFishPool() {
     const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>
-        fish.regions.includes(region)
+        fish.regions.includes(gameState.currentLake)
     );
-
     let pool = [];
     availableFish.forEach(([id, fish]) => {
         let weight = RARITY_WEIGHTS[fish.rarity];
-        
+
         // Note: Hook size doesn't affect rarity weights (future: baits will modify these)
         //if (fish.rarity === 'epic') weight *= baitPower * 0.6;
         //if (fish.rarity === 'legendary') weight *= baitPower * 0.4;
 
         // Apply fishing conditions modifier (location + season specific)
         const conditionModifier = getFishingModifier(
-            gameState.currentLake, 
-            gameState.currentSpot, 
+            gameState.currentLake,
+            gameState.currentSpot,
             gameState.season,
             gameState.currentBait,
             id
@@ -151,6 +149,36 @@ function rollFish() {
 
         for (let i = 0; i < weight; i++) pool.push(id);
     });
+    return pool;
+}
+
+function getPoolOdds(pool) {
+    const counts = pool.reduce((acc, item) => {
+        acc[item] = (acc[item] || 0) + 1;
+        return acc;
+    }, {});
+
+    // Convert to percentages
+    const total = pool.length;
+    const result = Object.entries(counts).map(([value, count]) => ({
+        value,
+        count,
+        percent: (count / total) * 100
+    }));
+    result.sort((a, b) => b.count - a.count);
+    return result;
+}
+
+// Fish generation
+function rollFish() {
+    const region = gameState.currentLake;
+    const hookSizeMultiplier = HOOKS[gameState.currentHook].sizeMultiplier;
+
+    const availableFish = Object.entries(FISH_DB).filter(([_, fish]) =>
+        fish.regions.includes(region)
+    );
+
+    let pool = getFishPool();
 
     const fishId = pool[Math.floor(Math.random() * pool.length)];
     const fishData = FISH_DB[fishId];
@@ -426,4 +454,8 @@ function sellAll()
     checkAllAchievements();
     updateDisplay();
     updateInventoryDisplay();
+}
+
+function getHeaviestFishWeightLB() {
+    return (gameState.records.heaviestFish.weight * 2.20462).toFixed(2);
 }

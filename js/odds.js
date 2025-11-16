@@ -8,7 +8,9 @@ function closeOddsModal()
 {
     UI.oddsModal.style.display = 'none';
 }
-
+function truncateToTwoDecimals(number) {
+    return Math.trunc(number * 100) / 100;
+}
 function updateOddsDisplay()
 {
     const lake = LAKES[gameState.currentLake];
@@ -21,13 +23,21 @@ function updateOddsDisplay()
 
     const catchable = [];
     const tooStrong = [];
+
+    let fishpoolodds = getPoolOdds(getFishPool())
+    const percentLookup = Object.fromEntries(
+        fishpoolodds.map(r => [r.value, r])
+    );
+
     availableFish.forEach(([fishId, fish]) =>
     {
         const modifier = getFishingModifier(gameState.currentLake, gameState.currentSpot, gameState.season, gameState.currentBait, fishId);
+        const oddspercent = percentLookup[fishId] || { count: 0, percent: 0 };
         const fishData = {
             id: fishId,
             ...fish,
-            modifier: modifier
+            modifier: modifier,
+            ...oddspercent
         };
         
         if (fish.strength <= rod.strength) 
@@ -80,6 +90,11 @@ function updateOddsDisplay()
                         } else {
                             modifierHTML = `<span class="odds-modifier neutral">—</span>`;
                         }
+
+                        let percentOdds = `<span></span>`;
+                        if (gameState.upgrades["fishfinder"])
+                            percentOdds = `<span class="odds-percentage">${truncateToTwoDecimals(fish.percent)}%</span>`;
+
                         
                         return `
                             <div class="odds-fish-item ${modifierClass}">
@@ -87,6 +102,7 @@ function updateOddsDisplay()
                                     <span class="rarity-${fish.rarity}">${fish.name}</span>
                                     <span class="odds-fish-rarity">(${fish.rarity})</span>
                                 </div>
+                                ${percentOdds}
                                 ${modifierHTML}
                             </div>
                         `;
@@ -98,15 +114,20 @@ function updateOddsDisplay()
                     <div class="odds-too-strong-section">
                         <h4>Too Strong for Current Rod</h4>
                         <div class="odds-fish-list">
-                            ${tooStrong.map(fish => `
+                            ${tooStrong.map(fish => {
+                                let percentOdds = `<span></span>`;
+                                if (gameState.upgrades["fishfinder"])
+                                    percentOdds = `<span class="odds-percentage">${truncateToTwoDecimals(fish.percent)}%</span>`;
+                                return `
                                 <div class="odds-fish-item too-strong-item">
                                     <div class="odds-fish-name">
                                         <span style="color: #6b7280;">${fish.name}</span>
                                         <span class="odds-fish-rarity" style="color: #6b7280;">(${fish.rarity})</span>
                                     </div>
+                                    ${percentOdds}
                                     <span class="odds-modifier" style="color: #6b7280;">Str: ${fish.strength}</span>
                                 </div>
-                            `).join('')}
+                            `}).join('')}
                         </div>
                     </div>
                 ` : ''}
