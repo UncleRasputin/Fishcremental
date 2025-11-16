@@ -54,8 +54,9 @@ function updateDisplay()
     {
         gameState.level++;
         gameState.xp -= xpNeeded;
-        playSound('level');
         addLog(`Level up! You are now level ${gameState.level}`);
+        playSound('level');
+        popPanel(UI.level, ["attention"]);
         updateDisplay();
         xpNeeded = gameState.level * 100;
     }

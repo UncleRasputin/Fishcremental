@@ -111,6 +111,8 @@ function advanceTime(amount) {
         gameState.seasonProgress = 0;
         gameState.season = (gameState.season + 1) % 4;
         addLog(`Season changed to ${SEASONS[gameState.season]}!`);
+        playSound('season');
+        popPanel(UI.season, ["attention"]);
         trackSeasonChange(oldSeason); // Track season and check achievements
 
         // Check quest cooldown on season change
