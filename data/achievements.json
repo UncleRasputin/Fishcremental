@@ -215,6 +215,24 @@
     "condition": "gameState.stats.questsCompleted >= 10",
     "unlocked": false
   },
+  "fishfinder": {
+    "id": "fishfinder",
+    "name": "Obtain a Fish Finder",
+    "description": "Purchase the Fish Finder upgrade from the token shop",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.upgrades['fishfinder']",
+    "unlocked": false
+  },
+  "recaster": {
+    "id": "recaster",
+    "name": "Obtain the Recaster",
+    "description": "Purchase the Recaster upgrade from the token shop",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.upgrades['recaster']",
+    "unlocked": false
+  },
   "quest_legend": {
     "id": "quest_legend",
     "name": "Quest Legend",
@@ -510,6 +528,69 @@
     "icon": "🎫",
     "category": "tokens",
     "condition": "gameState.stats.totalTokensEarned >= 100",
+    "unlocked": false
+  },
+  "big_fish": {
+    "id": "big_fish",
+    "name": "Catch a Biggun!",
+    "description": "Catch any fish over 5lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=5",
+    "unlocked": false
+  },
+  "heavy_fish": {
+    "id": "heavy_fish",
+    "name": "Catch a Heavy!",
+    "description": "Catch any fish over 15lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=15",
+    "unlocked": false
+  },
+  "lunker_fish": {
+    "id": "lunker_fish",
+    "name": "Catch a Lunker!",
+    "description": "Catch any fish over 25lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=25",
+    "unlocked": false
+  },
+  "giant_fish": {
+    "id": "giant_fish",
+    "name": "Catch a Giant!",
+    "description": "Catch any fish over 50lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=50",
+    "unlocked": false
+  },
+  "mammoth_fish": {
+    "id": "mammoth_fish",
+    "name": "Catch a Mammoth!",
+    "description": "Catch any fish over 100lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=100",
+    "unlocked": false
+  },
+  "unreal_fish": {
+    "id": "unreal_fish",
+    "name": "Catch an unreal fish!",
+    "description": "Catch any fish over 250lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=250",
+    "unlocked": false
+  },
+  "impossible_fish": {
+    "id": "impossible_fish",
+    "name": "Catch an impossible fish!",
+    "description": "Catch any fish over 500lb",
+    "icon": "⚖️",
+    "category": "weights",
+    "condition": "getHeaviestFishWeightLB() >=500",
     "unlocked": false
   }
 }

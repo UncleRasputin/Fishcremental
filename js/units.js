@@ -28,6 +28,8 @@ function formatFishMeasurements(fish)
     return `${convertWeight(fish.weight)}${getWeightUnit()}, ${convertSize(fish.size)}${getSizeUnit()}`;
 }
 
+
+
 function toggleUnits()
 {
     gameState.useImperial = !gameState.useImperial;

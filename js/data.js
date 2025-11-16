@@ -48,7 +48,8 @@ let gameState = {
         boots: 'none'
     },
     upgrades: {
-        recaster: false
+        recaster: false,
+        fishfinder: false
     },
     activeConsumables: {},
     consumableInventory: {},
