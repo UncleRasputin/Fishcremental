@@ -176,6 +176,7 @@ function updateAchievementsDisplay() {
                 </div>
             </div>
         </div>
+        <div class="achievement-body">
     `;
     
     // Sort categories by name
@@ -221,7 +222,7 @@ function updateAchievementsDisplay() {
         `;
     });
     
-    container.innerHTML = html;
+    container.innerHTML = html + '</div>';
 }
 
 // Open achievements modal
