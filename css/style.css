@@ -74,7 +74,8 @@ body {
 }
 #fish-stats
 {
-    text-align:right;
+    text-align:center;
+    margin-bottom:0.1rem;
 }
 
 .season-progress-container {
@@ -403,6 +404,7 @@ body {
     background: #1e3a8a;
     border-radius: 9999px;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 .progress-fill {
@@ -1470,7 +1472,7 @@ body {
 .fishing-actions {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .cast-button {
