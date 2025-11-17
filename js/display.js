@@ -92,6 +92,7 @@ function popPanel(panel, size = ["pop"]) {
     panel.classList.remove(...size); 
     void panel.offsetWidth;        
     panel.classList.add(...size);
+    setTimeout(() => { panel.classList.remove(...size); }, 1000);
 }
 function updateInventoryDisplay()
 {
