@@ -491,7 +491,7 @@
     "description": "Fish for two years",
     "icon": "📅",
     "category": "seasons",
-    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 2",
+    "condition": "Math.min(...Object.values(gameState.stats.seasonsPassed)) >= 2",
     "unlocked": false
   },
   "five_years": {
@@ -500,7 +500,7 @@
     "description": "Fish for five years",
     "icon": "📅",
     "category": "seasons",
-    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 5",
+    "condition": "Math.min(...Object.values(gameState.stats.seasonsPassed)) >= 5",
     "unlocked": false
   },
   "ten_years": {
@@ -509,7 +509,7 @@
     "description": "Fish for ten years",
     "icon": "📅",
     "category": "seasons",
-    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 10",
+    "condition": "Math.min(...Object.values(gameState.stats.seasonsPassed)) >= 10",
     "unlocked": false
   },
   "level_5": {
