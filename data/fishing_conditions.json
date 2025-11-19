@@ -1,5 +1,117 @@
 [
   {
+    "lake": "willow",
+    "spot": 0,
+    "season": 0,
+    "fish": "bluegill",
+    "modifier": 20
+  },
+  {
+    "lake": "willow",
+    "spot": 0,
+    "season": 1,
+    "fish": "bluegill",
+    "modifier": 25
+  },
+  {
+    "lake": "willow",
+    "spot": 1,
+    "season": 2,
+    "fish": "green_sunfish",
+    "modifier": 20
+  },
+  {
+    "lake": "willow",
+    "spot": 2,
+    "season": 0,
+    "fish": "pumpkinseed",
+    "modifier": 25
+  },
+  {
+    "lake": "willow",
+    "spot": 2,
+    "season": 1,
+    "fish": "rock_bass",
+    "modifier": 20
+  },
+  {
+    "lake": "millers",
+    "spot": 0,
+    "season": 0,
+    "fish": "brook_trout",
+    "modifier": 30
+  },
+  {
+    "lake": "millers",
+    "spot": 0,
+    "season": 3,
+    "fish": "brook_trout",
+    "modifier": 20
+  },
+  {
+    "lake": "millers",
+    "spot": 1,
+    "season": 1,
+    "fish": "smallmouth",
+    "modifier": 20
+  },
+  {
+    "lake": "millers",
+    "spot": 2,
+    "season": 0,
+    "fish": "largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "millers",
+    "spot": 2,
+    "season": 2,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "clearwater",
+    "spot": 0,
+    "season": 1,
+    "fish": "largemouth",
+    "modifier": 20
+  },
+  {
+    "lake": "clearwater",
+    "spot": 0,
+    "season": 2,
+    "fish": "largemouth",
+    "modifier": 15
+  },
+  {
+    "lake": "clearwater",
+    "spot": 1,
+    "season": 0,
+    "fish": "bluegill",
+    "modifier": 25
+  },
+  {
+    "lake": "clearwater",
+    "spot": 1,
+    "season": 1,
+    "fish": "bluegill",
+    "modifier": 20
+  },
+  {
+    "lake": "clearwater",
+    "spot": 2,
+    "season": 3,
+    "fish": "crappie_black",
+    "modifier": 25
+  },
+  {
+    "lake": "clearwater",
+    "spot": 2,
+    "season": 0,
+    "fish": "crappie_black",
+    "modifier": 20
+  },
+  {
     "lake": "fork",
     "spot": 0,
     "season": 1,

@@ -95,6 +95,7 @@ function checkQuestProgress(fish)
     if (gameState.quest.caught >= gameState.quest.quantity) {
         completeQuest();
         popPanel(UI.headerTokens, ["attention"]);
+        playSound('quest');
     }
     updateQuestDisplay();
 }

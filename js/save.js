@@ -15,6 +15,7 @@ function saveGame(silent = false) {
     try {
         const saveData = {
             version: CURRENT_SAVE_VERSION,
+            last_game_version: GAME_INFO.version,
             timestamp: Date.now(),
 
             player: {
@@ -98,6 +99,7 @@ function loadGame() {
         applySaveData(migratedData);
 
         updateDisplay();
+
         return true;
     }
     catch (error) {
@@ -219,6 +221,7 @@ function applySaveData(data) {
         gameState.questTokens = data.player.questTokens;
         gameState.useImperial = data.player.useImperial;
     }
+    gameState.last_game_version = data.last_game_version;
 
     if (data.phases && data.phases.freshwater) {
         const fw = data.phases.freshwater;

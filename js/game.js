@@ -93,6 +93,10 @@ function travelTo(lakeId, spotIdx) {
 
 function unlockLake(id) {
     const lake = LAKES[id];
+    if (lake.levelRequired && gameState.level < lake.levelRequired) {
+        addLog(`You need to be level ${lake.levelRequired} to unlock ${lake.name}`);
+        return;
+    }
     if (!lake.unlocked && gameState.money >= lake.unlockCost) {
         gameState.money -= lake.unlockCost;
         lake.unlocked = true;
@@ -267,8 +271,7 @@ function startWaiting() {
     }, 100);
 }
 
-function getBite()
-{
+function getBite() {
     const fish = rollFish();
     gameState.currentFish = fish;
     const hint = getFishHint(fish.rarity);
@@ -306,8 +309,7 @@ function startReel(fish) {
 
 function TryRecast() {
     // Auto-recast if recaster is active
-    if (gameState.upgrades.recaster)
-    {
+    if (gameState.upgrades.recaster) {
         if (!gameState.recasting) {
             gameState.recasting = true;
             setTimeout(() => startCast(), 500);
@@ -315,7 +317,7 @@ function TryRecast() {
         else {
             gameState.recasting = false;
         }
-            
+
     }
 }
 
@@ -331,8 +333,7 @@ function completeCatch(fish) {
     document.querySelectorAll('.nav-button').forEach(btn => btn.disabled = false);
     const hasLuckyCoin = gameState.activeConsumables['lucky_coin'];
 
-    if (rod.strength < fish.actualStrength && !hasLuckyCoin)
-    {
+    if (rod.strength < fish.actualStrength && !hasLuckyCoin) {
         gameState.stats.lineBreaks++;
         playSound('snap');
         checkAllAchievements(); // Check for line break achievements
@@ -350,8 +351,7 @@ function completeCatch(fish) {
     fish.size = parseFloat(modifiedSize.toFixed(1));
 
     const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight) * (1 + bonuses.sellValue / 100));
-    if (value === 0)
-    {
+    if (value === 0) {
         gameState.stats.fishThrownBack++;
         checkAllAchievements(); // Check for thrown back achievements
         playSound('splash');
@@ -363,7 +363,7 @@ function completeCatch(fish) {
     }
 
     gameState.stats.fishCaught++;
-    let xpGain = Math.floor(value / 2);
+    let xpGain = Math.floor(value / ((Math.random() * 1.5) + 0.5));
 
     if (bonuses.xpBonus)
         xpGain = Math.floor(xpGain * (1 + bonuses.xpBonus / 100));
@@ -386,17 +386,16 @@ function completeCatch(fish) {
     gameState.currentFish = null;
     gameState.progress = 0;
     updateDisplay();
-    popPanel(UI.lastCatchDisplay,["attention-pop"]);
+    popPanel(UI.lastCatchDisplay, ["attention-pop"]);
     checkAllAchievements(); // Check for level up, etc. achievements
     TryRecast();
 }
 
-function updateRecords(fish, value)
-{
-    if (!gameState.records.heaviestFish || fish.weight > gameState.records.heaviestFish.weight) 
+function updateRecords(fish, value) {
+    if (!gameState.records.heaviestFish || fish.weight > gameState.records.heaviestFish.weight)
         gameState.records.heaviestFish = { ...fish, value };
 
-    if (!gameState.records.largestFish || fish.size > gameState.records.largestFish.size) 
+    if (!gameState.records.largestFish || fish.size > gameState.records.largestFish.size)
         gameState.records.largestFish = { ...fish, value };
 
     if (!gameState.records.mostValuable || value > gameState.records.mostValuable.value)
@@ -406,8 +405,7 @@ function updateRecords(fish, value)
         gameState.records.rarestCatch = { ...fish, value };
 
     const location = gameState.currentLake;
-    if (!gameState.records.byLocation[location])
-    {
+    if (!gameState.records.byLocation[location]) {
         gameState.records.byLocation[location] =
         {
             heaviest: null,
@@ -419,15 +417,14 @@ function updateRecords(fish, value)
     const locRecords = gameState.records.byLocation[location];
     locRecords.totalCaught++;
 
-    if (!locRecords.heaviest || fish.weight > locRecords.heaviest.weight) 
+    if (!locRecords.heaviest || fish.weight > locRecords.heaviest.weight)
         locRecords.heaviest = { ...fish, value };
 
     if (!locRecords.largest || fish.size > locRecords.largest.size)
         locRecords.largest = { ...fish, value };
 }
 
-function sellFish(idx)
-{
+function sellFish(idx) {
     const fish = gameState.inventory[idx];
     gameState.money += fish.value;
     gameState.stats.totalMoneyEarned += fish.value;
@@ -440,8 +437,7 @@ function sellFish(idx)
     updateInventoryDisplay();
 }
 
-function sellAll()
-{
+function sellAll() {
     const total = gameState.inventory.reduce((sum, fish) => sum + fish.value, 0);
     gameState.money += total;
     gameState.stats.totalMoneyEarned += total;
@@ -450,10 +446,12 @@ function sellAll()
     playSound('sell');
     checkAllAchievements();
     updateDisplay();
-    popPanel(UI.money,["pop","attention"]);
+    popPanel(UI.money, ["pop", "attention"]);
     updateInventoryDisplay();
 }
 
 function getHeaviestFishWeightLB() {
+    if (!gameState.records.heaviestFish)
+        return 0;
     return (gameState.records.heaviestFish.weight * 2.20462).toFixed(2);
 }

@@ -1,24 +1,21 @@
-function addLog(msg)
-{
+function addLog(msg) {
     gameState.log.unshift({ msg, time: Date.now() });
     gameState.log = gameState.log.slice(0, 15);
     updateLogDisplay();
 }
 
-function updateLogDisplay()
-{
+function updateLogDisplay() {
     UI.logContainer.innerHTML = gameState.log.map(entry =>
         `<div class="log-entry">${entry.msg}</div>`
     ).join('');
 }
 function showVersion() {
     UI.gameVersion.textContent = 'v' + GAME_INFO.version;
-    UI.gameVersion.addEventListener('click',() => {openInfoModal('changelog')});
+    UI.gameVersion.addEventListener('click', () => { openInfoModal('changelog') });
 }
-function updateDisplay()
-{
+function updateDisplay() {
     UI.money.textContent = '$' + gameState.money;
-    UI.level.textContent = 'Level '+gameState.level;
+    UI.level.textContent = 'Level ' + gameState.level;
 
     const expProgressPercent = (gameState.xp / (gameState.level * 100)) * 100;
     UI.expProgress.style.width = expProgressPercent + '%';
@@ -50,8 +47,7 @@ function updateDisplay()
     updateLastCatchDisplay();
 
     let xpNeeded = gameState.level * 100;
-    while (gameState.xp >= xpNeeded)
-    {
+    while (gameState.xp >= xpNeeded) {
         gameState.level++;
         gameState.xp -= xpNeeded;
         addLog(`Level up! You are now level ${gameState.level}`);
@@ -64,13 +60,11 @@ function updateDisplay()
     autoSave();
 }
 
-function updateLastCatchDisplay()
-{
+function updateLastCatchDisplay() {
     if (!UI.lastCatchDisplay)
         return;
 
-    if (gameState.lastCatch)
-    {
+    if (gameState.lastCatch) {
         const fish = gameState.lastCatch;
         UI.lastCatchDisplay.innerHTML = `
             <div class="last-catch-title">Last Catch</div>
@@ -83,25 +77,21 @@ function updateLastCatchDisplay()
             </div>
             `;
     }
-    else
-    {
+    else {
         UI.lastCatchDisplay.innerHTML = '<div class="last-catch-title">Last Catch</div><div></div><div>None</div>';
     }
 }
 function popPanel(panel, size = ["pop"]) {
-    panel.classList.remove(...size); 
-    void panel.offsetWidth;        
+    panel.classList.remove(...size);
+    void panel.offsetWidth;
     panel.classList.add(...size);
     setTimeout(() => { panel.classList.remove(...size); }, 1000);
 }
-function updateInventoryDisplay()
-{
-    if (gameState.inventory.length === 0)
-    {
+function updateInventoryDisplay() {
+    if (gameState.inventory.length === 0) {
         UI.inventoryGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #93c5fd;">No fish caught yet. Go fishing!</div>';
     }
-    else
-    {
+    else {
         UI.inventoryGrid.innerHTML = gameState.inventory.map((fish, i) => `
             <div class="inventory-item">
                 <div class="rarity-${fish.rarity}">${fish.name}</div>
@@ -111,8 +101,7 @@ function updateInventoryDisplay()
     }
 }
 
-const renderFish = fishid =>
-{
+const renderFish = fishid => {
     const f = FISH_DB[fishid];
     return `<span class="rarity-${f.rarity}">${f.name}</span>`;
 };
@@ -245,13 +234,20 @@ function updateTravelDisplay() {
             </div>
         `;
     } else {
+        const levelReqText = lake.levelRequired ? `<div style="color: #fbbf24; margin: 0.5rem 0; font-size: 0.875rem;">Requires Level ${lake.levelRequired}</div>` : '';
+        const meetsLevelReq = !lake.levelRequired || gameState.level >= lake.levelRequired;
+        const canAfford = gameState.money >= lake.unlockCost;
+        const unlockDisabled = !meetsLevelReq || !canAfford;
+        const unlockText = !meetsLevelReq ? `Level ${lake.levelRequired} Required` : `Unlock for $${lake.unlockCost}`;
+
         mainContent = `
             <div class="travel-main-card locked">
                 <div class="travel-locked-content">
                     <div class="travel-lock-icon">🔒</div>
                     <div class="travel-locked-text">This location is locked</div>
-                    <button class="unlock-button" onclick="unlockLake('${currentLakeKey}')" ${gameState.money < lake.unlockCost ? 'disabled' : ''}>
-                        Unlock for $${lake.unlockCost}
+                    ${levelReqText}
+                    <button class="unlock-button" onclick="unlockLake('${currentLakeKey}')" ${unlockDisabled ? 'disabled' : ''}>
+                        ${unlockText}
                     </button>
                 </div>
             </div>
@@ -263,15 +259,15 @@ function updateTravelDisplay() {
             <div class="travel-nav-header">
                 <button class="travel-nav-button" onclick="changeTravelLocation(-1)" ${prevDisabled ? 'disabled' : ''}>
                     ◀ Previous
-                </button>
+                </button >
                 <h2 class="travel-current-lake">${lake.name}</h2>
                 <button class="travel-nav-button" onclick="changeTravelLocation(1)" ${nextDisabled ? 'disabled' : ''}>
                     Next ▶
                 </button>
-            </div>
-            ${mainContent}
-        </div>
-    `;
+            </div >
+                ${mainContent}
+        </div >
+                `;
 }
 
 function changeTravelLocation(direction) {
@@ -320,6 +316,6 @@ function updateStatsDisplay() {
                     <div>Largest: ${formatRecord(records.largest)}</div>
                 </div>
             </div>
-        `;
+            `;
     }).join('') || '<div style="color: #93c5fd; text-align: center; padding: 1rem;">No records yet. Go fishing!</div>';
 }

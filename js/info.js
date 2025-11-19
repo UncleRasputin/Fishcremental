@@ -131,12 +131,17 @@ function renderAbout()
 function checkFirstTimePlayer()
 {
     const hasSeenIntro = !!localStorage.getItem('fishcremental_seen_intro');
-    if (!hasSeenIntro)
-    {
+    if (!hasSeenIntro) {
         setTimeout(() => {
             openInfoModal('intro');
             localStorage.setItem('fishcremental_seen_intro', 'true');
         }, 500);
+    }
+    else {
+        if (GAME_INFO.version != gameState.last_game_version) {
+            openInfoModal('changelog');
+            gameState.last_game_version = GAME_INFO.version;
+        }
     }
 }
 
