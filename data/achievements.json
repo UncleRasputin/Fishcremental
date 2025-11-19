@@ -188,13 +188,13 @@
     "condition": "gameState.stats.lineBreaks >= 1",
     "unlocked": false
   },
-  "catch_and_release": {
-    "id": "catch_and_release",
-    "name": "Catch and Release",
-    "description": "Throw back 10 fish",
-    "icon": "🔄",
+  "line_breaker5": {
+    "id": "line_breaker5",
+    "name": "Dangit!",
+    "description": "Break your line 5 times",
+    "icon": "💔",
     "category": "mishaps",
-    "condition": "gameState.stats.fishThrownBack >= 10",
+    "condition": "gameState.stats.lineBreaks >= 5",
     "unlocked": false
   },
   "quest_starter": {
@@ -233,6 +233,24 @@
     "condition": "gameState.upgrades['recaster']",
     "unlocked": false
   },
+  "quest_king": {
+    "id": "quest_king",
+    "name": "Quest King",
+    "description": "Complete 5 quests",
+    "icon": "📜",
+    "category": "quests",
+    "condition": "gameState.stats.questsCompleted >= 5",
+    "unlocked": false
+  },
+  "quest_champion": {
+    "id": "quest_champion",
+    "name": "Quest Champion",
+    "description": "Complete 25 quests",
+    "icon": "📜",
+    "category": "quests",
+    "condition": "gameState.stats.questsCompleted >= 25",
+    "unlocked": false
+  },
   "quest_legend": {
     "id": "quest_legend",
     "name": "Quest Legend",
@@ -258,6 +276,33 @@
     "icon": "🗺️",
     "category": "exploration",
     "condition": "Object.values(LAKES).filter(l => l.unlocked).length >= Object.keys(LAKES).length",
+    "unlocked": false
+  },
+  "willow_master": {
+    "id": "willow_master",
+    "name": "Willow Pond Master",
+    "description": "Catch all fish species available at Willow Pond",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('willow')",
+    "unlocked": false
+  },
+  "millers_master": {
+    "id": "millers_master",
+    "name": "Miller's Creek Master",
+    "description": "Catch all fish species available at Miller's Creek",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('millers')",
+    "unlocked": false
+  },
+  "clearwater_master": {
+    "id": "clearwater_master",
+    "name": "Clearwater Lake Master",
+    "description": "Catch all fish species available at Clearwater Lake",
+    "icon": "🏆",
+    "category": "collections",
+    "condition": "checkLakeCompletion('clearwater')",
     "unlocked": false
   },
   "fork_master": {
@@ -440,6 +485,33 @@
     "condition": "gameState.stats.seasonsPassed?.spring >= 1 && gameState.stats.seasonsPassed?.summer >= 1 && gameState.stats.seasonsPassed?.fall >= 1 && gameState.stats.seasonsPassed?.winter >= 1",
     "unlocked": false
   },
+  "two_years": {
+    "id": "two_years",
+    "name": "Second Anniversary",
+    "description": "Fish for two years",
+    "icon": "📅",
+    "category": "seasons",
+    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 2",
+    "unlocked": false
+  },
+  "five_years": {
+    "id": "five_years",
+    "name": "Five Year Anniversary",
+    "description": "Fish for five years",
+    "icon": "📅",
+    "category": "seasons",
+    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 5",
+    "unlocked": false
+  },
+  "ten_years": {
+    "id": "ten_years",
+    "name": "Ten Year Anniversary",
+    "description": "Fish for ten years",
+    "icon": "📅",
+    "category": "seasons",
+    "condition": "Math.min(Object.values(gameState.stats.seasonsPassed)) >= 10",
+    "unlocked": false
+  },
   "level_5": {
     "id": "level_5",
     "name": "Level 5",
@@ -512,6 +584,96 @@
     "condition": "Object.entries(RODS).some(([id, rod]) => rod.unlocked && rod.cost >= 5000)",
     "unlocked": false
   },
+  "rod_first": {
+    "id": "rod_first",
+    "name": "Better than that starter rod",
+    "description": "Buy a fishing rod",
+    "icon": "🎣",
+    "category": "equipment",
+    "condition": "Object.values(RODS).filter(l => l.unlocked).length >= 2",
+    "unlocked": false
+  },
+  "rod_owner": {
+    "id": "rod_owner",
+    "name": "A few more won't hurt",
+    "description": "Own 5 fishing rods",
+    "icon": "🎣",
+    "category": "equipment",
+    "condition": "Object.values(RODS).filter(l => l.unlocked).length >= 5",
+    "unlocked": false
+  },
+  "rod_collector": {
+    "id": "rod_collector",
+    "name": "But I need these rods too",
+    "description": "Own 10 fishing rods",
+    "icon": "🎣",
+    "category": "equipment",
+    "condition": "Object.values(RODS).filter(l => l.unlocked).length >= 10",
+    "unlocked": false
+  },
+  "rod_hoarder": {
+    "id": "rod_hoarder",
+    "name": "Ok, maybe it's an obsession....",
+    "description": "Own all of the fishing rods",
+    "icon": "🎣",
+    "category": "equipment",
+    "condition": "Object.values(RODS).filter(l => !l.unlocked ).length == 0",
+    "unlocked": false
+  },
+  "hook_first": {
+    "id": "hook_first",
+    "name": "Bigger hook = bigger fish!",
+    "description": "Buy a fishing hook",
+    "icon": "🪝",
+    "category": "equipment",
+    "condition": "Object.values(HOOKS).filter(l => l.unlocked).length >= 2",
+    "unlocked": false
+  },
+  "hook_all": {
+    "id": "hook_all",
+    "name": "A fine collection!",
+    "description": "Buy all of the fishing hooks",
+    "icon": "🪝",
+    "category": "equipment",
+    "condition": "Object.values(HOOKS).filter(l => !l.unlocked ).length == 0",
+    "unlocked": false
+  },
+  "bait_first": {
+    "id": "bait_first",
+    "name": "Target fish with the proper bait!",
+    "description": "Buy bait!",
+    "icon": "🪱",
+    "category": "equipment",
+    "condition": "Object.values(BAITS).filter(l => l.unlocked).length >= 2",
+    "unlocked": false
+  },
+  "bait_five": {
+    "id": "bait_five",
+    "name": "You need different baits...",
+    "description": "Own 5 different baits",
+    "icon": "🪱",
+    "category": "equipment",
+    "condition": "Object.values(BAITS).filter(l => l.unlocked).length >= 5",
+    "unlocked": false
+  },
+  "bait_ten": {
+    "id": "bait_ten",
+    "name": "There are a lot of different fish..",
+    "description": "Own 10 different baits",
+    "icon": "🪱",
+    "category": "equipment",
+    "condition": "Object.values(BAITS).filter(l => l.unlocked).length >= 10",
+    "unlocked": false
+  },
+  "bait_all": {
+    "id": "bait_all",
+    "name": "Gotta catch them all....",
+    "description": "Own all baits",
+    "icon": "🪱",
+    "category": "equipment",
+    "condition": "Object.values(BAITS).filter(l => !l.unlocked ).length == 0",
+    "unlocked": false
+  },
   "fully_equipped": {
     "id": "fully_equipped",
     "name": "Fully Equipped",
@@ -519,6 +681,33 @@
     "icon": "⚙️",
     "category": "equipment",
     "condition": "Object.values(gameState.equipped).every(slot => slot !== 'none')",
+    "unlocked": false
+  },
+  "token_finder": {
+    "id": "token_finder",
+    "name": "Token Finder",
+    "description": "Earn 10 Quest Tokens",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.stats.totalTokensEarned >= 10",
+    "unlocked": false
+  },
+  "token_seeker": {
+    "id": "token_seeker",
+    "name": "Token Seeker",
+    "description": "Earn 25 Quest Tokens",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.stats.totalTokensEarned >= 25",
+    "unlocked": false
+  },
+  "token_accumulator": {
+    "id": "token_accumulator",
+    "name": "Token Accumulator",
+    "description": "Earn 50 Quest Tokens",
+    "icon": "🎫",
+    "category": "tokens",
+    "condition": "gameState.stats.totalTokensEarned >= 50",
     "unlocked": false
   },
   "token_collector": {

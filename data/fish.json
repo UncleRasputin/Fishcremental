@@ -1,11 +1,74 @@
 {
+  "pumpkinseed": {
+    "name": "Pumpkinseed Sunfish",
+    "rarity": "common",
+    "baseValue": 2,
+    "baseWeight": 0.3,
+    "strength": 1,
+    "regions": [
+      "willow",
+      "clearwater"
+    ]
+  },
+  "rock_bass": {
+    "name": "Rock Bass",
+    "rarity": "common",
+    "baseValue": 3,
+    "baseWeight": 0.4,
+    "strength": 2,
+    "regions": [
+      "willow",
+      "millers",
+      "clearwater"
+    ]
+  },
+  "creek_chub": {
+    "name": "Creek Chub",
+    "rarity": "common",
+    "baseValue": 1,
+    "baseWeight": 0.2,
+    "strength": 1,
+    "regions": [
+      "millers"
+    ]
+  },
+  "brook_trout": {
+    "name": "Brook Trout",
+    "rarity": "uncommon",
+    "baseValue": 12,
+    "baseWeight": 1.5,
+    "strength": 8,
+    "regions": [
+      "millers"
+    ]
+  },
+  "yellow_bullhead": {
+    "name": "Yellow Bullhead",
+    "rarity": "common",
+    "baseValue": 5,
+    "baseWeight": 1,
+    "strength": 5,
+    "regions": [
+      "clearwater"
+    ]
+  },
   "bluegill": {
     "name": "Bluegill",
     "rarity": "common",
     "baseValue": 3,
     "baseWeight": 0.5,
     "strength": 3,
-    "regions": [ "fork", "texoma", "amistad", "okeechobee", "ozarks", "santee", "champlain" ]
+    "regions": [
+      "willow",
+      "clearwater",
+      "fork",
+      "texoma",
+      "amistad",
+      "okeechobee",
+      "ozarks",
+      "santee",
+      "champlain"
+    ]
   },
   "green_sunfish": {
     "name": "Green Sunfish",
@@ -13,7 +76,13 @@
     "baseValue": 2,
     "baseWeight": 0.3,
     "strength": 2,
-    "regions": [ "fork", "texoma", "ozarks", "santee" ]
+    "regions": [
+      "willow",
+      "fork",
+      "texoma",
+      "ozarks",
+      "santee"
+    ]
   },
   "redear": {
     "name": "Redear Sunfish",
@@ -21,7 +90,12 @@
     "baseValue": 4,
     "baseWeight": 0.8,
     "strength": 4,
-    "regions": [ "fork", "okeechobee", "santee", "ozarks" ]
+    "regions": [
+      "fork",
+      "okeechobee",
+      "santee",
+      "ozarks"
+    ]
   },
   "crappie_white": {
     "name": "White Crappie",
@@ -29,7 +103,13 @@
     "baseValue": 8,
     "baseWeight": 1.2,
     "strength": 6,
-    "regions": [ "fork", "texoma", "okeechobee", "ozarks", "santee" ]
+    "regions": [
+      "fork",
+      "texoma",
+      "okeechobee",
+      "ozarks",
+      "santee"
+    ]
   },
   "crappie_black": {
     "name": "Black Crappie",
@@ -37,7 +117,14 @@
     "baseValue": 9,
     "baseWeight": 1.5,
     "strength": 7,
-    "regions": [ "fork", "champlain", "michigan", "erie", "ozarks" ]
+    "regions": [
+      "clearwater",
+      "fork",
+      "champlain",
+      "michigan",
+      "erie",
+      "ozarks"
+    ]
   },
   "largemouth": {
     "name": "Largemouth Bass",
@@ -45,7 +132,19 @@
     "baseValue": 20,
     "baseWeight": 4,
     "strength": 15,
-    "regions": [ "fork", "texoma", "amistad", "okeechobee", "ozarks", "santee", "champlain", "mead", "powell" ]
+    "regions": [
+      "clearwater",
+      "millers",
+      "fork",
+      "texoma",
+      "amistad",
+      "okeechobee",
+      "ozarks",
+      "santee",
+      "champlain",
+      "mead",
+      "powell"
+    ]
   },
   "smallmouth": {
     "name": "Smallmouth Bass",
@@ -53,7 +152,14 @@
     "baseValue": 18,
     "baseWeight": 3,
     "strength": 18,
-    "regions": [ "michigan", "erie", "superior", "champlain", "mead" ]
+    "regions": [
+      "millers",
+      "michigan",
+      "erie",
+      "superior",
+      "champlain",
+      "mead"
+    ]
   },
   "spotted_bass": {
     "name": "Spotted Bass",
@@ -61,7 +167,11 @@
     "baseValue": 15,
     "baseWeight": 2.5,
     "strength": 12,
-    "regions": [ "fork", "amistad", "ozarks" ]
+    "regions": [
+      "fork",
+      "amistad",
+      "ozarks"
+    ]
   },
   "striped_bass": {
     "name": "Striped Bass",
@@ -69,7 +179,12 @@
     "baseValue": 45,
     "baseWeight": 15,
     "strength": 40,
-    "regions": [ "texoma", "santee", "powell", "mead" ]
+    "regions": [
+      "texoma",
+      "santee",
+      "powell",
+      "mead"
+    ]
   },
   "white_bass": {
     "name": "White Bass",
@@ -77,7 +192,12 @@
     "baseValue": 7,
     "baseWeight": 1.5,
     "strength": 8,
-    "regions": [ "texoma", "fork", "ozarks", "erie" ]
+    "regions": [
+      "texoma",
+      "fork",
+      "ozarks",
+      "erie"
+    ]
   },
   "trophy_largemouth": {
     "name": "Trophy Largemouth Bass",
@@ -85,7 +205,10 @@
     "baseValue": 200,
     "baseWeight": 10,
     "strength": 50,
-    "regions": [ "fork", "okeechobee" ]
+    "regions": [
+      "fork",
+      "okeechobee"
+    ]
   },
   "trophy_smallmouth": {
     "name": "Trophy Smallmouth Bass",
@@ -93,7 +216,10 @@
     "baseValue": 180,
     "baseWeight": 7,
     "strength": 55,
-    "regions": [ "champlain", "erie" ]
+    "regions": [
+      "champlain",
+      "erie"
+    ]
   },
   "channel_cat": {
     "name": "Channel Catfish",
@@ -101,7 +227,13 @@
     "baseValue": 15,
     "baseWeight": 8,
     "strength": 20,
-    "regions": [ "fork", "texoma", "santee", "ozarks", "erie" ]
+    "regions": [
+      "fork",
+      "texoma",
+      "santee",
+      "ozarks",
+      "erie"
+    ]
   },
   "blue_cat": {
     "name": "Blue Catfish",
@@ -109,7 +241,11 @@
     "baseValue": 50,
     "baseWeight": 30,
     "strength": 60,
-    "regions": [ "texoma", "santee", "amistad" ]
+    "regions": [
+      "texoma",
+      "santee",
+      "amistad"
+    ]
   },
   "flathead_cat": {
     "name": "Flathead Catfish",
@@ -117,7 +253,11 @@
     "baseValue": 55,
     "baseWeight": 35,
     "strength": 65,
-    "regions": [ "texoma", "santee", "ozarks" ]
+    "regions": [
+      "texoma",
+      "santee",
+      "ozarks"
+    ]
   },
   "monster_blue": {
     "name": "Monster Blue Catfish",
@@ -125,7 +265,10 @@
     "baseValue": 250,
     "baseWeight": 80,
     "strength": 120,
-    "regions": [ "santee", "texoma" ]
+    "regions": [
+      "santee",
+      "texoma"
+    ]
   },
   "walleye": {
     "name": "Walleye",
@@ -133,7 +276,12 @@
     "baseValue": 30,
     "baseWeight": 5,
     "strength": 25,
-    "regions": [ "michigan", "erie", "champlain", "superior" ]
+    "regions": [
+      "michigan",
+      "erie",
+      "champlain",
+      "superior"
+    ]
   },
   "sauger": {
     "name": "Sauger",
@@ -141,7 +289,10 @@
     "baseValue": 12,
     "baseWeight": 2,
     "strength": 10,
-    "regions": [ "erie", "ozarks" ]
+    "regions": [
+      "erie",
+      "ozarks"
+    ]
   },
   "northern_pike": {
     "name": "Northern Pike",
@@ -149,7 +300,11 @@
     "baseValue": 60,
     "baseWeight": 15,
     "strength": 50,
-    "regions": [ "superior", "champlain", "michigan" ]
+    "regions": [
+      "superior",
+      "champlain",
+      "michigan"
+    ]
   },
   "muskie": {
     "name": "Muskellunge",
@@ -157,7 +312,10 @@
     "baseValue": 300,
     "baseWeight": 30,
     "strength": 100,
-    "regions": [ "superior", "champlain" ]
+    "regions": [
+      "superior",
+      "champlain"
+    ]
   },
   "lake_trout": {
     "name": "Lake Trout",
@@ -165,7 +323,11 @@
     "baseValue": 35,
     "baseWeight": 8,
     "strength": 30,
-    "regions": [ "superior", "michigan", "champlain" ]
+    "regions": [
+      "superior",
+      "michigan",
+      "champlain"
+    ]
   },
   "brown_trout": {
     "name": "Brown Trout",
@@ -173,7 +335,12 @@
     "baseValue": 28,
     "baseWeight": 4,
     "strength": 22,
-    "regions": [ "superior", "michigan", "powell", "mead" ]
+    "regions": [
+      "superior",
+      "michigan",
+      "powell",
+      "mead"
+    ]
   },
   "rainbow_trout": {
     "name": "Rainbow Trout",
@@ -181,7 +348,12 @@
     "baseValue": 25,
     "baseWeight": 3.5,
     "strength": 20,
-    "regions": [ "superior", "michigan", "powell", "mead" ]
+    "regions": [
+      "superior",
+      "michigan",
+      "powell",
+      "mead"
+    ]
   },
   "chinook_salmon": {
     "name": "Chinook Salmon",
@@ -189,7 +361,11 @@
     "baseValue": 80,
     "baseWeight": 20,
     "strength": 70,
-    "regions": [ "michigan", "superior", "erie" ]
+    "regions": [
+      "michigan",
+      "superior",
+      "erie"
+    ]
   },
   "coho_salmon": {
     "name": "Coho Salmon",
@@ -197,7 +373,10 @@
     "baseValue": 65,
     "baseWeight": 12,
     "strength": 55,
-    "regions": [ "michigan", "superior" ]
+    "regions": [
+      "michigan",
+      "superior"
+    ]
   },
   "trophy_laker": {
     "name": "Trophy Lake Trout",
@@ -205,7 +384,9 @@
     "baseValue": 220,
     "baseWeight": 35,
     "strength": 95,
-    "regions": [ "superior" ]
+    "regions": [
+      "superior"
+    ]
   },
   "yellow_perch": {
     "name": "Yellow Perch",
@@ -213,7 +394,12 @@
     "baseValue": 6,
     "baseWeight": 0.8,
     "strength": 5,
-    "regions": [ "michigan", "erie", "champlain", "superior" ]
+    "regions": [
+      "michigan",
+      "erie",
+      "champlain",
+      "superior"
+    ]
   },
   "striped_bass_trophy": {
     "name": "Trophy Striped Bass",
@@ -221,7 +407,10 @@
     "baseValue": 280,
     "baseWeight": 45,
     "strength": 110,
-    "regions": [ "powell", "mead" ]
+    "regions": [
+      "powell",
+      "mead"
+    ]
   },
   "smallmouth_buff": {
     "name": "Smallmouth Buffalo",
@@ -229,7 +418,10 @@
     "baseValue": 40,
     "baseWeight": 25,
     "strength": 45,
-    "regions": [ "texoma", "santee" ]
+    "regions": [
+      "texoma",
+      "santee"
+    ]
   },
   "longnose_gar": {
     "name": "Longnose Gar",
@@ -237,7 +429,11 @@
     "baseValue": 18,
     "baseWeight": 10,
     "strength": 35,
-    "regions": [ "texoma", "fork", "santee" ]
+    "regions": [
+      "texoma",
+      "fork",
+      "santee"
+    ]
   },
   "alligator_gar": {
     "name": "Alligator Gar",
@@ -245,7 +441,9 @@
     "baseValue": 500,
     "baseWeight": 120,
     "strength": 200,
-    "regions": [ "texoma" ]
+    "regions": [
+      "texoma"
+    ]
   },
   "common_carp": {
     "name": "Common Carp",
@@ -253,7 +451,13 @@
     "baseValue": 10,
     "baseWeight": 12,
     "strength": 30,
-    "regions": [ "michigan", "erie", "texoma", "powell", "mead" ]
+    "regions": [
+      "michigan",
+      "erie",
+      "texoma",
+      "powell",
+      "mead"
+    ]
   },
   "record_muskie": {
     "name": "Record Muskellunge",
@@ -261,7 +465,9 @@
     "baseValue": 1000,
     "baseWeight": 55,
     "strength": 250,
-    "regions": [ "champlain" ]
+    "regions": [
+      "champlain"
+    ]
   },
   "giant_laker": {
     "name": "Giant Lake Trout",
@@ -269,7 +475,9 @@
     "baseValue": 800,
     "baseWeight": 60,
     "strength": 220,
-    "regions": [ "superior" ]
+    "regions": [
+      "superior"
+    ]
   },
   "monster_striper": {
     "name": "Monster Striper",
@@ -277,6 +485,8 @@
     "baseValue": 900,
     "baseWeight": 70,
     "strength": 240,
-    "regions": [ "powell" ]
+    "regions": [
+      "powell"
+    ]
   }
 }

@@ -7,130 +7,305 @@
     "strength": 1,
     "unlocked": true
   },
+  "bread_balls": {
+    "name": "Bread Balls",
+    "cost": 15,
+    "attracts": [
+      "pumpkinseed",
+      "rock_bass",
+      "bluegill",
+      "green_sunfish",
+      "common_carp",
+      "yellow_bullhead"
+    ],
+    "repels": [
+      "largemouth",
+      "smallmouth",
+      "northern_pike"
+    ],
+    "strength": 1,
+    "unlocked": false
+  },
   "cricket": {
     "name": "Cricket",
-    "cost": 50,
-    "attracts": [ "bluegill", "green_sunfish", "redear", "crappie_white", "crappie_black" ],
-    "repels": [ "channel_cat", "blue_cat", "flathead_cat" ],
+    "cost": 30,
+    "attracts": [
+      "bluegill",
+      "green_sunfish",
+      "redear",
+      "crappie_white",
+      "crappie_black",
+      "pumpkinseed"
+    ],
+    "repels": [
+      "channel_cat",
+      "blue_cat",
+      "flathead_cat"
+    ],
     "strength": 2,
     "unlocked": false
   },
   "minnow": {
     "name": "Live Minnow",
-    "cost": 150,
-    "attracts": [ "largemouth", "smallmouth", "spotted_bass", "walleye", "northern_pike" ],
-    "repels": [ "bluegill", "green_sunfish", "yellow_perch" ],
+    "cost": 100,
+    "attracts": [
+      "largemouth",
+      "smallmouth",
+      "spotted_bass",
+      "walleye",
+      "northern_pike"
+    ],
+    "repels": [
+      "bluegill",
+      "green_sunfish",
+      "yellow_perch"
+    ],
     "strength": 3,
     "unlocked": false
   },
   "nightcrawler": {
     "name": "Nightcrawler",
     "cost": 200,
-    "attracts": [ "channel_cat", "blue_cat", "flathead_cat", "walleye" ],
-    "repels": [ "largemouth", "smallmouth", "spotted_bass" ],
+    "attracts": [
+      "channel_cat",
+      "blue_cat",
+      "flathead_cat",
+      "walleye"
+    ],
+    "repels": [
+      "largemouth",
+      "smallmouth",
+      "spotted_bass"
+    ],
     "strength": 3,
     "unlocked": false
   },
   "shad": {
     "name": "Shad",
     "cost": 400,
-    "attracts": [ "striped_bass", "white_bass", "striped_bass_trophy", "monster_striper" ],
-    "repels": [ "bluegill", "crappie_white", "crappie_black" ],
+    "attracts": [
+      "striped_bass",
+      "white_bass",
+      "striped_bass_trophy",
+      "monster_striper"
+    ],
+    "repels": [
+      "bluegill",
+      "crappie_white",
+      "crappie_black"
+    ],
     "strength": 4,
     "unlocked": false
   },
   "crayfish": {
     "name": "Crayfish",
     "cost": 500,
-    "attracts": [ "smallmouth", "trophy_smallmouth", "largemouth", "trophy_largemouth" ],
-    "repels": [ "crappie_white", "crappie_black", "white_bass" ],
+    "attracts": [
+      "smallmouth",
+      "trophy_smallmouth",
+      "largemouth",
+      "trophy_largemouth"
+    ],
+    "repels": [
+      "crappie_white",
+      "crappie_black",
+      "white_bass"
+    ],
     "strength": 4,
     "unlocked": false
   },
   "salmon_egg": {
     "name": "Salmon Eggs",
     "cost": 350,
-    "attracts": [ "rainbow_trout", "brown_trout", "lake_trout", "chinook_salmon", "coho_salmon" ],
-    "repels": [ "channel_cat", "blue_cat", "flathead_cat" ],
+    "attracts": [
+      "rainbow_trout",
+      "brown_trout",
+      "lake_trout",
+      "chinook_salmon",
+      "coho_salmon"
+    ],
+    "repels": [
+      "channel_cat",
+      "blue_cat",
+      "flathead_cat"
+    ],
     "strength": 3,
     "unlocked": false
   },
   "spinner": {
     "name": "Spinner Lure",
     "cost": 800,
-    "attracts": [ "northern_pike", "muskie", "walleye", "smallmouth", "largemouth" ],
-    "repels": [ "bluegill", "green_sunfish", "redear", "crappie_white" ],
+    "attracts": [
+      "northern_pike",
+      "muskie",
+      "walleye",
+      "smallmouth",
+      "largemouth"
+    ],
+    "repels": [
+      "bluegill",
+      "green_sunfish",
+      "redear",
+      "crappie_white"
+    ],
     "strength": 4,
     "unlocked": false
   },
   "jig": {
     "name": "Jig & Soft Plastic",
     "cost": 600,
-    "attracts": [ "largemouth", "smallmouth", "spotted_bass", "crappie_white", "crappie_black" ],
-    "repels": [ "channel_cat", "blue_cat" ],
+    "attracts": [
+      "largemouth",
+      "smallmouth",
+      "spotted_bass",
+      "crappie_white",
+      "crappie_black"
+    ],
+    "repels": [
+      "channel_cat",
+      "blue_cat"
+    ],
     "strength": 3,
     "unlocked": false
   },
   "topwater": {
     "name": "Topwater Lure",
     "cost": 1000,
-    "attracts": [ "largemouth", "trophy_largemouth", "smallmouth", "northern_pike", "muskie" ],
-    "repels": [ "channel_cat", "blue_cat", "flathead_cat", "walleye" ],
+    "attracts": [
+      "largemouth",
+      "trophy_largemouth",
+      "smallmouth",
+      "northern_pike",
+      "muskie"
+    ],
+    "repels": [
+      "channel_cat",
+      "blue_cat",
+      "flathead_cat",
+      "walleye"
+    ],
     "strength": 5,
     "unlocked": false
   },
   "spoon": {
     "name": "Spoon Lure",
     "cost": 700,
-    "attracts": [ "lake_trout", "trophy_laker", "chinook_salmon", "coho_salmon", "northern_pike" ],
-    "repels": [ "bluegill", "crappie_white", "crappie_black" ],
+    "attracts": [
+      "lake_trout",
+      "trophy_laker",
+      "chinook_salmon",
+      "coho_salmon",
+      "northern_pike"
+    ],
+    "repels": [
+      "bluegill",
+      "crappie_white",
+      "crappie_black"
+    ],
     "strength": 4,
     "unlocked": false
   },
   "stinkbait": {
     "name": "Stink Bait",
     "cost": 450,
-    "attracts": [ "channel_cat", "blue_cat", "flathead_cat", "monster_blue" ],
-    "repels": [ "largemouth", "smallmouth", "rainbow_trout", "brown_trout" ],
+    "attracts": [
+      "channel_cat",
+      "blue_cat",
+      "flathead_cat",
+      "monster_blue"
+    ],
+    "repels": [
+      "largemouth",
+      "smallmouth",
+      "rainbow_trout",
+      "brown_trout"
+    ],
     "strength": 5,
     "unlocked": false
   },
   "cutbait": {
     "name": "Cut Bait",
     "cost": 900,
-    "attracts": [ "blue_cat", "flathead_cat", "monster_blue", "alligator_gar", "longnose_gar" ],
-    "repels": [ "bluegill", "green_sunfish", "redear" ],
+    "attracts": [
+      "blue_cat",
+      "flathead_cat",
+      "monster_blue",
+      "alligator_gar",
+      "longnose_gar"
+    ],
+    "repels": [
+      "bluegill",
+      "green_sunfish",
+      "redear"
+    ],
     "strength": 5,
     "unlocked": false
   },
   "crankbait": {
     "name": "Deep Diving Crankbait",
     "cost": 1200,
-    "attracts": [ "striped_bass", "striped_bass_trophy", "monster_striper", "walleye", "lake_trout" ],
-    "repels": [ "bluegill", "green_sunfish", "yellow_perch" ],
+    "attracts": [
+      "striped_bass",
+      "striped_bass_trophy",
+      "monster_striper",
+      "walleye",
+      "lake_trout"
+    ],
+    "repels": [
+      "bluegill",
+      "green_sunfish",
+      "yellow_perch"
+    ],
     "strength": 5,
     "unlocked": false
   },
   "muskie_lure": {
     "name": "Premium Muskie Lure",
     "cost": 2000,
-    "attracts": [ "muskie", "record_muskie", "northern_pike", "trophy_laker", "giant_laker" ],
-    "repels": [ "bluegill", "crappie_white", "crappie_black", "yellow_perch" ],
+    "attracts": [
+      "muskie",
+      "record_muskie",
+      "northern_pike",
+      "trophy_laker",
+      "giant_laker"
+    ],
+    "repels": [
+      "bluegill",
+      "crappie_white",
+      "crappie_black",
+      "yellow_perch"
+    ],
     "strength": 6,
     "unlocked": false
   },
   "trophy_bait": {
     "name": "Trophy Bait",
     "cost": 3500,
-    "attracts": [ "trophy_largemouth", "trophy_smallmouth", "trophy_laker", "monster_blue", "striped_bass_trophy" ],
-    "repels": [ "bluegill", "green_sunfish", "redear", "white_bass" ],
+    "attracts": [
+      "trophy_largemouth",
+      "trophy_smallmouth",
+      "trophy_laker",
+      "monster_blue",
+      "striped_bass_trophy"
+    ],
+    "repels": [
+      "bluegill",
+      "green_sunfish",
+      "redear",
+      "white_bass"
+    ],
     "strength": 6,
     "unlocked": false
   },
   "legendary_lure": {
     "name": "Legendary Lure",
     "cost": 8000,
-    "attracts": [ "alligator_gar", "record_muskie", "giant_laker", "monster_striper" ],
+    "attracts": [
+      "alligator_gar",
+      "record_muskie",
+      "giant_laker",
+      "monster_striper"
+    ],
     "repels": [],
     "strength": 8,
     "unlocked": false
