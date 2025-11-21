@@ -49,9 +49,11 @@ function handleRodClick(id) {
         rod.unlocked = true;
         gameState.currentRod = id;
         addLog(`Purchased and equipped ${rod.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
+    checkAllAchievements();
 }
 function handleHookClick(id) {
     const hook = HOOKS[id];
@@ -63,9 +65,11 @@ function handleHookClick(id) {
         hook.unlocked = true;
         gameState.currentHook = id;
         addLog(`Purchased and equipped ${hook.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
+    checkAllAchievements();
 }
 function handleBaitClick(id) {
     const bait = BAITS[id];
@@ -77,9 +81,11 @@ function handleBaitClick(id) {
         bait.unlocked = true;
         gameState.currentBait = id;
         addLog(`Purchased and equipped ${bait.name}!`);
+        playSound('sell');
     }
     updateDisplay();
     updateShopDisplay();
+    checkAllAchievements();
 }
 
 // Travel
