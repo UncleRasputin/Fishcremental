@@ -181,6 +181,14 @@ function getPoolOdds(pool) {
     return result;
 }
 
+function generateFishStats_LengthFirst(fishData, hookSizeMultiplier = 1) {
+    const lengthVariance = 0.7 + Math.random() * 0.6; 
+    const size = parseFloat((fishData.baseLength * lengthVariance * hookSizeMultiplier).toFixed(1));
+    const weight = parseFloat((fishData.lengthWeightA * Math.pow(size, fishData.lengthWeightB)).toFixed(2));
+
+    return { size, weight };
+}
+
 // Fish generation
 function rollFish() {
     const region = gameState.currentLake;
@@ -195,9 +203,9 @@ function rollFish() {
     const fishId = pool[Math.floor(Math.random() * pool.length)];
     const fishData = FISH_DB[fishId];
 
-    const weightVariance = 0.5 + Math.random() * 1.5;
-    const weight = parseFloat((fishData.baseWeight * weightVariance * hookSizeMultiplier).toFixed(2));
-    const size = parseFloat((weight * 10 + Math.random() * 20).toFixed(1));
+    const stats = generateFishStats_LengthFirst(fishData, hookSizeMultiplier);
+    const weight = stats.weight;
+    const size = stats.size;
 
     return {
         id: fishId,
@@ -257,12 +265,17 @@ function startCast() {
     }, 50);
 }
 
+function calculateBiteTime() {
+    const biteTime = 3000 + Math.random() * 7000;
+    return biteTime;
+}
+
 function startWaiting() {
     gameState.waiting = true;
     gameState.progress = 0;
     UI.castButton.textContent = 'Waiting for a bite';
     addLog("Line cast! Waiting for a bite...");
-    const waitTime = 3000 + Math.random() * 12000;
+    const waitTime = calculateBiteTime();
     const step = 100 / (waitTime / 100);
     gameState.progressInterval = setInterval(() => {
         gameState.progress += step;
@@ -351,12 +364,13 @@ function completeCatch(fish) {
     }
     const bonuses = getEquipmentBonuses();
 
+    const staticValueMultiplier = 1.15;
     const modifiedWeight = fish.weight * (1 + bonuses.weightBonus / 100);
     const modifiedSize = fish.size * (1 + bonuses.sizeBonus / 100);
     fish.weight = parseFloat(modifiedWeight.toFixed(2));
     fish.size = parseFloat(modifiedSize.toFixed(1));
 
-    const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight) * (1 + bonuses.sellValue / 100));
+    const value = Math.floor(fish.baseValue * (fish.weight / fish.baseWeight) * (1 + bonuses.sellValue / 100) * staticValueMultiplier);
     if (value === 0) {
         gameState.stats.fishThrownBack++;
         checkAllAchievements(); // Check for thrown back achievements
