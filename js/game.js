@@ -364,7 +364,7 @@ function completeCatch(fish) {
     }
     const bonuses = getEquipmentBonuses();
 
-    const staticValueMultiplier = 1.15;
+    const staticValueMultiplier = 1.35;
     const modifiedWeight = fish.weight * (1 + bonuses.weightBonus / 100);
     const modifiedSize = fish.size * (1 + bonuses.sizeBonus / 100);
     fish.weight = parseFloat(modifiedWeight.toFixed(2));
