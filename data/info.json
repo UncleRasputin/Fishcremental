@@ -1,10 +1,19 @@
 ﻿{
-  "version": "1.1.1",
+  "version": "1.1.2",
   "intro": {
     "title": "Welcome to Fishcremental!",
     "content": "<p>Welcome, angler! Ready to catch some fish?</p>\n<h3>Make sure to read the changelog!</h3>\n<h4>Getting Started:</h4><ul><li><strong>Cast your line</strong> - Click the \"Cast Line\" button to start fishing</li><li><strong>Catch fish</strong> - Wait for a bite, then reel it in!</li><li><strong>Sell your catch</strong> - Visit the Inventory tab to sell fish for money</li><li><strong>Upgrade gear</strong> - Buy better rods and bait in the Shop</li><li><strong>Explore locations</strong> - Travel to new lakes to find rare fish</li><li><strong>Complete quests</strong> - Earn Quest Tokens for special equipment and upgrades</li>\n            </ul>\n            \n            <h4>Tips:</h4>\n            <ul><li>Bigger fish = more money and XP</li><li>Better rods let you catch stronger fish without breaking your line</li><li>Different lakes have different fish species</li><li>Seasons change as you fish - some fish are more common in certain seasons</li><li>Complete quests to earn Quest Tokens for powerful upgrades!</li></ul><p style=\"text-align: center; margin-top: 1.5rem;\"><strong>Good luck and tight lines!</strong></p>"
   },
   "changelog": [
+    {
+      "version": "1.1.2",
+      "date": "2024-11-23",
+      "changes": [
+        "Portable saves are here!",
+        "Import and Export Game buttons are now available on the stats screen!",
+        "Both operations use the clipboard to read and write the save."
+      ]
+    },
     {
       "version": "1.1.1",
       "date": "2024-11-22",

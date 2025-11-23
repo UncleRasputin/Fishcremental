@@ -66,6 +66,7 @@ function saveGame(silent = false) {
         localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
         if (!silent)
             addLog('Game saved successfully!');
+        return saveData;
     }
     catch (error) {
         console.error('Save error:', error);
@@ -310,4 +311,39 @@ function hardReset() {
 
     localStorage.removeItem(SAVE_KEY);
     location.reload();
+}
+
+async function export_save() {
+    const saveData = btoa(JSON.stringify(saveGame(true)));
+    try {
+        await navigator.clipboard.writeText(saveData);
+        alert("Save game is on your clipboard!");
+    } catch (err) {
+        console.error("Failed to copy save game: ", err);
+        alert("Failed to copy text to clipboard.");
+    }
+}
+
+async function read_clipboard() {
+    try {
+        const clipText = await navigator.clipboard.readText();
+        return clipText;
+    } catch (err) {
+        console.error("Failed to read clipboard contents: ", err);
+        return null;
+    }
+}
+
+async function import_save() {
+    let decodedString;
+    try {
+        const saveString = await read_clipboard();
+        decodedString = atob(saveString);
+    } catch (e) {
+        console.error("Error reading save game from clipboard:", e);
+    }
+    const loadedGameState = JSON.parse(decodedString);
+    applySaveData(loadedGameState);
+    updateDisplay();
+    updateStatsDisplay();
 }
